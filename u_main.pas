@@ -1829,8 +1829,7 @@ Ok : Boolean;
 StreamMemo : TMemoryStream;
 begin
 
-if(glb_offline='N')then
-	LerConfiguracaoNFE;
+
 
    if(glb_offline='N')then
       begin
@@ -1839,19 +1838,21 @@ if(glb_offline='N')then
 
 	Ini := TIniFile.Create( 'C:\iqsistemas\SICEMDF-e\sicenfe.ini' );
 	try
-		if(glb_offline='S')then
-        txtEmitCNPJ.Text       := CriptografarSX(Ini.ReadString( 'Emitente','CNPJ'       ,''))
-		else
-        txtEmitCNPJ.Text       := _dmMDFe.clientdatasetdadcnpj.asstring;
-
-		if(glb_offline='S')then
-  		txtEmitIE.Text         := CriptografarSX(Ini.ReadString( 'Emitente','IE'       ,''))
-		else
-	  	txtEmitIE.Text         := _dmMDFe.clientdatasetdadinscricao.asstring;
 
 
-    if(glb_offline='S')then
-    begin
+          //if(glb_offline='S')then
+         //     txtEmitCNPJ.Text       := CriptografarSX(Ini.ReadString( 'Emitente','CNPJ'       ,''))
+         // else
+              txtEmitCNPJ.Text       := _dmMDFe.clientdatasetdadcnpj.asstring;
+
+        //  if(glb_offline='S')then
+        //    txtEmitIE.Text         := CriptografarSX(Ini.ReadString( 'Emitente','IE'       ,''))
+        //  else
+            txtEmitIE.Text         := _dmMDFe.clientdatasetdadinscricao.asstring;
+
+      if(glb_offline='S')then
+      begin
+
 
 
             with ACBrMDFe1.Configuracoes.Geral do
@@ -1876,7 +1877,7 @@ if(glb_offline='N')then
       txtNumSerie.Text := Ini.ReadString( 'Certificado','NumSerie','') ;
       ACBrMDFe1.Configuracoes.Certificados.NumeroSerie :=  txtNumSerie.Text;
 
-    end;
+
 
 
 		rgModo.ItemIndex := strtoint(Ini.ReadString( 'ModoEmissao','Modo'   ,'0'));
@@ -1886,6 +1887,8 @@ if(glb_offline='N')then
 
 		ACBrMDFe1.Configuracoes.WebServices.UF            := cbUF.Text;
 		ACBrMDFe1.Configuracoes.WebServices.Ambiente      := StrToTpAmb(Ok,IntToStr(rgTipoAmb.ItemIndex+1));
+
+    end;
 
 		if(glb_offline='S')then
 		begin
@@ -1910,6 +1913,10 @@ if(glb_offline='N')then
 	finally
 		Ini.Free ;
 	end;
+
+  if(glb_offline='N')then
+	LerConfiguracaoNFE;
+
 
 	_dmMDFe.conexao.Close;
 	_dmMDFe.ClientDataSetdad.close;
@@ -3020,7 +3027,7 @@ begin
 	Ini := TIniFile.Create( IniFile );
 	try
 		edtSenha.Text                                    := CriptografarSX(Ini.ReadString( 'Certificado','Senha'   ,''));
-    edtNumSerie.Text                                 := Ini.ReadString( 'Certificado','NumSerie','');
+    txtNumSerie.Text                                 := Ini.ReadString( 'Certificado','NumSerie','');
 
 		ACBrMDFe1.Configuracoes.Certificados.ArquivoPFX  := Ini.ReadString( 'Certificado','Caminho' ,'');
 		ACBrMDFe1.Configuracoes.Certificados.Senha       := edtSenha.Text;
