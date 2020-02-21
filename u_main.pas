@@ -10,251 +10,165 @@ Vcl.Grids, Vcl.DBGrids, RxToolEdit, RxCurrEdit, pcnConversaoNFe, pcnConversao, A
 Vcl.ExtCtrls, RxSlider, IniFiles, ShellAPI, OleCtrls, SHDocVw,
 ACBrMail, Data.DB, ACBrMDFeDAMDFeRLClass, Vcl.Imaging.jpeg,
 Vcl.Imaging.pngimage, ACBrDFeReport, Vcl.Menus, RxCtrls, RpCon, RpConDS,
-RpBase, RpSystem, RpDefine, RpRave;
+RpBase, RpSystem, RpDefine, RpRave, Vcl.ImgList;
 
 type
 T_Main = class(TForm)
-    pgMain: TPageControl;
-    Controle: TTabSheet;
-    Emissao: TTabSheet;
-    Configurações: TTabSheet;
-    grpMDFe: TGroupBox;
-    grpIdentificacao: TGroupBox;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    txtmodeloMDF: TMaskEdit;
-    txtserieMDF: TMaskEdit;
-    txtnumeroMDF: TMaskEdit;
-    cboUFCarregamento: TComboBox;
-    cboUFDescarregamento: TComboBox;
-    pa: TGroupBox;
-    cboMunicipioCarregamento: TComboBox;
-    Label13: TLabel;
-    Label14: TLabel;
-    cboMunicipioDescarregamento: TComboBox;
-    Label23: TLabel;
-    txtInfComplementar: TMemo;
-    btnSalvar: TBitBtn;
-    btnCancelarIDE: TBitBtn;
-    pnlControle: TPanel;
-    DBGrid1: TDBGrid;
-    Panel2: TPanel;
-    BitBtn4: TBitBtn;
-    btnEnviar: TBitBtn;
     dsIDELocal: TDataSource;
-    MemoStatus: TMemo;
-    btnAlterar: TBitBtn;
-    GroupBox4: TGroupBox;
-    Label30: TLabel;
-    Label31: TLabel;
-    Label26: TLabel;
+    pnlMenu: TPanel;
+    OpenDialog1: TOpenDialog;
+    PopupMenu1: TPopupMenu;
+    DAMDFe1: TMenuItem;
+    RelatriodeMDFe1: TMenuItem;
+    RvProject1: TRvProject;
+    RvSystem1: TRvSystem;
+    RvDataSetConnection1: TRvDataSetConnection;
+    ACBrMDFe1: TACBrMDFe;
+    ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Image1: TImage;
+    imgGerar: TImage;
+    imgBuscar: TImage;
+    imgExportar: TImage;
+    imgConfig: TImage;
+    lblempresa: TLabel;
+    lblfilial: TLabel;
+    pnlMain: TPanel;
+    GridPanel1: TGridPanel;
+    lblusuario: TLabel;
+    imgnot: TImage;
+    lblversao: TLabel;
+    pnlEmissao: TPanel;
+    GridPanel2: TGridPanel;
+    Image2: TImage;
+    Label6: TLabel;
+    Image7: TImage;
+    Label25: TLabel;
+    Image8: TImage;
+    Label27: TLabel;
+    Image9: TImage;
+    Label34: TLabel;
+    DBGrid1: TDBGrid;
+    Panel6: TPanel;
+    Image3: TImage;
+    imgListMenu: TImageList;
+    pnlConfig: TPanel;
+    GroupBox11: TGroupBox;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
     txtEmitCNPJ: TEdit;
     txtEmitIE: TEdit;
     txtFilialEmitente: TMaskEdit;
     ckMonoFilial: TCheckBox;
-    GroupBox2: TGroupBox;
-    Label28: TLabel;
-    Label29: TLabel;
-    sbtnGetCert: TSpeedButton;
-    edtSenha2: TEdit;
+    GroupBox12: TGroupBox;
+    Label46: TLabel;
+    Label65: TLabel;
+    SpeedButton2: TSpeedButton;
+    Label66: TLabel;
+    Label67: TLabel;
+    Label68: TLabel;
+    Label69: TLabel;
+    Label70: TLabel;
+    Edit4: TEdit;
     edtNumSerie: TEdit;
-    GroupBox5: TGroupBox;
-    Label32: TLabel;
-    lblIntervaloReq: TLabel;
+    cbSSLLib: TComboBox;
+    cbCryptLib: TComboBox;
+    cbHttpLib: TComboBox;
+    cbXmlSignLib: TComboBox;
+    Button4: TButton;
+    Button5: TButton;
+    cbSSLType: TComboBox;
+    GroupBox13: TGroupBox;
+    Label71: TLabel;
+    Label72: TLabel;
+    sbtnCaminhoCert: TSpeedButton;
+    Label73: TLabel;
+    bitNunSerie: TSpeedButton;
+    Label74: TLabel;
+    edtCaminho: TEdit;
+    edtSenha: TEdit;
+    txtNumSerie: TEdit;
+    GroupBox14: TGroupBox;
+    Label75: TLabel;
+    Label76: TLabel;
     ckVisualizar: TCheckBox;
     _cbUF: TComboBox;
     rgTipoAmb: TRadioGroup;
     IntervaloReq: TRxSlider;
     rgModo: TRadioGroup;
-    grpVeiculo: TGroupBox;
-    lblPlaca: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    Label24: TLabel;
-    Label15: TLabel;
-    txtPlaca: TMaskEdit;
-    btnBuscarTransportadora: TBitBtn;
-    txtRNTC: TMaskEdit;
-    txtCondutor: TMaskEdit;
-    txtCPFCondutor: TMaskEdit;
-    txtTara: TCurrencyEdit;
-    txtCapacidadeKG: TCurrencyEdit;
-    txtCapacidadeM3: TCurrencyEdit;
-    cboTipoVeiculo: TComboBox;
-    cboTipoCarroceria: TComboBox;
-    cboTipoUnidadeTracao: TComboBox;
-    txtRenavam: TMaskEdit;
-    txtUFPlaca: TMaskEdit;
-    Label1: TLabel;
-    txtvCarga: TCurrencyEdit;
-    txtqCarga: TCurrencyEdit;
-    Label21: TLabel;
-    txtcUnid: TComboBox;
-    Label22: TLabel;
-    btnCancelar: TBitBtn;
-    btnEncerrar: TBitBtn;
-    btnConsultarMDFe: TBitBtn;
-    chkCidades: TCheckBox;
-    txtDataEmissao: TDateEdit;
-    pgInserir: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    GridNFE: TDBGrid;
-    ChkTer: TCheckBox;
-    btnRemoverNFe: TBitBtn;
-    cboUfTrajeto: TComboBox;
-    Label33: TLabel;
-    memoUf: TMemo;
-    Button1: TButton;
-    TabSheet3: TTabSheet;
-    pnlNtAvulsa: TPanel;
-    Label25: TLabel;
-    Label27: TLabel;
-    Label34: TLabel;
-    Label35: TLabel;
-    Label36: TLabel;
-    Label37: TLabel;
-    txtchave: TEdit;
-    btnAddNFeAvulsa: TButton;
-    cboUfCarrAvulso: TComboBox;
-    cboMunCarrAvulso: TComboBox;
-    cboUfdessAvulso: TComboBox;
-    cboMunDesAvulso: TComboBox;
-    pnlpropria: TPanel;
-    btnAdicionarNFe: TBitBtn;
-    txtSerieNFe: TMaskEdit;
-    txtNumeroNFe: TMaskEdit;
-    Memo1: TMemo;
-    Button2: TButton;
-    TabSheet4: TTabSheet;
-    GroupBox1: TGroupBox;
-    GroupBox3: TGroupBox;
-    cbosit: TComboBox;
+    cbUF: TMaskEdit;
+    Panel7: TPanel;
+    btnSalvarConf: TPanel;
+    btnDadosFilial: TPanel;
+    pnlFiltro: TPanel;
+    Panel8: TPanel;
+    GroupBox15: TGroupBox;
+    CBOSIT: TComboBox;
+    GroupBox16: TGroupBox;
+    Label77: TLabel;
+    Label78: TLabel;
     rdata1: TRadioButton;
     rdata2: TRadioButton;
     rdata3: TRadioButton;
     DateEdit1: TDateEdit;
     DateEdit3: TDateEdit;
-    Label38: TLabel;
-    Label39: TLabel;
-    GroupBox6: TGroupBox;
+    rdata0: TRadioButton;
+    rtodas: TRadioButton;
+    GroupBox17: TGroupBox;
     txtchavemdfe: TEdit;
-    GroupBox7: TGroupBox;
-    Label40: TLabel;
-    Label41: TLabel;
+    GroupBox18: TGroupBox;
+    Label79: TLabel;
+    Label80: TLabel;
+    Label81: TLabel;
+    Label82: TLabel;
     cboUfc: TComboBox;
     cboMunc: TComboBox;
-    Label42: TLabel;
-    Label43: TLabel;
     cboufdes: TComboBox;
     cbomundes: TComboBox;
-    Button3: TButton;
-    GroupBox8: TGroupBox;
+    GroupBox19: TGroupBox;
+    Label83: TLabel;
+    Label84: TLabel;
     txtserie: TEdit;
     txtnum: TEdit;
-    Label44: TLabel;
-    Label45: TLabel;
-    rdata0: TRadioButton;
-    txtvalor: TCurrencyEdit;
-    SpeedButton1: TSpeedButton;
-    txtChacesso: TEdit;
-    lblchv: TLabel;
-    Panel1: TPanel;
-    rtodas: TRadioButton;
-    TabSheet5: TTabSheet;
-    txtXML: TMemo;
-    lbloperacao: TLabel;
-    BitBtn1: TBitBtn;
-    txtoperador: TEdit;
-    txtsenha: TEdit;
-    Label48: TLabel;
-    Label49: TLabel;
-    pnlSenha: TPanel;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    cboTipoEmit: TComboBox;
-    Label50: TLabel;
-    tabCIOTseguro: TTabSheet;
-    Label47: TLabel;
-    txtciot: TEdit;
-    txtCPFCNPJciot: TEdit;
-    Label51: TLabel;
-    Label52: TLabel;
-    Label53: TLabel;
-    Label55: TLabel;
-    Label56: TLabel;
-    txtcnpjrespseg: TEdit;
-    txtnapolice: TEdit;
-    txtnraverbacao: TEdit;
-    Label54: TLabel;
-    txtseguradora: TEdit;
-    txtcnpjseguradora: TEdit;
-    Label57: TLabel;
-    txtrespseg: TComboBox;
-    GroupBox9: TGroupBox;
+    GroupBox20: TGroupBox;
     cbofilialfiltro: TComboBox;
-    Image2: TImage;
-    Label46: TLabel;
-    lblversao: TLabel;
-    filialemitenteselecionada: TComboBox;
-    txtSegChave: TEdit;
+    btnfiltro: TPanel;
+    btncancfiltro: TPanel;
+    btnFechar: TPanel;
+    pnlacoes: TPanel;
+    Panel9: TPanel;
+    btnAlt: TPanel;
+    btnCons: TPanel;
+    btnEnc: TPanel;
+    btnCanc: TPanel;
+    btnEnv: TPanel;
+    MemoStatus: TMemo;
+    Panel10: TPanel;
+    btnDanf: TPanel;
+    pnlFerramentas: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
     Label5: TLabel;
-    chkcontingencia: TCheckBox;
-    Label6: TLabel;
-    Salvar: TBitBtn;
-    btncadfilial: TBitBtn;
-    Panel3: TPanel;
-    Label58: TLabel;
+    Label85: TLabel;
+    Label86: TLabel;
     Edit1: TEdit;
     dataxml: TDateEdit;
-    Label59: TLabel;
-    Label60: TLabel;
-    BitBtn5: TBitBtn;
-    OpenDialog1: TOpenDialog;
-    txtdiasconclusao: TEdit;
-    Label61: TLabel;
-    BitBtn6: TBitBtn;
-    PopupMenu1: TPopupMenu;
-    DAMDFe1: TMenuItem;
-    RelatriodeMDFe1: TMenuItem;
-    RxSpeedButton1: TRxSpeedButton;
-    RvProject1: TRvProject;
-    RvSystem1: TRvSystem;
-    RvDataSetConnection1: TRvDataSetConnection;
-    cbUF: TMaskEdit;
-    ACBrMDFe1: TACBrMDFe;
-    ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL;
-    lSSLLib: TLabel;
-    cbSSLLib: TComboBox;
-    cbCryptLib: TComboBox;
-    lCryptLib: TLabel;
-    lHttpLib: TLabel;
-    cbHttpLib: TComboBox;
-    cbXmlSignLib: TComboBox;
-    lXmlSign: TLabel;
-    bitOpenSSL: TButton;
-    btnWinCrypt: TButton;
-    cbSSLType: TComboBox;
-    lSSLLib1: TLabel;
-    GroupBox10: TGroupBox;
-    Label62: TLabel;
-    Label63: TLabel;
-    sbtnCaminhoCert: TSpeedButton;
-    Label64: TLabel;
-    bitNunSerie: TSpeedButton;
-    edtCaminho: TEdit;
-    edtSenha: TEdit;
-    txtNumSerie: TEdit;
+    BitBtn8: TBitBtn;
+    Label87: TLabel;
+    txtXML: TMemo;
+    BitBtn9: TBitBtn;
+    pnlSenha_: TPanel;
+    Label88: TLabel;
+    Label89: TLabel;
+    txtoperador: TEdit;
+    txtsenha: TEdit;
+    btnAltxml: TBitBtn;
+    pnlSenha: TBitBtn;
+    Ferramentas1: TMenuItem;
+    lbloperacao: TLabel;
+    btnVer: TPanel;
     procedure btnSalvarClick(Sender: TObject);
     procedure cboUFCarregamentoEnter(Sender: TObject);
     procedure cboUFDescarregamentoEnter(Sender: TObject);
@@ -294,15 +208,13 @@ T_Main = class(TForm)
     procedure cboUfCarrAvulsoExit(Sender: TObject);
     procedure cboUfdessAvulsoExit(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure cboUfcEnter(Sender: TObject);
-    procedure cboufdesEnter(Sender: TObject);
-    procedure cbomundesEnter(Sender: TObject);
+    procedure cboUfc2Enter(Sender: TObject);
+    procedure cbomundes2Enter(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure txtChacessoKeyPress(Sender: TObject; var Key: Char);
     procedure FormActivate(Sender: TObject);
     procedure cboMunicipioDescarregamentoExit(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
-    procedure DBGrid1CellClick(Column: TColumn);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure txtciotExit(Sender: TObject);
@@ -314,41 +226,108 @@ T_Main = class(TForm)
     procedure txtnapoliceKeyPress(Sender: TObject; var Key: Char);
     procedure cboTipoEmitSelect(Sender: TObject);
     procedure sbtnGetCertClick(Sender: TObject);
-    procedure cbofilialfiltroEnter(Sender: TObject);
-    procedure chkcontingenciaClick(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
-    procedure btncadfilialClick(Sender: TObject);
+    procedure btncadfilial2Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure txtdiasconclusaoKeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn6Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure DAMDFe1Click(Sender: TObject);
     procedure RelatriodeMDFe1Click(Sender: TObject);
-    procedure btnWinCryptClick(Sender: TObject);
-    procedure bitOpenSSLClick(Sender: TObject);
-    procedure cbSSLLibChange(Sender: TObject);
-    procedure cbCryptLibChange(Sender: TObject);
-    procedure cbHttpLibChange(Sender: TObject);
-    procedure cbXmlSignLibChange(Sender: TObject);
+    procedure btnWinCrypt2Click(Sender: TObject);
+    procedure bitOpenSSL2Click(Sender: TObject);
+    procedure cbSSLLib2Change(Sender: TObject);
+    procedure cbCryptLib2Change(Sender: TObject);
+    procedure cbHttpLib2Change(Sender: TObject);
+    procedure cbXmlSignLib2Change(Sender: TObject);
+    procedure sbtnCaminhoCert2Click(Sender: TObject);
+    procedure bitNunSerie3Click(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
+    procedure imgGerarClick(Sender: TObject);
+    procedure imgGerarMouseEnter(Sender: TObject);
+    procedure imgGerarMouseLeave(Sender: TObject);
+    procedure imgBuscarMouseLeave(Sender: TObject);
+    procedure imgBuscarMouseEnter(Sender: TObject);
+    procedure imgExportarMouseEnter(Sender: TObject);
+    procedure imgExportarMouseLeave(Sender: TObject);
+    procedure imgConfigMouseLeave(Sender: TObject);
+    procedure imgConfigMouseEnter(Sender: TObject);
     procedure sbtnCaminhoCertClick(Sender: TObject);
     procedure bitNunSerieClick(Sender: TObject);
+    procedure cbSSLLibChange(Sender: TObject);
+    procedure cbHttpLibChange(Sender: TObject);
+    procedure cbXmlSignLibChange(Sender: TObject);
+    procedure cbCryptLibChange(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure btnFecharstatusClick(Sender: TObject);
+    procedure btncadfilialClick(Sender: TObject);
+    procedure btnSalvarConfClick(Sender: TObject);
+    procedure btnDadosFilialClick(Sender: TObject);
+    procedure btnSalvarConfMouseEnter(Sender: TObject);
+    procedure btnSalvarConfMouseLeave(Sender: TObject);
+    procedure btnDadosFilialMouseEnter(Sender: TObject);
+    procedure btnDadosFilialMouseLeave(Sender: TObject);
+    procedure btnfiltroMouseLeave(Sender: TObject);
+    procedure btnfiltroMouseEnter(Sender: TObject);
+    procedure btncancfiltroMouseEnter(Sender: TObject);
+    procedure btncancfiltroMouseLeave(Sender: TObject);
+    procedure btnfiltroClick(Sender: TObject);
+    procedure imgBuscarClick(Sender: TObject);
+    procedure btncancfiltroClick(Sender: TObject);
+    procedure cbofilialfiltroEnter(Sender: TObject);
+    procedure cboUfcEnter(Sender: TObject);
+    procedure cbomundesEnter(Sender: TObject);
+    procedure cboufdesEnter(Sender: TObject);
+    procedure cboMuncEnter(Sender: TObject);
+    procedure imgConfigClick(Sender: TObject);
+    procedure btnFecharMouseEnter(Sender: TObject);
+    procedure btnFecharMouseLeave(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure imgnotClick(Sender: TObject);
+    procedure btnAltMouseEnter(Sender: TObject);
+    procedure btnAltMouseLeave(Sender: TObject);
+    procedure btnConsMouseEnter(Sender: TObject);
+    procedure btnConsMouseLeave(Sender: TObject);
+    procedure btnEncMouseLeave(Sender: TObject);
+    procedure btnEnvMouseLeave(Sender: TObject);
+    procedure btnEnvMouseEnter(Sender: TObject);
+    procedure btnCancMouseLeave(Sender: TObject);
+    procedure btnCancMouseEnter(Sender: TObject);
+    procedure btnEncMouseEnter(Sender: TObject);
+    procedure imgExportarClick(Sender: TObject);
+    procedure btnConsClick(Sender: TObject);
+    procedure btnAltClick(Sender: TObject);
+    procedure btnEncClick(Sender: TObject);
+    procedure btnCancClick(Sender: TObject);
+    procedure btnEnvClick(Sender: TObject);
+    procedure btnAltxmlClick(Sender: TObject);
+    procedure btnDanfMouseEnter(Sender: TObject);
+    procedure btnDanfMouseLeave(Sender: TObject);
+    procedure btnDanfClick(Sender: TObject);
+    procedure Ferramentas1Click(Sender: TObject);
+    procedure btnVerMouseEnter(Sender: TObject);
+    procedure btnVerMouseLeave(Sender: TObject);
+    procedure btnVerClick(Sender: TObject);
 	private
     { Private declarations }
     Procedure CarregarConfiguracoes;
     procedure GerarMDFe(NumMDFe : String);
     procedure ConsultaMDFe;
     procedure LerConfiguracaoNFE;
-    function GetBuildInfo:string;
+
 	public
     { Public declarations }
-
-
 	glb_grupo:string;
 	// glb_filial:string;
 	glb_loginFeito:string;
-
+  frm,frmMemo:Tform;
+  function GetBuildInfo:string;
   procedure AtualizaSSLLibsCombo;
   procedure AtualizaACBRNFe;
+
 
 
 end;
@@ -369,7 +348,7 @@ Glb_fabrica:bool;
 Glb_servico:bool;
 Glb_Contabil:bool;
 Glb_fidel:bool;
-
+glb_versao:string;
 Glb_ChavePrivada : String ='C9E15B94BA0E28D1DE04099FE21C9370E23A083DAA6561'+
 '6FCA0D68BB1176B17CEBF5627BC1D9D788BD27120A0FE8'+
 'C2418AC4B625FD47ACA2E3E98CA8D148A34DC28BDF92D'+
@@ -377,10 +356,11 @@ Glb_ChavePrivada : String ='C9E15B94BA0E28D1DE04099FE21C9370E23A083DAA6561'+
 '3D2C2F9A149B438DB7A0602288EEFCA869E495C3D89F70'+
 'E4D30B835E19B144A26060A407';
 
+
 implementation
 
-uses dmmdfe,  FileCtrl, DateUtils, pmdfeConversaoMDFe,  ACBrMDFeManifestos,frSelecionarCertificado,
-u_transpotadoras, midaslib,U_splash,frmLogin,frmListarNotas,frmfilial,frmManifestosEncerrar, blcksock, ACBrDFeSSL,TypInfo;
+uses dmmdfe,frmGerarMdfe,  FileCtrl, DateUtils, pmdfeConversaoMDFe,  ACBrMDFeManifestos,frSelecionarCertificado, clipbrd,
+u_transpotadoras, midaslib,U_splash,frmLogin,frmListarNotas,frmfilial,frmManifestosEncerrar, blcksock, ACBrDFeSSL,TypInfo,frmNotasAvulsas;
 
 {$R *.dfm}
 
@@ -446,10 +426,11 @@ procedure T_Main.AtualizaACBRNFe;
 begin
 
  // ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  := ExtractFilePath(Application.ExeName)+'Certificado.pfx';
-  ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  :=  edtCaminho.Text;
-  ACBrmdFe1.Configuracoes.Certificados.Senha       := edtSenha.Text;
 
+  ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  :=  edtCaminho.Text;
+  ACBrmdFe1.Configuracoes.Certificados.Senha       :=edtSenha.Text;
   ACBrmdFe1.Configuracoes.WebServices.UF            := cbUF.text;
+
  //	ACBrmdFe1.Configuracoes.WebServices.TimeOut       := (strtoint(txtTimeOut.Text)*1000);
 
     ACBrmdFe1.SSL.DescarregarCertificado;
@@ -475,7 +456,7 @@ begin
 	_frmVeiculos.release;
 
 
-	txtPlaca.Text := _dmMDFe.cdsVeiculosplaca.AsString;
+	{txtPlaca.Text := _dmMDFe.cdsVeiculosplaca.AsString;
 	txtUFPlaca.Text := _dmMDFe.cdsVeiculosestadoplaca.AsString;
 	txtRNTC.Text := _dmMDFe.cdsVeiculosANTT.AsString;
 	txtRenavam.Text := _dmMDFe.cdsVeiculosrenavam.AsString;
@@ -489,13 +470,13 @@ begin
 
 	cboTipoVeiculo.Text := _dmMDFe.cdsVeiculostiporodado.AsString;
 	cboTipoCarroceria.Text := _dmMDFe.cdsVeiculostipocarroceria.AsString;
-
+    }
 
 end;
 
 procedure T_Main.btnSalvarClick(Sender: TObject);
 begin
-    if(strtoint(txtdiasconclusao.Text)=0)then
+  {  if(strtoint(txtdiasconclusao.Text)=0)then
     begin
 		showmessage('Informe o prazo para encerramento!');
 		exit;
@@ -621,22 +602,24 @@ begin
 
 
     application.MessageBox('Informações Salvas!','Informação',MB_ICONINFORMATION+mb_ok);
-
+      }
 end;
 
 procedure T_Main.Button1Click(Sender: TObject);
 var total,linha:integer;
 begin
 	linha := 0;
-
-	memouf.Lines.Add(copy(cboUfTrajeto.Text,1,2));
-
+ //	listboxuf.items.Add(cboUfTrajeto.Text);
 
 end;
 
 procedure T_Main.Button2Click(Sender: TObject);
 begin
-	memoUf.Text:='';
+ // showmessage(listboxuf.Items[listboxuf.ItemIndex]);
+ // listboxuf.items.Clear;
+  //listboxuf.items.Delete(listboxuf.ItemIndex);
+
+
 end;
 
 procedure T_Main.Button3Click(Sender: TObject);
@@ -722,7 +705,7 @@ begin
 	_dmMDFe.cdsmdfeIDE.Open;
 
 
-	pgMain.TabIndex := 0;
+	//pgMain.TabIndex := 0;
 
 
 
@@ -735,7 +718,18 @@ begin
 
 end;
 
-procedure T_Main.btnWinCryptClick(Sender: TObject);
+procedure T_Main.Button4Click(Sender: TObject);
+begin
+  cbSSLLib.ItemIndex:=1;
+   cbCryptLib.ItemIndex:=1;
+   cbHttpLib.ItemIndex:=3;
+   cbSSLType.ItemIndex:=5;
+   cbXmlSignLib.ItemIndex:=4;
+
+   Showmessage('Configuração válida somente para certificado A1.');
+end;
+
+procedure T_Main.Button5Click(Sender: TObject);
 begin
 cbSSLLib.ItemIndex:=5;
 cbCryptLib.ItemIndex:=3;
@@ -743,6 +737,140 @@ cbHttpLib.ItemIndex:=2;
 cbXmlSignLib.ItemIndex:=2;
 cbSSLType.ItemIndex:=5;
 end;
+
+procedure T_Main.btnAltxmlClick(Sender: TObject);
+var
+alteracaousu:string;
+begin
+
+
+    _dmMDFe.sdsquery.SQL.clear;
+    _dmMDFe.sdsquery.SQL.Add(' select count(1) as total,operador,senha from senhas ');
+    _dmMDFe.sdsquery.SQL.Add(' where operador ='+quotedstr(txtoperador.Text));
+    _dmMDFe.sdsquery.SQL.Add(' and senha =md5('+quotedstr(txtsenha.Text)+') limit 1');
+    _dmMDFe.sdsquery.open();
+
+
+
+    if(_dmMDFe.sdsquery.fieldbyname('total').Asinteger < 1)then
+    begin
+		showmessage('Operador não encontrado');
+		exit;
+	end
+    else
+    alteracaousu:='Última alteração: '+DateTimeToStr(now)+' por: '+quotedstr(_dmMDFe.sdsquery.fieldbyname('operador').Asstring);
+
+
+	if(application.MessageBox('Operação de risco, deseja continuar?','Confirmação',MB_YESNO+MB_ICONWARNING)=ID_NO)then
+    exit;
+
+
+    _dmMDFe.conexao.Connected:=false;
+    _dmMDFe.qrPadrao.SQL.clear;
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set bkxml=xml where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.ExecSQL();
+
+    _dmMDFe.qrPadrao.SQL.clear;
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set xml='+quotedstr(txtxml.text)+', alteracao='+quotedstr(alteracaousu)+' where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.ExecSQL();
+
+
+    showmessage('XML alterado com sucesso!');
+
+    txtoperador.Text:='';
+    txtsenha.Text:='';
+    pnlSenha.Visible:=false;
+end;
+
+
+procedure T_Main.btnWinCrypt2Click(Sender: TObject);
+begin
+cbSSLLib.ItemIndex:=5;
+cbCryptLib.ItemIndex:=3;
+cbHttpLib.ItemIndex:=2;
+cbXmlSignLib.ItemIndex:=2;
+cbSSLType.ItemIndex:=5;
+end;
+
+procedure T_Main.bitNunSerie3Click(Sender: TObject);
+var
+  I: Integer;
+  ASerie: String;
+  AddRow: Boolean;
+
+begin
+  {
+  if cbSSLLib.ItemIndex <> 1 then
+  begin
+              _frSelecionarCertificado := T_frSelecionarCertificado.Create(Self);
+              try
+                ACBrmdFe1.SSL.LerCertificadosStore;
+                AddRow := False;
+
+                with _frSelecionarCertificado.StringGrid1 do
+                begin
+                  ColWidths[0] := 220;
+                  ColWidths[1] := 250;
+                  ColWidths[2] := 120;
+                  ColWidths[3] := 80;
+                  ColWidths[4] := 150;
+                  Cells[ 0, 0 ] := 'Num.Série';
+                  Cells[ 1, 0 ] := 'Razão Social';
+                  Cells[ 2, 0 ] := 'CNPJ';
+                  Cells[ 3, 0 ] := 'Validade';
+                  Cells[ 4, 0 ] := 'Certificadora';
+                end;
+
+                For I := 0 to ACBrmdFe1.SSL.ListaCertificados.Count-1 do
+                begin
+                  with ACBrmdFe1.SSL.ListaCertificados[I] do
+                  begin
+                    ASerie := NumeroSerie;
+                    if (CNPJ <> '') then
+                    begin
+                      with _frSelecionarCertificado.StringGrid1 do
+                      begin
+                        if Addrow then
+                          RowCount := RowCount + 1;
+
+                        Cells[ 0, RowCount-1] := NumeroSerie;
+                        Cells[ 1, RowCount-1] := RazaoSocial;
+                        Cells[ 2, RowCount-1] := CNPJ;
+                        Cells[ 3, RowCount-1] := FormatDateBr(DataVenc);
+                        Cells[ 4, RowCount-1] := Certificadora;
+                        AddRow := True;
+                      end;
+                    end;
+                  end;
+                end;
+
+                _frSelecionarCertificado.ShowModal;
+                txtNumSerie.Text:=glb_serie;
+
+                if _frSelecionarCertificado.ModalResult = mrOK then
+                  edtNumSerie.Text := _frSelecionarCertificado.StringGrid1.Cells[ 0, _frSelecionarCertificado.StringGrid1.Row];
+
+              finally
+                 _frSelecionarCertificado.Free;
+              end;
+  end
+  else
+  begin
+
+      AtualizaACBRNFe;
+
+      txtNumSerie.Text := ACBrmdFe1.SSL.CertNumeroSerie;
+      showmessage(
+      'Razão Social: '  +  ACBrmdFe1.SSL.CertRazaoSocial +#10#13 +
+      'CNPJ: '  +  ACBrmdFe1.SSL.CertCNPJ +#10#13 +
+      'Validade: '  +  FormatDateBr(ACBrmdFe1.SSL.CertDataVenc) +#10#13 +
+      'Certificadora: '  +  ACBrmdFe1.SSL.CertCertificadora);
+      //lblvalidade.Caption:=
+
+  end;   }
+
+end;
+
 
 procedure T_Main.bitNunSerieClick(Sender: TObject);
 var
@@ -817,12 +945,13 @@ begin
       'CNPJ: '  +  ACBrmdFe1.SSL.CertCNPJ +#10#13 +
       'Validade: '  +  FormatDateBr(ACBrmdFe1.SSL.CertDataVenc) +#10#13 +
       'Certificadora: '  +  ACBrmdFe1.SSL.CertCertificadora);
+      //lblvalidade.Caption:=
+
   end;
 
 end;
 
-
-procedure T_Main.bitOpenSSLClick(Sender: TObject);
+procedure T_Main.bitOpenSSL2Click(Sender: TObject);
 begin
   cbSSLLib.ItemIndex:=1;
    cbCryptLib.ItemIndex:=1;
@@ -837,7 +966,7 @@ procedure T_Main.btnAddNFeAvulsaClick(Sender: TObject);
 var
 ufDest,codMundest,munDest: string;
 begin
-	tiponota:='T';
+ {	tiponota:='T';
 
 
 	if(trim(txtSegChave.Text)='') and (chkcontingencia.Checked=true)then
@@ -935,7 +1064,7 @@ begin
 	//if not _dmMDFe.qrPadrao.IsEmpty then
 	//begin
 
-
+  {
 	//verifica se a chave já foi utilizada em outro manifesto
 	_dmMDFe.sdsQuery.Close;
 	_dmMDFe.sdsQuery.SQL.Clear;
@@ -1007,8 +1136,58 @@ begin
 	chkcontingencia.Checked:=false;
 	txtSegChave.text:='';
 	txtSegChave.Enabled:=false;
-	showmessage('Nota adicionada com sucesso.');
+	showmessage('Nota adicionada com sucesso.');      }
 end;
+
+procedure T_Main.btnCancClick(Sender: TObject);
+var xml : TStringStream;
+begin
+
+	if _dmMDFe.cdsmdfeIDEcstat.AsInteger=100 then
+	begin
+
+		if Application.MessageBox('Confirma cancelamento?', 'Pergunta', MB_ICONQUESTION+MB_YESNO) = IDNO
+		then exit;
+
+		xml := TStringStream.Create(  _dmMDFe.cdsmdfeXMLXML.AsString  );
+
+		ACBrMDFe1.Manifestos.Clear;
+		ACBrMDFe1.Manifestos.LoadFromStream( XML );
+
+		JustificativaCancelamento:='';
+
+		if not(InputQuery('WebServices Cancelamento', 'Justificativa', JustificativaCancelamento))
+		then exit;
+
+		ACBrMDFe1.EventoMDFe.Evento.Clear;
+
+		with ACBrMDFe1.EventoMDFe.Evento.Add do
+		begin
+			infEvento.chMDFe   := Copy(ACBrMDFe1.Manifestos.Items[0].MDFe.infMDFe.ID, 5, 44);
+			infEvento.CNPJCPF     := txtEmitCNPJ.Text;
+			infEvento.dhEvento := now;
+			//  TpcnTpEvento = (teCCe, teCancelamento, teManifDestConfirmacao, teManifDestCiencia,
+				//                  teManifDestDesconhecimento, teManifDestOperNaoRealizada,
+			//                  teEncerramento);
+
+			infEvento.tpEvento   := teCancelamento;
+			infEvento.nSeqEvento := 1;
+
+			infEvento.detEvento.nProt := ACBrMDFe1.Manifestos.Items[0].MDFe.procMDFe.nProt;
+			infEvento.detEvento.xJust := trim(JustificativaCancelamento);
+		end;
+
+		ACBrMDFe1.EnviarEvento( 1 ); // 1 = Numero do Lote
+
+		sleep(3000);
+
+		ConsultaMDFe;
+	end;
+
+
+
+end;
+
 
 procedure T_Main.btnCancelarClick(Sender: TObject);
 var xml : TStringStream;
@@ -1061,7 +1240,59 @@ end;
 
 procedure T_Main.btnCancelarIDEClick(Sender: TObject);
 begin
-    pgMain.TabIndex := 0;
+   // pgMain.TabIndex := 0;
+end;
+
+procedure T_Main.btncancfiltroClick(Sender: TObject);
+begin
+frm.ModalResult:=-1;
+end;
+
+procedure T_Main.btncancfiltroMouseEnter(Sender: TObject);
+begin
+btncancfiltro.Color:=clgray;
+end;
+
+procedure T_Main.btncancfiltroMouseLeave(Sender: TObject);
+begin
+btncancfiltro.Color:=clMaroon;
+end;
+
+procedure T_Main.btnCancMouseEnter(Sender: TObject);
+begin
+btncanc.Color:=clGray;
+end;
+
+procedure T_Main.btnCancMouseLeave(Sender: TObject);
+begin
+btncanc.Color:=clMaroon;
+end;
+
+procedure T_Main.btnConsClick(Sender: TObject);
+begin
+	if(DBGrid1.Fields[1].asstring = '')then
+	exit;
+
+
+
+    ConsultaMDFe;
+
+
+
+
+
+
+
+end;
+
+procedure T_Main.btnConsMouseEnter(Sender: TObject);
+begin
+btncons.Color:=clGray;
+end;
+
+procedure T_Main.btnConsMouseLeave(Sender: TObject);
+begin
+btncons.Color:=clMaroon;
 end;
 
 procedure T_Main.btnConsultarMDFeClick(Sender: TObject);
@@ -1070,6 +1301,82 @@ begin
 	exit;
 
 	ConsultaMDFe;
+end;
+
+procedure T_Main.btnDadosFilialClick(Sender: TObject);
+begin
+	_frmfilial:= T_frmFilial.Create(self);
+    _dmMDFe.conexao.Connected:=false;
+    _dmMDFe.qrPadrao.SQL.Clear;
+    _dmMDFe.qrPadrao.SQL.Add('SELECT count(1) as total FROM filiais');
+    _dmMDFe.qrPadrao.Open;
+
+
+	if(_dmMDFe.qrPadrao.FieldByName('total').AsInteger>0)then
+	begin
+		if(application.MessageBox('Já existe uma filial cadastrada! deseja cadastrar uma nova?','Pergunta',MB_ICONQUESTION+MB_YESNO)=idno)then
+		alterar:='S'
+		else
+		alterar:='N';
+	end;
+
+
+	if(alterar='S')then
+	begin
+        _frmfilial.txtgrupo.Text:=_dmMDFe.ClientDataSetdadgrupo.Text;
+		//  _frmfilial.txtfilial.text:=copy(_dmMDFe.ClientDataSetdadCodigoFilial.Text,1,5);
+        _frmfilial.txtfilial.text:=glb_filial;
+        _frmfilial.txtrazao.Text:=_dmMDFe.ClientDataSetdadempresa.Text;
+        _frmfilial.txtfantasia.Text:=_dmMDFe.ClientDataSetdadfantasia.Text;
+        _frmfilial.txtcnpj.Text:=_dmMDFe.ClientDataSetdadcnpj.Text;
+        _frmfilial.txtinscricao.Text:=_dmMDFe.ClientDataSetdadinscricao.Text;
+        _frmfilial.txtenderco.Text:=_dmMDFe.ClientDataSetdadendereco.Text;
+        _frmfilial.txtcidade.Text:=_dmMDFe.ClientDataSetdadcidade.Text;
+        _frmfilial.txtnumero.Text:=_dmMDFe.ClientDataSetdadnumero.Text;
+        _frmfilial.txtbairro.Text:=_dmMDFe.ClientDataSetdadbairro.Text;
+        _frmfilial.txtcep.Text:=_dmMDFe.ClientDataSetdadcep.Text;
+        _frmfilial.cbouf.Text:=copy(_dmMDFe.ClientDataSetdadestado.Text,1,2);
+        _frmfilial.txtfone.Text:=_dmMDFe.ClientDataSetdadtelefone1.Text;
+	end;
+
+	_frmfilial.ShowModal;
+	_frmfilial.Release;
+end;
+
+procedure T_Main.btnDadosFilialMouseEnter(Sender: TObject);
+begin
+ btnDadosFilial.Color:=clgray;
+end;
+
+procedure T_Main.btnDadosFilialMouseLeave(Sender: TObject);
+begin
+ btnDadosFilial.Color:=clMaroon;
+end;
+
+procedure T_Main.btnDanfClick(Sender: TObject);
+var xml : TStringStream;
+begin
+
+	if _dmMDFe.cdsmdfeIDEcstat.AsInteger=100 then
+	begin
+		xml := TStringStream.Create(  _dmMDFe.cdsmdfeXMLXML.AsString  );
+
+		ACBrMDFe1.Manifestos.Clear;
+		ACBrMDFe1.Manifestos.LoadFromStream( XML );
+
+		ACBrMDFeDAMDFeRL1.ImprimirDAMDFe();
+	end;
+
+end;
+
+procedure T_Main.btnDanfMouseEnter(Sender: TObject);
+begin
+btnDanf.Color:=clGray;
+end;
+
+procedure T_Main.btnDanfMouseLeave(Sender: TObject);
+begin
+btnDanf.Color:=clMaroon;
 end;
 
 procedure T_Main.BitBtn1Click(Sender: TObject);
@@ -1089,7 +1396,7 @@ begin
 
 
 	showmessage('XML alterado com sucesso!'); }
-    pnlSenha.Visible:=true;
+    pnlSenha_.Visible:=true;
 
 
 
@@ -1111,7 +1418,7 @@ begin
 
     if(_dmMDFe.sdsquery.fieldbyname('total').Asinteger < 1)then
     begin
-		showmessage('Operador não encontrado');
+		application.MessageBox('Operador não encontrado','Alerta',MB_ICONEXCLAMATION+mb_ok);
 		exit;
 	end
     else
@@ -1124,15 +1431,15 @@ begin
 
     _dmMDFe.conexao.Connected:=false;
     _dmMDFe.qrPadrao.SQL.clear;
-    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set bkxml=xml where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set bkxml=xml where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[3].asstring)+' AND codigofilial='+quotedstr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString));
     _dmMDFe.qrPadrao.ExecSQL();
 
     _dmMDFe.qrPadrao.SQL.clear;
-    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set xml='+quotedstr(txtxml.text)+', alteracao='+quotedstr(alteracaousu)+' where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set xml='+quotedstr(txtxml.text)+', alteracao='+quotedstr(alteracaousu)+' where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[3].asstring)+' AND codigofilial='+quotedstr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString));
     _dmMDFe.qrPadrao.ExecSQL();
 
 
-    showmessage('XML alterado com sucesso!');
+    application.MessageBox('XML alterado com sucesso!','Confirmação',MB_ICONINFORMATION+mb_ok);
 
     txtoperador.Text:='';
     txtsenha.Text:='';
@@ -1141,7 +1448,7 @@ end;
 
 procedure T_Main.BitBtn3Click(Sender: TObject);
 begin
-	pnlSenha.Visible:=false;
+	pnlSenha_.Visible:=false;
 end;
 
 procedure T_Main.BitBtn4Click(Sender: TObject);
@@ -1150,7 +1457,11 @@ begin
 
     if(application.MessageBox('Deseja criar um novo MDF-e?','Confirmação',MB_YESNO+MB_ICONQUESTION)=IDNO)then
     exit;
-	cboTipoEmit.ItemIndex:=1;
+	//cboTipoEmit.ItemIndex:=1;
+
+  _frmGerarMdfe:=T_frmGerarMdfe.Create(self);
+
+
 
 	//txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
 	_dmMDFe.qrPadrao.Close;
@@ -1171,7 +1482,7 @@ begin
         _dmMDFe.qrPadrao.Close;
         _dmMDFe.qrPadrao.SQL.Clear;
 
-        _dmMDFe.qrPadrao.SQL.Add('SELECT cidade, estado, (SELECT tab_municipios.id FROM tab_municipios,estados WHERE tab_municipios.iduf = estados.id AND estados.uf = filiais.estado AND nome=filiais.cidade) AS cMunCarrega FROM filiais WHERE codigofilial='+QuotedStr(txtFilialEmitente.Text));
+        _dmMDFe.qrPadrao.SQL.Add('SELECT cidade, estado, (SELECT tab_municipios.id FROM tab_municipios,estados WHERE tab_municipios.iduf = estados.id AND estados.uf = filiais.estado AND nome=filiais.cidade) AS cMunCarrega FROM filiais WHERE codigofilial='+QuotedStr(glb_filial));
         //_dmMDFe.qrPadrao.SQL.Add('SELECT cidade, estado, (SELECT id FROM tab_municipios WHERE uf=filiais.estado AND nome=filiais.cidade) AS cMunCarrega FROM filiais WHERE codigofilial='+QuotedStr(txtFilialEmitente.Text));
 
         _dmMDFe.qrPadrao.Open;
@@ -1181,8 +1492,8 @@ begin
         {txtnumeroMDF.Text := numero;
 			txtserieMDF.Text := serie;
 		txtmodeloMDF.Text := '58'; }
-        cboMunicipioCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('cidade').AsString;
-        cboUFCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('estado').AsString;
+         _frmGerarMdfe.cboMunicipioCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('cidade').AsString;
+         _frmGerarMdfe.cboUFCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('estado').AsString;
         cMunCarrega := _dmMDFe.qrPadrao.FieldByName('cMunCarrega').AsString;
 
         if(cMunCarrega='')then
@@ -1196,9 +1507,9 @@ begin
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '58' )+', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
-        _dmMDFe.qrPadrao.SQL.Add(QuotedStr(cboUFCarregamento.Text)+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( _frmGerarMdfe.cboUFCarregamento.Text)+', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( cMunCarrega ) +',');
-        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( cboMunicipioCarregamento.Text ) +', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr(  _frmGerarMdfe.cboMunicipioCarregamento.Text ) +', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( rgTipoAmb.ItemIndex.ToString ) +', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '2' ) +', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( inttostr((rgModo.ItemIndex+1)) ) +',');
@@ -1228,68 +1539,57 @@ begin
         sleep(5);
 
 
-		txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
+		 _frmGerarMdfe.txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
 
 		_dmMDFe.cdsmdfeIDE.Refresh;
 
         _dmMDFe.cdsmdfeIDE.Locate('serie;nmdf', VarArrayOf([serie, numero]), []);
 
         //descida a informação para cá, pois o refresh no  _dmMDFe.cdsmdfeIDE estava limpando os dados
-        txtnumeroMDF.Text := numero;
-        txtserieMDF.Text := serie;
-        txtmodeloMDF.Text := '58';
+        _frmGerarMdfe.txtnumeroMDF.Text := numero;
+        _frmGerarMdfe.txtserieMDF.Text := serie;
+        _frmGerarMdfe.txtmodeloMDF.Text := '58';
 
 		//Zerando textos dos campos-------------------------------------------------------------
         _dmMDFe.cdsmdfeInfDoc.close;
-        _dmMDFe.sdsmdfeInfDoc.CommandText:='SELECT * FROM mdfeinfdoc where serie ='+quotedstr(serie)+' and nmdf = '+quotedstr(numero)+' and codigofilial ='+quotedstr(txtFilialEmitente.Text);
+        _dmMDFe.sdsmdfeInfDoc.CommandText:='SELECT * FROM mdfeinfdoc where serie ='+quotedstr(serie)+' and nmdf = '+quotedstr(numero)+' and codigofilial ='+quotedstr(glb_filial);
         _dmMDFe.sdsmdfeInfDoc.ExecSQL();
         _dmMDFe.cdsmdfeInfDoc.Open;
         _dmMDFe.cdsmdfeInfDoc.refresh;
 
 
-        cboUFCarregamento.Text:='';
-        cboMunicipioCarregamento.Text:='';
-        cboUFDescarregamento.Text:='';
-        cboMunicipioDescarregamento.Text:='';
-        txtUFPlaca.Text:='';
-        txtPlaca.Text:='';
-        txtRenavam.Text:='';
-        txtRNTC.Text:='';
-        txtTara.Text:='';
-        txtCapacidadeKG.Text:='';
-        txtCapacidadeM3.Text:='';
-        cboTipoVeiculo.Text:='';
-        cboTipoCarroceria.Text:='';
-        cboTipoUnidadeTracao.Text:='';
-        txtciot.Text:='';
-        txtCondutor.Text:='';
-        txtCPFCondutor.Text:='';
-        txtInfComplementar.Text:='';
-        txtvCarga.Text:='0.00';
-        txtcUnid.Text:='01 - KG';
-        txtqCarga.Text:='0.0000';
-        btnRemoverNFe.Enabled:=true;
+        _frmGerarMdfe.cboUFCarregamento.Text:='';
+        _frmGerarMdfe.cboMunicipioCarregamento.Text:='';
+        _frmGerarMdfe.cboUFDescarregamento.Text:='';
+        _frmGerarMdfe.cboMunicipioDescarregamento.Text:='';
+       // _frmGerarMdfe.txtUFPlaca.Text:='';
+       // _frmGerarMdfe.txtPlaca.Text:='';
+      //  _frmGerarMdfe.txtRenavam.Text:='';
+       // _frmGerarMdfe.txtRNTC.Text:='';
+       // _frmGerarMdfe.txtTara.Text:='';
+      //  _frmGerarMdfe.txtCapacidadeKG.Text:='';
+      //  _frmGerarMdfe.txtCapacidadeM3.Text:='';
+      //  _frmGerarMdfe.cboTipoVeiculo.Text:='';
+      //  _frmGerarMdfe.cboTipoCarroceria.Text:='';
+      //  _frmGerarMdfe.cboTipoUnidadeTracao.Text:='';
+      //  _frmGerarMdfe.txtciot.Text:='';
+      //  _frmGerarMdfe.txtCondutor.Text:='';
+      //  _frmGerarMdfe.txtCPFCondutor.Text:='';
+      //  _frmGerarMdfe.txtInfComplementar.Text:='';
+      //  _frmGerarMdfe.txtvCarga.Text:='0.00';
+      //  _frmGerarMdfe.txtcUnid.Text:='01 - KG';
+      //  _frmGerarMdfe.txtqCarga.Text:='0.0000';
+      //  _frmGerarMdfe.btnRemoverNFe.Enabled:=true;
 
-        cboUfTrajeto.Text:='';
-        memoUf.Text:='';
-        btnSalvar.Enabled:=true;
+        _frmGerarMdfe.cboUfTrajeto.Text:='';
+        _frmGerarMdfe.listboxuf.Items.clear();
+      // _frmGerarMdfe.btnSalvar.Enabled:=true;
 
-		if(glb_offline='N')then
-		begin
-			ChkTer.Checked:=false;
-            btnAdicionarNFe.Enabled:=true;
-
-		end;
-
-		//Zerando textos dos campos-------------------------------------------------------------
-
-
-
-        pgMain.TabIndex := 1;
 
 	end;
 
-
+      _frmGerarMdfe.ShowModal();
+      _frmGerarMdfe.Release;
 
 end;
 
@@ -1324,11 +1624,112 @@ begin
     _dmMDFe.sdsmdfeIDE.ExecSQL();
     _dmMDFe.cdsmdfeIDE.Open;
     _dmMDFe.cdsmdfeIDE.refresh;
-	pgMain.TabIndex := 0;
+ //	pgMain.TabIndex := 0;
 
 end;
 
-procedure T_Main.btncadfilialClick(Sender: TObject);
+procedure T_Main.BitBtn7Click(Sender: TObject);
+begin
+
+  _frmNotasAvulsas:=T_frmNotasAvulsas.Create(self);
+  _frmNotasAvulsas.ShowModal();
+  _frmNotasAvulsas.Release;
+
+end;
+
+procedure T_Main.btnFecharstatusClick(Sender: TObject);
+Var IniFile  : String ;
+Ini     : TIniFile ;
+Ok : Boolean;
+StreamMemo : TMemoryStream;
+
+begin
+
+	if(application.MessageBox('Salvar configurações?','Confirmação',MB_ICONQUESTION+MB_YESNO)=IDNO) then
+	exit;
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('SELECT count(1) as total FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial));
+          _dmMdfe.qrPadrao.Open();
+
+
+
+    if(_dmMdfe.qrPadrao.FieldByName('total').AsInteger=0)then
+    begin
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('INSERT INTO configfinanc (codigofilial) VALUES ('+quotedstr(glb_filial)+')');
+          _dmMdfe.qrPadrao.execsql();
+
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+          +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+
+    end
+    else
+    begin
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+             +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+    end;
+
+
+     _dmMdfe.conexao.Connected:=false;
+     _dmMDFe.cdsconffinanc.Close;
+     _dmMDFe.sdsConffinanc.CommandText:='SELECT * FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial);
+     _dmMDFe.sdsConffinanc.ExecSQL();
+     _dmMDFe.cdsConffinanc.open();
+     _dmMDFe.cdsConffinanc.refresh;
+
+
+
+  CarregarConfiguracoes;
+end;
+
+procedure T_Main.btncadfilial2Click(Sender: TObject);
 begin
 
 	_frmfilial:= T_frmFilial.Create(self);
@@ -1370,12 +1771,52 @@ begin
 
 end;
 
+procedure T_Main.btncadfilialClick(Sender: TObject);
+begin
+	_frmfilial:= T_frmFilial.Create(self);
+    _dmMDFe.conexao.Connected:=false;
+    _dmMDFe.qrPadrao.SQL.Clear;
+    _dmMDFe.qrPadrao.SQL.Add('SELECT count(1) as total FROM filiais');
+    _dmMDFe.qrPadrao.Open;
+
+
+	if(_dmMDFe.qrPadrao.FieldByName('total').AsInteger>0)then
+	begin
+		if(application.MessageBox('Já existe uma filial cadastrada! deseja cadastrar uma nova?','Pergunta',MB_ICONQUESTION+MB_YESNO)=idno)then
+		alterar:='S'
+		else
+		alterar:='N';
+	end;
+
+
+	if(alterar='S')then
+	begin
+        _frmfilial.txtgrupo.Text:=_dmMDFe.ClientDataSetdadgrupo.Text;
+		//  _frmfilial.txtfilial.text:=copy(_dmMDFe.ClientDataSetdadCodigoFilial.Text,1,5);
+        _frmfilial.txtfilial.text:=glb_filial;
+        _frmfilial.txtrazao.Text:=_dmMDFe.ClientDataSetdadempresa.Text;
+        _frmfilial.txtfantasia.Text:=_dmMDFe.ClientDataSetdadfantasia.Text;
+        _frmfilial.txtcnpj.Text:=_dmMDFe.ClientDataSetdadcnpj.Text;
+        _frmfilial.txtinscricao.Text:=_dmMDFe.ClientDataSetdadinscricao.Text;
+        _frmfilial.txtenderco.Text:=_dmMDFe.ClientDataSetdadendereco.Text;
+        _frmfilial.txtcidade.Text:=_dmMDFe.ClientDataSetdadcidade.Text;
+        _frmfilial.txtnumero.Text:=_dmMDFe.ClientDataSetdadnumero.Text;
+        _frmfilial.txtbairro.Text:=_dmMDFe.ClientDataSetdadbairro.Text;
+        _frmfilial.txtcep.Text:=_dmMDFe.ClientDataSetdadcep.Text;
+        _frmfilial.cbouf.Text:=copy(_dmMDFe.ClientDataSetdadestado.Text,1,2);
+        _frmfilial.txtfone.Text:=_dmMDFe.ClientDataSetdadtelefone1.Text;
+	end;
+
+	_frmfilial.ShowModal;
+	_frmfilial.Release;
+end;
+
 procedure T_Main.btnAdicionarNFeClick(Sender: TObject);
 var
 ufDest,codMundest,munDest : string;
 begin
 	//tiponota P: Própria / tiponota T: Terceiros
-	tiponota:='P';
+{	tiponota:='P';
 
 
 	_frmListarNotas:=T_frmListarNotas.Create(self);
@@ -1404,7 +1845,7 @@ begin
 
     if(trim(txtNumeroNFe.Text)= '') or (trim(txtSerieNFe.Text)='')then
     begin
-		showmessage('Informe o número e a série da NFe');
+    application.MessageBox('Informe o número e a série da NFe!','Alerta',MB_ICONEXCLAMATION+mb_ok);
 		exit;
 	end;
 
@@ -1454,7 +1895,7 @@ begin
         end;
 
 
-	end; }
+	end;
 
 	//----- fim
 
@@ -1473,7 +1914,7 @@ begin
 		showmessage('Nota não autorizada ou com modelo de documento diferente de 55!');
 		exit;
 	end;
-
+        {
 	//verifica se a chave já foi utilizada em outro manifesto
 	_dmMDFe.sdsQuery.Close;
 	_dmMDFe.sdsQuery.SQL.Clear;
@@ -1534,7 +1975,7 @@ begin
 	txtNumeroNFe.Text:= '';
 	txtSerieNFe.Text:=  '';
 	filialemitenteselecionada.Text:='';
-
+              }
 	//  end ;
 		// else
 		// begin
@@ -1544,11 +1985,207 @@ begin
 
 end;
 
+procedure T_Main.btnAltClick(Sender: TObject);
+begin
+
+_frmGerarMdfe:=T_frmGerarMdfe.Create(self);
+
+
+  _frmGerarMdfe.txtserieMDF.Text :=  _dmMDFe.cdsmdfeIDEserie.AsString;
+	_frmGerarMdfe.txtnumeroMDF.Text :=  _dmMDFe.cdsmdfeIDEnMDF.AsString;
+	_frmGerarMdfe.txtmodeloMDF.Text := _dmMDFe.cdsmdfeIDEmodelo.AsString;
+	_frmGerarMdfe.cboUFCarregamento.Text := _dmMDFe.cdsmdfeIDEUFIni.AsString;
+	_frmGerarMdfe.cboMunicipioCarregamento.Text:= _dmMDFe.cdsmdfeIDExMunCarrega.AsString;
+	_frmGerarMdfe.cboUFDescarregamento.Text := _dmMDFe.cdsmdfeIDEUFFim.AsString;
+	_frmGerarMdfe.cboMunicipioDescarregamento.Text:= _dmMDFe.cdsmdfeIDExMundescarga.AsString;
+	_frmGerarMdfe.txtInfComplementar.Text := _dmMDFe.cdsmdfeIDEinfCpl.AsString;
+
+  if(_dmMDFe.cdsmdfeIDEtpEmit.AsString='1')then
+  _frmGerarMdfe.cboTipoEmit.ItemIndex:=0
+  else if(_dmMDFe.cdsmdfeIDEtpEmit.AsString='2')then
+  _frmGerarMdfe.cboTipoEmit.ItemIndex:=1;
+
+	if(_dmMDFe.cdsmdfeIDEdhEmi.asstring <> '')then
+	_frmGerarMdfe.txtDataEmissao.Text :=formatdatetime('dd/mm/yyyy', strtodatetime(_dmMDFe.cdsmdfeIDEdhEmi.asstring))
+	else
+	_frmGerarMdfe.txtDataEmissao.Text :=formatdatetime('dd/mm/yyyy', now);
+
+
+	_frmGerarMdfe.txtqCarga.Value := _dmMDFe.cdsmdfeIDEqCarga.AsFloat;
+	_frmGerarMdfe.txtvCarga.Value := _dmMDFe.cdsmdfeIDEvCarga.AsFloat;
+	_frmGerarMdfe.txtcUnid.Text := _dmMDFe.cdsmdfeIDEcUnid.AsString;
+	_frmGerarMdfe.txtdiasconclusao.Text:= _dmMDFe.cdsmdfeIDEdiasprevisaoencerrar.AsString;
+
+
+
+
+   _dmMDFe.cdstrajeto.Close;
+   _dmMDFe.sdstrajeto.commandtext:='SELECT * FROM mdfetrajeto WHERE nmdf='+quotedstr(_frmGerarMdfe.txtnumeroMDF.Text)+
+   ' AND serie='+quotedstr(_frmGerarMdfe.txtserieMDF.Text)+
+   ' AND codigofilial='+quotedstr(glb_filial);
+   _dmMDFe.sdstrajeto.open();
+   _dmMDFe.cdstrajeto.open();
+   _dmMDFe.cdstrajeto.refresh;
+
+   _frmGerarMdfe.listboxuf.Items.Clear;
+   _dmMDFe.cdstrajeto.first;
+   while not _dmMDFe.cdstrajeto.eof do
+   begin
+
+     _frmGerarMdfe.listboxuf.Items.Add(_dmMDFe.cdstrajetoestado.AsString);
+
+     _dmMDFe.cdstrajeto.next;
+   end;
+
+
+	_dmMDFe.cdsmdfeInfDoc.Close;
+	_dmMDFe.cdsmdfeInfDoc.Close;
+	_dmMDFe.sdsmdfeInfDoc.CommandText:='select * from mdfeinfdoc where '+
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _frmGerarMdfe.txtserieMDF.Text )+
+	' and nMDF='+QuotedStr( _frmGerarMdfe.txtnumeroMDF.Text );
+	_dmMDFe.cdsmdfeInfDoc.Open;
+
+	_dmMDFe.cdsmdfeRodo.Close;
+	_dmMDFe.sdsmdfeRodo.Close;
+	_dmMDFe.sdsmdfeRodo.CommandText:='select * from mdferodo where '+
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _frmGerarMdfe.txtserieMDF.Text )+
+	' and nMDF='+QuotedStr( _frmGerarMdfe.txtnumeroMDF.Text );
+	_dmMDFe.cdsmdfeRodo.Open;
+
+	_dmMDFe.cdsmdfeXML.Close;
+	_dmMDFe.sdsmdfeXML.Close;
+	_dmMDFe.sdsmdfeXML.CommandText:='select * from mdfexml where '+
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _frmGerarMdfe.txtserieMDF.Text )+
+	' and nMDF='+QuotedStr( _frmGerarMdfe.txtnumeroMDF.Text );
+	_dmMDFe.cdsmdfeXML.Open;
+
+	_frmGerarMdfe.txtRNTC.Text :=  _dmMDFe.cdsmdfeRodoRNTRC.AsString;
+	_frmGerarMdfe.txtPlaca.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_placa.AsString;
+	_frmGerarMdfe.txtRenavam.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_RENAVAM.AsString;
+	_frmGerarMdfe.txtTara.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_tara.AsFloat;
+	_frmGerarMdfe.txtCapacidadeKG.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_capKG.AsFloat;
+	_frmGerarMdfe.txtCapacidadeM3.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_capM3.AsFloat;
+	_frmGerarMdfe.cboTipoVeiculo.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_tpRod.AsString;
+	_frmGerarMdfe.cboTipoCarroceria.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_tpCar.AsString;
+	_frmGerarMdfe.txtUFPlaca.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_UF.AsString;
+	_frmGerarMdfe.txtCondutor.Text := _dmMDFe.cdsmdfeRodoveicTracao_condutor_xNome.AsString;
+	_frmGerarMdfe.txtCPFCondutor.Text := _dmMDFe.cdsmdfeRodoveicTracao_condutor_CPF.AsString;
+ //	_frmGerarMdfe.txtChacesso.Text:= _dmMDFe.cdsmdfeIDEchMDFe.AsString;
+	_frmGerarMdfe.txtciot.Text:= _dmMDFe.cdsmdfeRodoCIOT.AsString ;
+
+ if (_dmMDFe.cdsmdfeIDEcstat.AsInteger=100) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=101) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=132) then
+	begin
+		_frmGerarMdfe.btnSalvarConf.Enabled := false;
+		_frmGerarMdfe.imgBtnLancProp.Enabled:=false;
+		_frmGerarMdfe.imbBtnExNf.Enabled:=false;
+    _frmGerarMdfe.imgBtnaddNf.Enabled:=false;
+    _frmGerarMdfe.btnaddtrajeto.Enabled:=false;
+    _frmGerarMdfe.btnextrajeto.Enabled:=false;
+
+	end
+	else
+	begin
+		_frmGerarMdfe.btnSalvarConf.Enabled := true;
+		_frmGerarMdfe.imgBtnLancProp.Enabled:=true;
+		_frmGerarMdfe.imbBtnExNf.Enabled:=true;
+    _frmGerarMdfe.imgBtnaddNf.Enabled:=true;
+    _frmGerarMdfe.btnaddtrajeto.Enabled:=true;
+    _frmGerarMdfe.btnextrajeto.Enabled:=true;
+	end;
+
+
+	_frmGerarMdfe.txtCPFCNPJciot.Text       := _dmMDFe.cdsmdfeRodoCPF_CNPJ_CIOT.AsString;
+	_frmGerarMdfe.txtrespseg.Text           :=  _dmMDFe.cdsmdfeRodorespSeg.AsString;
+	_frmGerarMdfe.txtcnpjrespseg.Text       :=  _dmMDFe.cdsmdfeRodoCNPJrespseg.AsString;
+	_frmGerarMdfe.txtseguradora.Text        :=  _dmMDFe.cdsmdfeRodoxSeg.AsString;
+	_frmGerarMdfe.txtcnpjseguradora.Text    :=  _dmMDFe.cdsmdfeRodoCNPJseg.AsString;
+	_frmGerarMdfe.txtnapolice.Text          :=   _dmMDFe.cdsmdfeRodonApol.AsString;
+	_frmGerarMdfe.txtnraverbacao.Text       :=   _dmMDFe.cdsmdfeRodonAver.AsString;
+
+
+  //frm.ModalResult:=-1;
+ _frmGerarMdfe.showmodal;
+ _frmGerarMdfe.release;
+
+
+
+end;
+
 procedure T_Main.btnAlterarClick(Sender: TObject);
 begin
-	if(DBGrid1.Fields[1].asstring <> '')then
-	pgMain.TabIndex:=1;
+ //	if(DBGrid1.Fields[1].asstring <> '')then
+ //	pgMain.TabIndex:=1;
 end;
+
+procedure T_Main.btnAltMouseEnter(Sender: TObject);
+begin
+btnalt.Color:=clGray;
+end;
+
+procedure T_Main.btnAltMouseLeave(Sender: TObject);
+begin
+btnalt.Color:=clMaroon;
+end;
+
+procedure T_Main.btnEncClick(Sender: TObject);
+var xml : TStringStream;
+
+begin
+
+	if(_dmMDFe.cdsmdfeIDEnMDF.AsString = '')then
+	exit;
+
+
+	if(_dmMDFe.cdsmdfeIDEcodigofilial.AsString <> glb_filial)then
+	begin
+		Application.MessageBox('Filial do documento diferente da filial logada!','Alerta',MB_ICONEXCLAMATION+mb_ok);
+		exit;
+	end;
+
+
+	if _dmMDFe.cdsmdfeIDEcstat.AsInteger=100 then
+	begin
+		xml := TStringStream.Create(  _dmMDFe.cdsmdfeXMLXML.AsString  );
+
+		ACBrMDFe1.Manifestos.Clear;
+		ACBrMDFe1.Manifestos.LoadFromStream( XML );
+
+		if Application.MessageBox('Confirma encerramento?', 'Pergunta', MB_ICONQUESTION+MB_YESNO) = IDNO
+		then exit;
+
+		ACBrMDFe1.EventoMDFe.Evento.Clear;
+
+		with ACBrMDFe1.EventoMDFe.Evento.Add do
+		begin
+			infEvento.chMDFe   := Copy(ACBrMDFe1.Manifestos.Items[0].MDFe.infMDFe.ID, 5, 44);
+			//      infEvento.CNPJCPF     := txtEmitCNPJ.Text;
+			infEvento.CNPJCPF     := _dmMDFe.ClientDataSetdadcnpj.AsString;
+
+			infEvento.dhEvento := now;
+			//  TpcnTpEvento = (teCCe, teCancelamento, teManifDestConfirmacao, teManifDestCiencia,
+				//                  teManifDestDesconhecimento, teManifDestOperNaoRealizada,
+			//                  teEncerramento);
+			infEvento.tpEvento   := teEncerramento;
+			infEvento.nSeqEvento := 1;
+
+			infEvento.detEvento.nProt := ACBrMDFe1.Manifestos.Items[0].MDFe.procMDFe.nProt;
+			infEvento.detEvento.dtEnc := Date;
+			infEvento.detEvento.cUF   := StrToInt(Copy(IntToStr(ACBrMDFe1.Manifestos.Items[0].MDFe.infDoc.infMunDescarga.Items[0].cMunDescarga),1,2));
+			infEvento.detEvento.cMun  := ACBrMDFe1.Manifestos.Items[0].MDFe.infDoc.infMunDescarga.Items[0].cMunDescarga;
+		end;
+
+		ACBrMDFe1.EnviarEvento( 1 ); // 1 = Numero do Lote
+
+		sleep(1000);
+
+		ConsultaMDFe;
+	end;
+
+end;
+
 
 procedure T_Main.btnEncerrarClick(Sender: TObject);
 var xml : TStringStream;
@@ -1605,6 +2242,186 @@ begin
 	end;
 
 end;
+
+procedure T_Main.btnEncMouseEnter(Sender: TObject);
+begin
+btnenc.Color:=clgray;
+end;
+
+procedure T_Main.btnEncMouseLeave(Sender: TObject);
+begin
+btnenc.Color:=clMaroon;
+end;
+
+procedure T_Main.btnEnvClick(Sender: TObject);
+var Validacao : Boolean;
+xml : Tstringstream;
+arqxml:TMemoryStream;
+pasta,subpasta:string;
+begin
+
+	if(DBGrid1.Fields[3].asstring = '')then
+	exit;
+
+
+	if(_dmMDFe.cdsmdfeIDEcodigofilial.AsString <> glb_filial)then
+	begin
+		Application.MessageBox('Filial do documento diferente da filial logada!','Alerta', MB_ICONEXCLAMATION+MB_OK);
+		exit;
+	end;
+
+
+	ACBrMDFe1.Manifestos.Clear;
+
+
+	if( _dmMDFe.cdsmdfeIDEchMDFe.asstring<>'' )then
+	begin
+		if(Application.MessageBox('MDF-e já tem chave de acesso. Deseja consultar o MDF-e para recapturar os dados?','Pergunta',MB_ICONQUESTION+MB_YESNO)=idyes)then
+		begin
+			btnConsultarMDFeClick(Sender);
+			exit;
+		end;
+	end;
+
+
+
+
+	if _dmMDFe.cdsmdfeIDEcstat.AsInteger=100 then
+	begin
+		Application.MessageBox('Manifesto já enviado!', 'Informação', MB_ICONINFORMATION+MB_OK);
+		exit;
+	end;
+
+
+	MemoStatus.Lines.Clear;
+
+	if   Application.MessageBox('Gerar e enviar MDF-e?', 'Pergunta', MB_ICONQUESTION+MB_YESNO) = idyes then
+	begin
+
+		GerarMDFe( _dmMDFe.cdsmdfeIDEnMDF.AsString );
+		//variável verifica se os Docs lançados estão com os códigos dos municípios
+		if(continuar='N')then
+		exit;
+
+	end
+	else
+	exit;
+
+
+
+
+	//salvando chave de acesso
+	_dmMDFe.sdsQuery.Close;
+	_dmMDFe.sdsQuery.CommandText:='update mdfeide set '+
+	' chmdfe=' + QuotedStr( Copy(ACBrMDFe1.Manifestos.Items[0].MDFe.infMDFe.ID, 5, 44) ) + ' '+
+	' where nMDF='+QuotedStr(_dmMDFe.cdsmdfeIDEnMDF.AsString)+' and serie='+QuotedStr(_dmMDFe.cdsmdfeIDEserie.AsString)+' and codigofilial='+QuotedStr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString);
+	_dmMDFe.sdsQuery.ExecSQL;
+	//fim salvando chave acesso
+
+
+	MemoStatus.Lines.Add('Assinando...');
+	ACBrMDFe1.Manifestos.Assinar;
+	MemoStatus.Lines.Add('Assinando.');
+
+	try
+		MemoStatus.Lines.Add('Validando....');
+		ACBrMDFe1.Manifestos.Validar;
+
+		except
+		on E : Exception do
+		begin
+			MemoStatus.Lines.Add(E.Message);
+		end;
+	end;
+
+	MemoStatus.Lines.Add('Validado.');
+
+
+
+
+	ACBrMDFe1.Manifestos.GravarXML('C:\iqsistemas\sicemdf-e\');
+
+
+
+
+
+	//gravar xml no banco
+
+
+	MemoStatus.Lines.Add('Enviando...');
+
+	//GRAVA O XML antes do envio
+	xml := TStringStream.Create(ACBrMDFe1.Manifestos.Items[0].XML);
+
+
+	_dmMDFe.sdsQuery.Close;
+	_dmMDFe.sdsQuery.CommandText:='update mdfexml set XML=:xml'+
+	' where nMDF='+QuotedStr(_dmMDFe.cdsmdfeIDEnMDF.AsString)+' and serie='+QuotedStr(_dmMDFe.cdsmdfeIDEserie.AsString)+' and codigofilial='+QuotedStr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString);
+	_dmMDFe.sdsQuery.ParamByName('xml').LoadFromStream(Xml,ftBlob);
+	_dmMDFe.sdsQuery.ExecSQL;
+	sleep(5);
+
+
+
+	ACBrMDFe1.Enviar(1);
+
+	MemoStatus.Lines.Add('Envio MDFe');
+	MemoStatus.Lines.Add('tpAmb: '+ TpAmbToStr(ACBrMDFe1.WebServices.Retorno.TpAmb));
+	MemoStatus.Lines.Add('verAplic: '+ ACBrMDFe1.WebServices.Retorno.verAplic);
+	MemoStatus.Lines.Add('cStat: '+ IntToStr(ACBrMDFe1.WebServices.Retorno.cStat));
+	MemoStatus.Lines.Add('cUF: '+ IntToStr(ACBrMDFe1.WebServices.Retorno.cUF));
+	MemoStatus.Lines.Add('xMotivo: '+ ACBrMDFe1.WebServices.Retorno.xMotivo);
+	MemoStatus.Lines.Add('xMsg: '+ ACBrMDFe1.WebServices.Retorno.Msg);
+	MemoStatus.Lines.Add('Recibo: '+ ACBrMDFe1.WebServices.Retorno.Recibo);
+	MemoStatus.Lines.Add('Protocolo: '+ ACBrMDFe1.WebServices.Retorno.Protocolo);
+
+	//atualiza dados locais com o retorno do ws
+	_dmMDFe.sdsQuery.Close;
+	_dmMDFe.sdsQuery.CommandText:='update mdfeide set '+
+	'protocolo=' + QuotedStr( ACBrMDFe1.WebServices.Retorno.Protocolo ) + ', '+
+	'dataautorizacao=' + QuotedStr( FormatDateTime('yyyy-mm-dd HH:mm:ss', Now)  ) + ', '+
+	'xmotivo=' + QuotedStr(ACBrMDFe1.WebServices.Retorno.xMotivo) + ', '+
+	'xmsg=' + QuotedStr(ACBrMDFe1.WebServices.Retorno.xMsg) + ', '+
+	'chmdfe=' + QuotedStr( Copy(ACBrMDFe1.Manifestos.Items[0].MDFe.infMDFe.ID, 5, 44) ) + ', '+
+	'cstat=' + QuotedStr(inttostr(ACBrMDFe1.WebServices.Retorno.cStat)) + ' '+
+	' where nMDF='+QuotedStr(_dmMDFe.cdsmdfeIDEnMDF.AsString)+' and serie='+QuotedStr(_dmMDFe.cdsmdfeIDEserie.AsString)+' and codigofilial='+QuotedStr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString);
+	_dmMDFe.sdsQuery.ExecSQL;
+
+	if ACBrMDFe1.WebServices.Retorno.cStat=100 then
+	begin
+
+		xml := TStringStream.Create(ACBrMDFe1.Manifestos.Items[0].XML);
+		_dmMDFe.sdsQuery.Close;
+		_dmMDFe.sdsQuery.CommandText:='update mdfexml set XML=:xml'+
+		' where nMDF='+QuotedStr(_dmMDFe.cdsmdfeIDEnMDF.AsString)+' and serie='+QuotedStr(_dmMDFe.cdsmdfeIDEserie.AsString)+' and codigofilial='+QuotedStr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString);
+		_dmMDFe.sdsQuery.ParamByName('xml').LoadFromStream(Xml,ftBlob);
+		_dmMDFe.sdsQuery.ExecSQL;
+	end;
+
+
+	pasta:=formatdatetime('yyyy',now);
+	subpasta:=formatdatetime('yyyy',now)+'-'+formatdatetime('mm',now);
+
+	if not DirectoryExists('C:\iqsistemas\sicemdf-e\xmlMDFe\'+pasta) then
+	CreateDir('C:\iqsistemas\sicemdf-e\xmlMDFe\'+pasta);
+
+	if not DirectoryExists('C:\iqsistemas\sicemdf-e\xmlMDFe\'+pasta+'\'+subpasta) then
+	CreateDir('C:\iqsistemas\sicemdf-e\xmlMDFe\'+pasta+'\'+subpasta);
+
+
+	ACBrMDFe1.Manifestos.GravarXML('C:\iqsistemas\sicemdf-e\xmlMDFe\'+pasta+'\'+subpasta+'\');
+
+
+
+
+	ACBrMDFe1.Manifestos.Clear;
+
+
+	_dmMDFe.cdsmdfeIDE.Refresh;
+
+
+end;
+
 
 procedure T_Main.btnEnviarClick(Sender: TObject);
 var Validacao : Boolean;
@@ -1775,6 +2592,137 @@ begin
 
 end;
 
+procedure T_Main.btnEnvMouseEnter(Sender: TObject);
+begin
+btnenv.Color:=clGray;
+end;
+
+procedure T_Main.btnEnvMouseLeave(Sender: TObject);
+begin
+btnenv.Color:=clMaroon;
+end;
+
+procedure T_Main.btnFecharClick(Sender: TObject);
+begin
+frm.ModalResult:=-1;
+end;
+
+procedure T_Main.btnFecharMouseEnter(Sender: TObject);
+begin
+ btnFechar.Color:=clgray;
+end;
+
+procedure T_Main.btnFecharMouseLeave(Sender: TObject);
+begin
+ btnFechar.Color:=clMaroon;
+end;
+
+procedure T_Main.btnfiltroClick(Sender: TObject);
+var
+sql,filtro:string;
+begin
+
+    if(cbosit.Text<>'')then
+    begin
+        if(copy(cbosit.Text,1,3)='000')then
+        filtro := filtro + ' and cstat='+quotedstr('0')
+        else
+        filtro := filtro + ' and cstat='+quotedstr(copy(cbosit.Text,1,3))
+
+	end;
+
+    if(rtodas.Checked)then
+    begin
+		filtro:=filtro;
+	end;
+
+	if(rdata0.Checked)then
+    begin
+		filtro := filtro + ' and date(dhemi) between'+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit1.Date))+' and '+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit3.Date));
+
+	end;
+
+    if(rdata1.Checked)then
+    begin
+		filtro := filtro + ' and date(dataautorizacao) between'+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit1.Date))+' and '+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit3.Date));
+
+	end;
+
+    if(rdata2.Checked)then
+    begin
+
+		filtro := filtro + ' and date(dataencerramento) between'+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit1.Date))+' and '+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit3.Date));
+
+	end;
+
+    if(rdata3.Checked)then
+    begin
+
+		filtro := filtro + ' and date(datacancelamento) between'+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit1.Date))+' and '+quotedstr(formatdatetime('yyyy-mm-dd',DateEdit3.Date));
+
+	end;
+
+    if(txtchavemdfe.Text<>'')then
+    begin
+		filtro := filtro + ' and chmdfe='+quotedstr(txtchavemdfe.Text);
+	end;
+
+    if(cbomunc.Text<>'')then
+    begin
+		filtro := filtro + ' and xmuncarrega='+quotedstr(cbomunc.Text);
+	end;
+
+    if(cbomundes.Text<>'')then
+    begin
+		filtro := filtro + ' and xmundescarga='+quotedstr(cbomundes.Text);
+	end;
+
+    if(txtserie.Text<>'')then
+    begin
+		filtro := filtro + ' and serie='+quotedstr(txtserie.Text);
+	end;
+
+	if(txtnum.Text<>'')then
+    begin
+		filtro := filtro + ' and nmdf='+quotedstr(txtnum.Text);
+	end;
+
+	if( copy(cbofilialfiltro.Text,1,5) ='')then
+    begin
+        cbofilialfiltro.Text:=txtFilialEmitente.Text;
+	end;
+
+
+
+	_dmMDFe.cdsmdfeIDE.Close;
+	_dmMDFe.sdsmdfeIDE.Close;
+	_dmMDFe.sdsmdfeIDE.CommandText:='select * from mdfeide where codigofilial='+QuotedStr(copy(cbofilialfiltro.Text,1,5))+filtro+'  order by nMDF, serie';
+	_dmMDFe.cdsmdfeIDE.Open;
+
+
+frm.ModalResult:=-1;
+
+
+
+
+
+
+
+
+
+
+end;
+
+procedure T_Main.btnfiltroMouseEnter(Sender: TObject);
+begin
+btnfiltro.Color:=clgray;
+end;
+
+procedure T_Main.btnfiltroMouseLeave(Sender: TObject);
+begin
+btnfiltro.Color:=clMaroon;
+end;
+
 procedure T_Main.btnImprimirClick(Sender: TObject);
 var xml : TStringStream;
 begin
@@ -1794,9 +2742,17 @@ end;
 procedure T_Main.btnRemoverNFeClick(Sender: TObject);
 begin
 
-
+    {
 	if Application.MessageBox('Deseja remover a nota fiscal selecionada deste manifesto?', 'Pergunta', MB_ICONQUESTION+MB_YESNO)=idyes then
 	begin
+
+
+      if(_dmMDFe.cdsmdfeIDEcstat.AsString ='100') or (_dmMDFe.cdsmdfeIDEcstat.AsString ='101') or (_dmMDFe.cdsmdfeIDEcstat.AsString ='132')then
+      begin
+      application.MessageBox('MDF-e já homologada! ','Alerta',MB_ICONEXCLAMATION+mb_ok);
+      exit;
+      end;
+
 
         _dmMDFe.qrPadrao.Close;
         _dmMDFe.qrPadrao.CommandText:='delete from mdfeinfdoc where'+
@@ -1809,15 +2765,7 @@ begin
         _dmMDFe.cdsmdfeInfDoc.Refresh;
 	end;
 
-	if _dmMDFe.cdsmdfeInfDoc.IsEmpty then
-	begin
-		if(glb_offline='N')then
-		begin
-			ChkTer.Checked:=false;
-			ChkTer.Enabled:=true;
-			pnlpropria.Visible:=true;
-		end;
-	end;
+         }
 
 
 end;
@@ -1827,9 +2775,75 @@ Var IniFile  : String ;
 Ini     : TIniFile ;
 Ok : Boolean;
 StreamMemo : TMemoryStream;
+arquivoCertificado:string;
 begin
 
 
+
+     _dmMdfe.conexao.Connected:=false;
+     _dmMDFe.cdsconffinanc.Close;
+     _dmMDFe.sdsConffinanc.CommandText:='SELECT * FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial);
+     _dmMDFe.sdsConffinanc.ExecSQL();
+     _dmMDFe.cdsConffinanc.open();
+     _dmMDFe.cdsConffinanc.refresh;
+
+     arquivoCertificado:= 'C:\iqsistemas\SICEMDF-e\CertificadoDigital.pfx';
+
+    if not( _dmMdfe.cdsconffinancCertificadoArquivo.IsNull)then
+    begin
+
+          if(FileExists(arquivoCertificado))then
+          DeleteFile(arquivoCertificado);
+
+         _dmMdfe.cdsconffinancCertificadoArquivo.SaveToFile(arquivoCertificado);
+        	ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  := 'C:\iqsistemas\SICEMDF-e\CertificadoDigital.pfx';
+         	ACBrmdFe1.Configuracoes.Certificados.Senha       := _dmMdfe.cdsconffinancCertificadoSenha.AsString;
+    end;
+
+  ACBrmdFe1.SSL.DescarregarCertificado;
+
+	ACBrmdFe1.Configuracoes.WebServices.UF                   := _dmMdfe.cdsconffinancWebServiceUF.AsString;
+	ACBrmdFe1.Configuracoes.WebServices.Ambiente             := StrToTpAmb(ok, inttostr(_dmMdfe.cdsconffinancWebServiceAmbiente.AsInteger) );
+	ACBrmdFe1.Configuracoes.WebServices.IntervaloTentativas  := _dmMdfe.cdsconffinancPropEnvioIntervalo.AsInteger*1000;
+	ACBrmdFe1.Configuracoes.WebServices.TimeOut              := _dmMdfe.cdsconffinancPropEnvioTimeOut.AsInteger * 1000;
+	ACBrmdFe1.Configuracoes.WebServices.Visualizar           := False;
+	ACBrmdFe1.SSL.SSLType                                    := TSSLType(  _dmMdfe.cdsconffinancWebServiceSSLType.AsInteger );
+
+
+
+
+            with ACBrMDFe1.Configuracoes.Geral do
+            begin
+
+              SSLLib                := TSSLLib(_dmMDFe.cdsconffinancCertificadoSSLLib.Asinteger);
+              SSLCryptLib           := TSSLCryptLib(_dmMDFe.cdsconffinancCertificadoCryptLib.Asinteger);
+              SSLHttpLib            := TSSLHttpLib(_dmMDFe.cdsconffinancCertificadoHttpLib.Asinteger);
+              SSLXmlSignLib         := TSSLXmlSignLib(_dmMDFe.cdsconffinancCertificadoXmlSignLib.Asinteger);
+              FormaEmissao          := StrToTpEmis(OK,inttostr(_dmMDFe.cdsconffinancModoEmissaoModo.Asinteger+1));
+              Salvar                :=true;
+
+
+            end;
+
+
+   AtualizaSSLLibsCombo;
+   txtEmitCNPJ.Text       := _dmMDFe.clientdatasetdadcnpj.asstring;
+   txtEmitIE.Text         := _dmMDFe.clientdatasetdadinscricao.asstring;
+   edtCaminho.Text :=	ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX ;
+   edtSenha.Text:= _dmMdfe.cdsconffinancCertificadoSenha.AsString;
+   txtnumserie.Text:= _dmMdfe.cdsconffinancCertificadoNumSerie.AsString;
+   cbuf.Text:= _dmMdfe.cdsconffinancWebServiceUF.Text;
+
+   if(_dmMdfe.cdsconffinancWebServiceAmbiente.Asinteger=1)then
+   rgTipoAmb.ItemIndex:= 0
+   else if(_dmMdfe.cdsconffinancWebServiceAmbiente.Asinteger=2)then
+   rgTipoAmb.ItemIndex:= 1;
+
+
+
+
+
+  {
 
    if(glb_offline='N')then
       begin
@@ -1840,59 +2854,40 @@ begin
 	try
 
 
-          //if(glb_offline='S')then
-         //     txtEmitCNPJ.Text       := CriptografarSX(Ini.ReadString( 'Emitente','CNPJ'       ,''))
-         // else
-              txtEmitCNPJ.Text       := _dmMDFe.clientdatasetdadcnpj.asstring;
-
-        //  if(glb_offline='S')then
-        //    txtEmitIE.Text         := CriptografarSX(Ini.ReadString( 'Emitente','IE'       ,''))
-        //  else
+            txtEmitCNPJ.Text       := _dmMDFe.clientdatasetdadcnpj.asstring;
             txtEmitIE.Text         := _dmMDFe.clientdatasetdadinscricao.asstring;
 
       if(glb_offline='S')then
       begin
 
 
+        if _dmMDFe.cdsconffinancCertificadoXmlSignLib.Asinteger <>4 then
+        ACBrMDFe1.Configuracoes.Certificados.NumeroSerie := txtNumSerie.Text;
 
-            with ACBrMDFe1.Configuracoes.Geral do
-            begin
-              SSLLib                := TSSLLib(Ini.ReadInteger( 'Certificado','SSLLib' ,0));
-              SSLCryptLib           := TSSLCryptLib(Ini.ReadInteger( 'Certificado','CryptLib' , 0));
-              SSLHttpLib            := TSSLHttpLib(Ini.ReadInteger( 'Certificado','HttpLib' , 0));
-              SSLXmlSignLib         := TSSLXmlSignLib(Ini.ReadInteger( 'Certificado','XmlSignLib' , 0));
-              FormaEmissao          := StrToTpEmis(OK,IntToStr(Ini.ReadInteger( 'Geral','FormaEmissao',0)+1));;
-              Salvar                := Ini.ReadBool( 'Geral','Salvar', True) ; //Salvar arquivos
-            end;
 
-            if Ini.ReadInteger( 'Certificado','XmlSignLib' , 0)<>4 then
-            begin
-                ACBrMDFe1.Configuracoes.Certificados.NumeroSerie := txtNumSerie.Text;
-            end;
 
       AtualizaSSLLibsCombo;
-      edtSenha.Text    := CriptografarSX(Ini.ReadString( 'Certificado','Senha'   ,''));
-    	ACBrMDFe1.Configuracoes.Certificados.Senha        := edtSenha.Text;
 
-      txtNumSerie.Text := Ini.ReadString( 'Certificado','NumSerie','') ;
-      ACBrMDFe1.Configuracoes.Certificados.NumeroSerie :=  txtNumSerie.Text;
+    	ACBrMDFe1.Configuracoes.Certificados.Senha        := _dmMDFe.cdsconffinancCertificadoSenha.AsString;
+      ACBrMDFe1.Configuracoes.Certificados.NumeroSerie :=  _dmMDFe.cdsconffinancCertificadoNumSerie.AsString;
+      edtsenha.Text:=  _dmMDFe.cdsconffinancCertificadoSenha.AsString;
+     txtNumSerie.text:=  _dmMDFe.cdsconffinancCertificadoNumSerie.AsString;
 
+      rgModo.ItemIndex := strtoint(Ini.ReadString( 'ModoEmissao','Modo'   ,'0'));
+      rgTipoAmb.ItemIndex := strtoint(Ini.ReadString( 'WebService','Ambiente'   ,'0'));
 
+      cbUF.Text := _dmMDFe.cdsconffinancWebServiceUF.AsString;
+	  	ACBrMDFe1.Configuracoes.WebServices.UF            := cbUF.Text;
+      ACBrMDFe1.Configuracoes.WebServices.Ambiente      := StrToTpAmb(Ok,IntToStr(_dmMDFe.cdsconffinancWebServiceAmbiente.AsInteger+1));
 
-
-		rgModo.ItemIndex := strtoint(Ini.ReadString( 'ModoEmissao','Modo'   ,'0'));
-    rgTipoAmb.ItemIndex := strtoint(Ini.ReadString( 'WebService','Ambiente'   ,'0'));
-
-    cbUF.Text := Ini.ReadString('WebService','UF','');
-
-		ACBrMDFe1.Configuracoes.WebServices.UF            := cbUF.Text;
-		ACBrMDFe1.Configuracoes.WebServices.Ambiente      := StrToTpAmb(Ok,IntToStr(rgTipoAmb.ItemIndex+1));
 
     end;
 
 		if(glb_offline='S')then
 		begin
-			txtFilialEmitente.Text := Ini.ReadString( 'Emitente','FILIAL'       ,'');
+
+       	txtFilialEmitente.Text := Glb_filial;
+
 
 			_dmMDFe.conexao.Close;
 			_dmMDFe.ClientDataSetdad.close;
@@ -1924,7 +2919,17 @@ begin
 	_dmMDFe.SQLDataSetdad.ExecSQL();
 	_dmMDFe.ClientDataSetdad.Open;
 	_dmMDFe.ClientDataSetdad.refresh;
+      }
+end;
 
+procedure T_Main.cbCryptLib2Change(Sender: TObject);
+begin
+  try
+    if cbCryptLib.ItemIndex <> -1 then
+      ACBrmdFe1.Configuracoes.Geral.SSLCryptLib := TSSLCryptLib(cbCryptLib.ItemIndex);
+  finally
+    AtualizaSSLLibsCombo;
+  end;
 end;
 
 procedure T_Main.cbCryptLibChange(Sender: TObject);
@@ -1932,6 +2937,16 @@ begin
   try
     if cbCryptLib.ItemIndex <> -1 then
       ACBrmdFe1.Configuracoes.Geral.SSLCryptLib := TSSLCryptLib(cbCryptLib.ItemIndex);
+  finally
+    AtualizaSSLLibsCombo;
+  end;
+end;
+
+procedure T_Main.cbHttpLib2Change(Sender: TObject);
+begin
+  try
+    if cbHttpLib.ItemIndex <> -1 then
+      ACBrmdFe1.Configuracoes.Geral.SSLHttpLib := TSSLHttpLib(cbHttpLib.ItemIndex);
   finally
     AtualizaSSLLibsCombo;
   end;
@@ -1945,28 +2960,12 @@ begin
   finally
     AtualizaSSLLibsCombo;
   end;
-end;
-
-procedure T_Main.cbofilialfiltroEnter(Sender: TObject);
-begin
-	_dmMDFe.qrPadrao.SQL.Clear;
-    _dmMDFe.qrPadrao.SQL.Add('SELECT codigofilial,descricao from filiais WHERE grupo='+quotedstr(glb_grupo));
-    _dmMDFe.qrPadrao.Open;
-
-    cbofilialfiltro.Items.Clear;
-    _dmMDFe.qrPadrao.First;
-    while not _dmMDFe.qrPadrao.eof do
-    begin
-		cbofilialfiltro.Items.add(_dmMDFe.qrPadrao.fieldbyname('codigofilial').AsString+' - '+_dmMDFe.qrPadrao.fieldbyname('descricao').AsString);
-		_dmMDFe.qrPadrao.next;
-	end;
-
 
 end;
 
 procedure T_Main.cboMunCarrAvulsoEnter(Sender: TObject);
 begin
-	cboMunCarrAvulso.Items.Clear;
+	{cboMunCarrAvulso.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios,estados WHERE estados.uf='+QuotedStr(Copy(cboUfCarrAvulso.Text, 1, 2))+' and tab_municipios.iduf = estados.id';
@@ -1978,13 +2977,28 @@ begin
     begin
         cboMunCarrAvulso.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
         _dmMDFe.qrPadrao.Next;
-	end;
+	end;    }
 
+end;
+
+procedure T_Main.cboMuncEnter(Sender: TObject);
+begin
+	cboMunC.Items.Clear;
+
+    _dmMDFe.qrPadrao.Close;
+    _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios WHERE uf='+QuotedStr(Copy(cboUFC.Text, 1, 2));
+    _dmMDFe.qrPadrao.Open;
+
+    while not _dmMDFe.qrPadrao.Eof do
+    begin
+        cboMunC.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
+        _dmMDFe.qrPadrao.Next;
+	end;
 end;
 
 procedure T_Main.cboMunDesAvulsoEnter(Sender: TObject);
 begin
-	cboMunDesAvulso.Items.Clear;
+	{cboMunDesAvulso.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios,estados WHERE estados.uf='+QuotedStr(Copy(cboUfdessAvulso.Text, 1, 2))+' and tab_municipios.iduf = estados.id';
@@ -1994,7 +3008,7 @@ begin
     begin
         cboMunDesAvulso.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
         _dmMDFe.qrPadrao.Next;
-	end;
+	end;                              }
 
 end;
 
@@ -2013,10 +3027,25 @@ begin
 	end;
 end;
 
+procedure T_Main.cbomundes2Enter(Sender: TObject);
+begin
+	cboMundes.Items.Clear;
+
+    _dmMDFe.qrPadrao.Close;
+    _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios WHERE uf='+QuotedStr(Copy(cboUFdes.Text, 1, 2));
+    _dmMDFe.qrPadrao.Open;
+
+    while not _dmMDFe.qrPadrao.Eof do
+    begin
+        cboMundes.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
+        _dmMDFe.qrPadrao.Next;
+	end;
+end;
+
 procedure T_Main.cboMunicipioCarregamentoEnter(Sender: TObject);
 begin
 
-	cboMunicipioCarregamento.Items.Clear;
+ {	cboMunicipioCarregamento.Items.Clear;
 
 	// _dmMDFe.qrPadrao.Close;
 		// _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios WHERE uf='+QuotedStr(Copy(cboUFCarregamento.Text, 1, 2));
@@ -2032,12 +3061,12 @@ begin
         cboMunicipioCarregamento.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
         _dmMDFe.qrPadrao.Next;
 	end;
-
+         }
 end;
 
 procedure T_Main.cboMunicipioDescarregamentoEnter(Sender: TObject);
 begin
-	  cboMunicipioDescarregamento.Items.Clear;
+	{  cboMunicipioDescarregamento.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT NOME FROM tab_municipios,estados WHERE estados.uf='+QuotedStr(Copy(cboUFDescarregamento.Text, 1, 2))+' and tab_municipios.iduf = estados.id';
@@ -2047,28 +3076,43 @@ begin
     begin
         cboMunicipioDescarregamento.Items.Add(_dmMDFe.qrPadrao.FieldByName('NOME').AsString);
         _dmMDFe.qrPadrao.Next;
-  	end;
+  	end;  }
 end;
 
 procedure T_Main.cboMunicipioDescarregamentoExit(Sender: TObject);
 begin
-	txtUFPlaca.SetFocus;
+	//txtUFPlaca.SetFocus;
+end;
+
+procedure T_Main.cbofilialfiltroEnter(Sender: TObject);
+begin
+	_dmMDFe.qrPadrao.SQL.Clear;
+    _dmMDFe.qrPadrao.SQL.Add('SELECT codigofilial,descricao from filiais WHERE grupo='+quotedstr(glb_grupo));
+    _dmMDFe.qrPadrao.Open;
+
+    cbofilialfiltro.Items.Clear;
+    _dmMDFe.qrPadrao.First;
+    while not _dmMDFe.qrPadrao.eof do
+    begin
+		cbofilialfiltro.Items.add(_dmMDFe.qrPadrao.fieldbyname('codigofilial').AsString+' - '+_dmMDFe.qrPadrao.fieldbyname('descricao').AsString);
+		_dmMDFe.qrPadrao.next;
+	end;
 end;
 
 procedure T_Main.cboTipoEmitSelect(Sender: TObject);
 begin
-
+     {
 	if(copy(cboTipoEmit.Text,1,1)='1')then
     tabCIOTseguro.Enabled:=true
 	else
     tabCIOTseguro.Enabled:=false;
 
-
+        }
 end;
 
 procedure T_Main.cboUfCarrAvulsoEnter(Sender: TObject);
 begin
-	cboUfCarrAvulso.Items.Clear;
+ {	cboUfCarrAvulso.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf, "-", estado) as estado FROM estados ORDER BY estado';
@@ -2079,21 +3123,21 @@ begin
         cboUfCarrAvulso.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
         _dmMDFe.qrPadrao.Next;
 
-	end;
+	end;   }
 
 end;
 
 procedure T_Main.cboUfCarrAvulsoExit(Sender: TObject);
 begin
 
-	if(copy(cboUFcarregamento.Text,1,2) <>  copy(cboUfcarrAvulso.Text,1,2))then
+ {	if(copy(cboUFcarregamento.Text,1,2) <>  copy(cboUfcarrAvulso.Text,1,2))then
 	begin
 		showmessage('UF selecionado difere do UF carregamento informado no cabeçalho');
 		cboUfcarrAvulso.Text:=copy(cboUFcarregamento.Text,1,2);
 		cboUfcarrAvulso.SetFocus;
 		exit;
 	end;
-
+     }
 
 
 end;
@@ -2101,7 +3145,7 @@ end;
 procedure T_Main.cboUFCarregamentoEnter(Sender: TObject);
 begin
 
-	cboUFCarregamento.Items.Clear;
+ {	cboUFCarregamento.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf, "-", estado) as estado FROM estados ORDER BY estado';
@@ -2112,12 +3156,28 @@ begin
         cboUFCarregamento.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
         _dmMDFe.qrPadrao.Next;
 
-	end;
+	end;  }
 
 
 end;
 
 procedure T_Main.cboUfcEnter(Sender: TObject);
+begin
+	cboUFC.Items.Clear;
+
+    _dmMDFe.qrPadrao.Close;
+    _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf) as estado FROM estados ORDER BY estado';
+    _dmMDFe.qrPadrao.Open;
+
+    while not _dmMDFe.qrPadrao.Eof do
+    begin
+        cboUFC.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
+        _dmMDFe.qrPadrao.Next;
+
+	end;
+end;
+
+procedure T_Main.cboUfc2Enter(Sender: TObject);
 begin
 
 	cboUFC.Items.Clear;
@@ -2139,7 +3199,7 @@ end;
 
 procedure T_Main.cboUFDescarregamentoEnter(Sender: TObject);
 begin
-	cboUFDescarregamento.Items.Clear;
+{	cboUFDescarregamento.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf, "-", estado) as estado FROM estados ORDER BY estado';
@@ -2150,7 +3210,7 @@ begin
         cboUFDescarregamento.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
         _dmMDFe.qrPadrao.Next;
 	end;
-
+         }
 end;
 
 procedure T_Main.cboufdesEnter(Sender: TObject);
@@ -2171,7 +3231,7 @@ end;
 
 procedure T_Main.cboUfdessAvulsoEnter(Sender: TObject);
 begin
-	cboUfdessAvulso.Items.Clear;
+ {	cboUfdessAvulso.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf, "-", estado) as estado FROM estados ORDER BY estado';
@@ -2182,25 +3242,25 @@ begin
         cboUfdessAvulso.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
         _dmMDFe.qrPadrao.Next;
 	end;
-
+         }
 end;
 
 procedure T_Main.cboUfdessAvulsoExit(Sender: TObject);
 begin
 
-	if(copy(cboUFDescarregamento.Text,1,2) <>  copy(cboUfdessAvulso.Text,1,2))then
+	{if(copy(cboUFDescarregamento.Text,1,2) <>  copy(cboUfdessAvulso.Text,1,2))then
 	begin
 		showmessage('UF selecionado difere do UF descarregamento informado no cabeçalho');
 		cboUfdessAvulso.Text:= cboUFDescarregamento.Text;
 		cboUfdessAvulso.SetFocus;
 		exit;
-	end;
+	end;  }
 
 end;
 
 procedure T_Main.cboUfTrajetoEnter(Sender: TObject);
 begin
-	cboUfTrajeto.Items.Clear;
+{	cboUfTrajeto.Items.Clear;
 
     _dmMDFe.qrPadrao.Close;
     _dmMDFe.qrPadrao.CommandText:='SELECT CONCAT(uf, "-", estado) as estado FROM estados ORDER BY estado';
@@ -2210,7 +3270,17 @@ begin
     begin
         cboUfTrajeto.Items.Add(_dmMDFe.qrPadrao.FieldByName('estado').AsString);
         _dmMDFe.qrPadrao.Next;
-	end;
+	end;  }
+end;
+
+procedure T_Main.cbSSLLib2Change(Sender: TObject);
+begin
+  try
+    if cbSSLLib.ItemIndex <> -1 then
+      ACBrmdFe1.Configuracoes.Geral.SSLLib := TSSLLib(cbSSLLib.ItemIndex);
+  finally
+    AtualizaSSLLibsCombo;
+  end;
 end;
 
 procedure T_Main.cbSSLLibChange(Sender: TObject);
@@ -2218,6 +3288,17 @@ begin
   try
     if cbSSLLib.ItemIndex <> -1 then
       ACBrmdFe1.Configuracoes.Geral.SSLLib := TSSLLib(cbSSLLib.ItemIndex);
+  finally
+    AtualizaSSLLibsCombo;
+  end;
+
+end;
+
+procedure T_Main.cbXmlSignLib2Change(Sender: TObject);
+begin
+  try
+    if cbXmlSignLib.ItemIndex <> -1 then
+      ACBrmdFe1.Configuracoes.Geral.SSLXmlSignLib := TSSLXmlSignLib(cbXmlSignLib.ItemIndex);
   finally
     AtualizaSSLLibsCombo;
   end;
@@ -2235,27 +3316,19 @@ end;
 
 procedure T_Main.chkCidadesClick(Sender: TObject);
 begin
-	if chkCidades.Checked = true then
+ {	if chkCidades.Checked = true then
 	begin
 		cboMunicipiodesCarregamento.text:='';
 		cboMunicipiodesCarregamento.Enabled:=false;
 	end
 	else
 	cboMunicipiodesCarregamento.Enabled:=true;
-
-end;
-
-procedure T_Main.chkcontingenciaClick(Sender: TObject);
-begin
-	if(chkcontingencia.Checked=true)then
-	txtSegChave.Enabled:=true
-	else
-	txtSegChave.Enabled:=false;
+      }
 end;
 
 procedure T_Main.ChkTerClick(Sender: TObject);
 begin
-    if (ChkTer.Checked)then
+   { if (ChkTer.Checked)then
     begin
 		pnlpropria.Visible:=false;
 		pgInserir.TabIndex:=2;
@@ -2265,7 +3338,9 @@ begin
 		//cboMunicipioDescarregamento.Visible:=false;
 		btnAddNFeAvulsa.Enabled:=true;
 
-	end;
+	end;}
+
+  {
     if(ChkTer.Checked=false) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=100) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=101) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=132)then
     begin
 		if(glb_offline='N')then
@@ -2277,7 +3352,7 @@ begin
 			//cboMunicipioDescarregamento.Visible:=true;
 			btnAddNFeAvulsa.Enabled:=false;
 		end;
-	end;
+	end;   }
 
 end;
 procedure T_Main.ConsultaMDFe;
@@ -2372,15 +3447,87 @@ begin
 
 end;
 
-procedure T_Main.DBGrid1CellClick(Column: TColumn);
+procedure T_Main.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-	lbloperacao.Caption:='Alterar XML:  Nrº MDFe: '+DBGrid1.Fields[1].asstring +'        Série: '+DBGrid1.Fields[2].asstring;
+      {
+    TDbGrid(Sender).Canvas.font.Color:= clBlack; //aqui é definida a cor da fonte
+    if gdSelected in State then
+    with (Sender as TDBGrid).Canvas do
+    begin
+      Brush.Color:=clBtnShadow; //aqui é definida a cor do fundo
+      FillRect(Rect);
+    end;
+
+    TDbGrid(Sender).DefaultDrawDataCell(Rect, TDbGrid(Sender).columns[datacol].field, State);
+     }
+
+
+
+
+    With DBGrid1.Canvas do
+  begin
+  if gdSelected in State then
+    Begin
+      Brush.Color := $B5B5B5;
+      Font.Color:=clBlack;
+    end
+  else
+  Begin
+  If Odd(DBGrid1.DataSource.DataSet.RecNo) Then
+    Begin
+      //Brush.Color:= $00E4E7CD
+    Brush.Color:= $E8E8E0;
+    // Brush.Color:= $F0FFFF;
+    End
+  else
+    Begin
+      Brush.Color:= clWhite;
+    End;
+  End;
+
+DBGrid1.DefaultDrawDataCell(Rect, DBGrid1.Columns[DataCol].Field, State);
+  end;
+
+
+
+
+
+ if (Column.Field=_dmMDFe.cdsmdfeIDEcstat) then
+  begin
+    if (_dmMDFe.cdsmdfeIDEcstat.AsString = '0') or (trim(_dmMDFe.cdsmdfeIDEcstat.AsString) = '') then
+     begin
+     DBGrid1.Canvas.FillRect(Rect);
+     imgListMenu.Draw(DBGrid1.Canvas,Rect.Left+10,Rect.Top+1,0);
+     end
+     else if _dmMDFe.cdsmdfeIDEcstat.AsString = '100' then
+     begin
+     DBGrid1.Canvas.FillRect(Rect);
+     imgListMenu.Draw(DBGrid1.Canvas,Rect.Left+10,Rect.Top+1,1);
+     end
+     else if _dmMDFe.cdsmdfeIDEcstat.AsString = '101' then
+     begin
+     DBGrid1.Canvas.FillRect(Rect);
+     imgListMenu.Draw(DBGrid1.Canvas,Rect.Left+10,Rect.Top+1,2);
+     end
+     else if _dmMDFe.cdsmdfeIDEcstat.AsString = '132' then
+     begin
+     DBGrid1.Canvas.FillRect(Rect);
+     imgListMenu.Draw(DBGrid1.Canvas,Rect.Left+10,Rect.Top+1,3);
+     end
+
+    else
+      DBGrid1.Canvas.FillRect(Rect);
+  end;
+
+
+
 
 end;
 
 procedure T_Main.dsIDELocalDataChange(Sender: TObject; Field: TField);
 begin
-
+    {
 	txtserieMDF.Text :=  _dmMDFe.cdsmdfeIDEserie.AsString;
 	txtnumeroMDF.Text :=  _dmMDFe.cdsmdfeIDEnMDF.AsString;
 	txtmodeloMDF.Text := _dmMDFe.cdsmdfeIDEmodelo.AsString;
@@ -2399,70 +3546,43 @@ begin
 	txtvCarga.Value := _dmMDFe.cdsmdfeIDEvCarga.AsFloat;
 	txtcUnid.Text := _dmMDFe.cdsmdfeIDEcUnid.AsString;
 	txtdiasconclusao.Text:= _dmMDFe.cdsmdfeIDEdiasprevisaoencerrar.AsString;
+    }
+
+
 
 	_dmMDFe.cdsmdfeInfDoc.Close;
 	_dmMDFe.cdsmdfeInfDoc.Close;
 	_dmMDFe.sdsmdfeInfDoc.CommandText:='select * from mdfeinfdoc where '+
-	' codigofilial='+QuotedStr(txtFilialEmitente.Text)+
-	' and serie='+QuotedStr( txtserieMDF.Text )+
-	' and nMDF='+QuotedStr( txtnumeroMDF.Text );
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _dmMDFe.cdsmdfeIDEserie.AsString )+
+	' and nMDF='+QuotedStr( _dmMDFe.cdsmdfeIDEnMDF.AsString );
 	_dmMDFe.cdsmdfeInfDoc.Open;
 
 	_dmMDFe.cdsmdfeRodo.Close;
 	_dmMDFe.sdsmdfeRodo.Close;
 	_dmMDFe.sdsmdfeRodo.CommandText:='select * from mdferodo where '+
-	' codigofilial='+QuotedStr(txtFilialEmitente.Text)+
-	' and serie='+QuotedStr( txtserieMDF.Text )+
-	' and nMDF='+QuotedStr( txtnumeroMDF.Text );
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _dmMDFe.cdsmdfeIDEserie.AsString )+
+	' and nMDF='+QuotedStr( _dmMDFe.cdsmdfeIDEnMDF.AsString );
 	_dmMDFe.cdsmdfeRodo.Open;
 
 	_dmMDFe.cdsmdfeXML.Close;
 	_dmMDFe.sdsmdfeXML.Close;
 	_dmMDFe.sdsmdfeXML.CommandText:='select * from mdfexml where '+
-	' codigofilial='+QuotedStr(txtFilialEmitente.Text)+
-	' and serie='+QuotedStr( txtserieMDF.Text )+
-	' and nMDF='+QuotedStr( txtnumeroMDF.Text );
+	' codigofilial='+QuotedStr(glb_filial)+
+	' and serie='+QuotedStr( _dmMDFe.cdsmdfeIDEserie.AsString )+
+	' and nMDF='+QuotedStr( _dmMDFe.cdsmdfeIDEnMDF.AsString);
 	_dmMDFe.cdsmdfeXML.Open;
 
-	txtRNTC.Text :=  _dmMDFe.cdsmdfeRodoRNTRC.AsString;
-	txtPlaca.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_placa.AsString;
-	txtRenavam.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_RENAVAM.AsString;
-	txtTara.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_tara.AsFloat;
-	txtCapacidadeKG.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_capKG.AsFloat;
-	txtCapacidadeM3.Value :=  _dmMDFe.cdsmdfeRodoveicTracao_capM3.AsFloat;
-	cboTipoVeiculo.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_tpRod.AsString;
-	cboTipoCarroceria.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_tpCar.AsString;
-	txtUFPlaca.Text :=  _dmMDFe.cdsmdfeRodoveicTracao_UF.AsString;
-	txtCondutor.Text := _dmMDFe.cdsmdfeRodoveicTracao_condutor_xNome.AsString;
-	txtCPFCondutor.Text := _dmMDFe.cdsmdfeRodoveicTracao_condutor_CPF.AsString;
-	txtChacesso.Text:= _dmMDFe.cdsmdfeIDEchMDFe.AsString;
-	txtciot.Text:= _dmMDFe.cdsmdfeRodoCIOT.AsString ;
-	if (_dmMDFe.cdsmdfeIDEcstat.AsInteger=100) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=101) or (_dmMDFe.cdsmdfeIDEcstat.AsInteger=132) then
-	begin
-		btnSalvar.Enabled := false;
-		btnAdicionarNFe.Enabled:=false;
-		btnRemoverNFe.Enabled:=false;
-		btnAddNFeAvulsa.Enabled:=false;
-	end
-	else
-	begin
-		btnSalvar.Enabled := true;
-		btnAdicionarNFe.Enabled:=true;
-		btnRemoverNFe.Enabled:=true;
-		if(ChkTer.Checked)then
-		btnAddNFeAvulsa.Enabled:=true;
 
-
-	end;
-
-
-	txtCPFCNPJciot.Text       := _dmMDFe.cdsmdfeRodoCPF_CNPJ_CIOT.AsString;
-	txtrespseg.Text           :=  _dmMDFe.cdsmdfeRodorespSeg.AsString;
-	txtcnpjrespseg.Text       :=  _dmMDFe.cdsmdfeRodoCNPJrespseg.AsString;
-	txtseguradora.Text        :=  _dmMDFe.cdsmdfeRodoxSeg.AsString;
-	txtcnpjseguradora.Text    :=  _dmMDFe.cdsmdfeRodoCNPJseg.AsString;
-	txtnapolice.Text          :=   _dmMDFe.cdsmdfeRodonApol.AsString;
-	txtnraverbacao.Text       :=   _dmMDFe.cdsmdfeRodonAver.AsString;
+   _dmMDFe.cdstrajeto.Close;
+   _dmMDFe.sdstrajeto.Close;
+   _dmMDFe.sdstrajeto.commandtext:='SELECT * FROM mdfetrajeto WHERE nmdf='+quotedstr(_dmMDFe.cdsmdfeIDEnMDF.AsString)+
+   ' AND serie='+quotedstr(_dmMDFe.cdsmdfeIDEserie.AsString )+
+   ' AND codigofilial='+quotedstr(glb_filial);
+  // _dmMDFe.sdstrajeto.open();
+   _dmMDFe.cdstrajeto.open();
+  // _dmMDFe.cdstrajeto.refresh;
 
 
 
@@ -2472,8 +3592,24 @@ begin
 
 
 
+end;
 
+procedure T_Main.Ferramentas1Click(Sender: TObject);
+begin
+  frm:=TForm.Create(nil);
 
+  frm.Width:=900;
+  frm.Height:=650;
+  frm.Position:=poDesktopCenter;
+  frm.BorderStyle:=bsDialog;
+  //frm.BorderIcons:= [biMinimize,biMaximize];
+  pnlFerramentas.Parent:=frm;
+  pnlFerramentas.Visible:=true;
+  pnlFerramentas.Align:=alClient;
+  frm.Color:=clWhite;
+  lbloperacao.Caption:='Alterar XML:  Nrº MDFe: '+DBGrid1.Fields[3].asstring +'        Série: '+DBGrid1.Fields[2].asstring;
+
+  frm.ShowModal();
 end;
 
 procedure T_Main.FormActivate(Sender: TObject);
@@ -2501,7 +3637,7 @@ begin
 	Sys_Data:=now;
 
 
-    pgMain.TabIndex :=0;
+   // pgMain.TabIndex :=0;
     //pgnfe.TabIndex :=0;
 
   cbSSLLib.Items.Clear;
@@ -2540,13 +3676,18 @@ begin
 end;
 
 procedure T_Main.FormShow(Sender: TObject);
+var
+arquivoCertificado:string;
+Ok : Boolean;
 begin
 
+glb_versao:=GetBuildInfo;
 	FormatSettings.DecimalSeparator:='.';
 
 
 
-	lblversao.Caption:=GetBuildInfo;
+
+	lblversao.Caption:='   Versão: '+GetBuildInfo;
 
 	dataXML.date:=now;
 
@@ -2573,7 +3714,7 @@ begin
 		end;
 
 
-        btnBuscarTransportadora.Visible:=false;
+       // btnBuscarTransportadora.Visible:=false;
         txtEmitCNPJ.enabled:=false;
         txtEmitIE.enabled:=false;
         txtFilialEmitente.enabled:=true;
@@ -2581,14 +3722,14 @@ begin
 
 
 
-		btncadfilial.visible:=true;
+		btnDadosFilial.visible:=true;
 		_Main.glb_grupo:='1';
 		glb_filial:=_Main.txtFilialEmitente.text;
 		// _Main.txtFilialEmitente.text:= copy(cbofilial.Text,1,5);
 		_main.glb_loginFeito:='N';
-		pnlpropria.Visible:=false;
-		ChkTer.Checked:=true;
-		ChkTer.Enabled:=false;
+	 //	pnlpropria.Visible:=false;
+	 //	ChkTer.Checked:=true;
+	 //	ChkTer.Enabled:=false;
 
 	end;
 
@@ -2596,6 +3737,12 @@ begin
 	begin
 		_frmLogin:= T_frmLogin.Create(self);
 		_frmLogin.ShowModal();
+
+    lblusuario.Caption:=_frmLogin.txtusuario.Text;
+    lblfilial.Caption:=' FILIAL: '+Glb_filial;
+    lblempresa.Caption:=' '+copy(_frmLogin.cbofilial.Text,7,50);
+
+
 		_frmLogin.Release;
 	end;
 
@@ -2604,7 +3751,7 @@ begin
 	_dmMDFe.sdsmdfeIDE.CommandText:='select * from mdfeide where  date(dhemi) = date(current_date)and codigofilial='+QuotedStr(txtFilialEmitente.Text)+'  order by nMDF, serie';
 	_dmMDFe.cdsmdfeIDE.Open;
 
-	pgMain.TabIndex := 0;
+ //	pgMain.TabIndex := 0;
 
 
     _dmMDFe.conexao.Connected:=false;
@@ -2615,12 +3762,17 @@ begin
 
     if(_dmMDFe.cdsmdfeIDE.RecordCount>0)then
     begin
+        try
+             imgnot.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-notificacao-ativo.png');
+        except
+
+        end;
 
 
-        _frmManifestosEncerrar :=T_frmManifestosEncerrar.Create(self);
-        _frmManifestosEncerrar.ShowModal;
-        _frmManifestosEncerrar.Release;
 	  end;
+
+
+
 
   CarregarConfiguracoes;
 
@@ -2644,12 +3796,12 @@ begin
 		//
 		Ide.cUF := _dmMDFe.cdsmdfeIDEcUF.AsInteger;
 
-
+   {
 		case  _dmMDFe.cdsmdfeIDEtpEmis.Value of
 			1: Ide.tpEmit  := teTransportadora;
 			2: Ide.tpEmit  := teTranspCargaPropria;
 		end;
-
+    }
 
 		// TpcnTipoAmbiente = (taProducao, taHomologacao);
 		case rgTipoAmb.ItemIndex of
@@ -2659,11 +3811,14 @@ begin
 
 
 
-		case cboTipoEmit.ItemIndex of
-			0:  Ide.tpEmit:= teTransportadora;
-			1:  Ide.tpEmit:=teTranspCargaPropria;
-			2:  Ide.tpEmit:=teTranspCTeGlobalizado;
+    case _dmMDFe.cdsmdfeIDEtpEmit.AsInteger of
+      1:  Ide.tpEmit:= teTransportadora;
+    	2:  Ide.tpEmit:=teTranspCargaPropria;
+			3:  Ide.tpEmit:=teTranspCTeGlobalizado;
 		end;
+
+
+
 
 		// TMDFeTpEmitente = ( teTransportadora, teTranspCargaPropria );
 		//Ide.tpEmit  := teTranspCargaPropria;
@@ -2677,7 +3832,7 @@ begin
 
 
 
-		if(_dmMDFe.cdsmdfeIDEtpEmis.Value = 1)then
+		if(_dmMDFe.cdsmdfeIDEtpEmit.Value = 1)then
 		begin
 			//INFORMAÇÃO SEGURO
 			with seg.Add  do
@@ -2726,39 +3881,29 @@ begin
 		Ide.procEmi := peAplicativoContribuinte;
 		Ide.verProc := '1.0';
 		//UF origem
-
-		//if(ChkTer.Checked)then
-		// begin
 		Ide.UFIni   := _dmMDFe.cdsmdfeIDEUFIni.AsString;
-		//Ide.UFIni   := copy(cboUfCarrAvulso.Text,1,2);
-			// end
-			//else
-		// Ide.UFIni   := copy(cboUFCarregamento.Text,1,2);
+	
 
 		//Estados do percurso
-        linha := 0;
+   _dmMDFe.cdstrajeto.first;
+   while not _dmMDFe.cdstrajeto.eof do
+   begin
 
-        while linha < memoUf.Lines.Count do
-        begin
-			with Ide.InfPercurso.Add do
-			begin
+      with Ide.InfPercurso.Add do
+      begin
 
-				UFPer := memoUf.lines.Strings[linha];
-				//showmessage(memoUf.lines.Strings[linha]);
-			end;
+         UFPer := _dmMDFe.cdstrajetoestado.AsString;
+         //UFPer := memoUf.lines.Strings[linha];
+      end;
 
-			linha:= linha +1;
-		end;
+     _dmMDFe.cdstrajeto.next;
+   end;
 
-		//UF destino final
-			// if(ChkTer.Checked)then
-		// begin
+
+
+
+
 		Ide.UFFim   := _dmMDFe.cdsmdfeIDEUFFim.AsString;
-		//Ide.UFFim   := copy(cboUfdessAvulso.Text,1,2);
-			//end
-			// else
-		// Ide.UFFim   := copy(cboUFDescarregamento.Text,1,2);
-
 
 		with Ide.infMunCarrega.Add do
 		begin
@@ -2775,7 +3920,7 @@ begin
 		_dmMDFe.qrPadrao.SQL.Clear;
 		_dmMDFe.qrPadrao.SQL.Add('SELECT CNPJ, inscricao AS IE, empresa AS xnome, descricao AS xfant, endereco AS xlgr, numero AS nro, complemento AS xcpl, bairro AS xbairro, ');
 		_dmMDFe.qrPadrao.SQL.Add('(SELECT id FROM tab_municipios WHERE uf=filiais.estado AND nome=filiais.cidade) AS cMun, ');
-		_dmMDFe.qrPadrao.SQL.Add('cidade AS xmun, cep, estado AS uf, telefone1 AS fone, email FROM filiais WHERE codigofilial='+QuotedStr(txtFilialEmitente.Text));
+		_dmMDFe.qrPadrao.SQL.Add('cidade AS xmun, cep, estado AS uf, telefone1 AS fone, email FROM filiais WHERE codigofilial='+QuotedStr(glb_filial));
 		_dmMDFe.qrPadrao.Open;
 
 
@@ -2862,7 +4007,7 @@ begin
 		//begin
 		_dmMDFe.qrPadrao.Close;
 		_dmMDFe.qrPadrao.Sql.Clear;
-		_dmMDFe.qrPadrao.sql.add('SELECT chNFe,uf,codmundest,munidest FROM mdfeinfdoc WHERE nMdf='+quotedstr(_dmMDFe.cdsmdfeInfDocnMDF.AsString)+' and serie = '+quotedstr(_dmMDFe.cdsmdfeInfDocserie.AsString)+' and codigofilial='+quotedstr(txtFilialEmitente.Text)+' GROUP BY munidest');
+		_dmMDFe.qrPadrao.sql.add('SELECT chNFe,uf,codmundest,munidest FROM mdfeinfdoc WHERE nMdf='+quotedstr(_dmMDFe.cdsmdfeInfDocnMDF.AsString)+' and serie = '+quotedstr(_dmMDFe.cdsmdfeInfDocserie.AsString)+' and codigofilial='+quotedstr(glb_filial)+' GROUP BY munidest');
 		_dmMDFe.qrPadrao.Open;
 
 		_dmMDFe.qrPadrao.First;
@@ -2913,8 +4058,8 @@ begin
                     begin
 
 
-						//informa o documento fiscal
-						if(_dmMDFe.cdsmdfeIDEtpEmis.Value= 1)then
+						//informa o documento fiscal - verifica o tipo emissão: 1 - transportadora, 2 - própria
+						if(_dmMDFe.cdsmdfeIDEtpEmit.Value= 1)then
 						begin
 							if(copy(_dmMDFe.cdsmdfeInfDocchNFe.AsString,21,2)='57')then
 							begin
@@ -3016,6 +4161,293 @@ Begin
 	Copy(IntToStr (100+ v2), 3, 2);
 end;
 
+procedure T_Main.imgBuscarClick(Sender: TObject);
+begin
+  frm:=TForm.Create(nil);
+
+  frm.Width:=900;
+  frm.Height:=650;
+  frm.Position:=poDesktopCenter;
+  frm.BorderStyle:=bsDialog;
+  frm.BorderIcons:= [biMinimize,biMaximize];
+  pnlFiltro.Parent:=frm;
+  pnlFiltro.Visible:=true;
+  pnlFiltro.Align:=alClient;
+  frm.Color:=clWhite;
+
+  frm.ShowModal();
+end;
+
+procedure T_Main.imgBuscarMouseEnter(Sender: TObject);
+begin
+    try
+    imgBuscar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-pesquisar-ativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgBuscarMouseLeave(Sender: TObject);
+begin
+    try
+    imgBuscar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-pesquisar-inativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgExportarClick(Sender: TObject);
+begin
+  frm:=TForm.Create(nil);
+
+
+
+
+  frm.Width:=372;
+  frm.Height:=465;
+  frm.Position:=poDesktopCenter;
+  frm.BorderStyle:=bsDialog;
+  //frm.BorderIcons:= [biMinimize,biMaximize];
+  pnlacoes.Parent:=frm;
+  pnlacoes.Visible:=true;
+  pnlacoes.Align:=alClient;
+  frm.Color:=clWhite;
+  memostatus.Text:='';
+
+  frm.ShowModal();
+end;
+
+procedure T_Main.imgExportarMouseEnter(Sender: TObject);
+begin
+    try
+    imgExportar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-exportar-ativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgExportarMouseLeave(Sender: TObject);
+begin
+    try
+    imgExportar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-exportar-inativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgConfigClick(Sender: TObject);
+begin
+  frm:=TForm.Create(nil);
+
+  frm.Width:=900;
+  frm.Height:=650;
+  frm.Position:=poDesktopCenter;
+  frm.BorderStyle:=bsDialog;
+  frm.BorderIcons:= [biMinimize,biMaximize];
+  pnlConfig.Parent:=frm;
+  pnlConfig.Visible:=true;
+  pnlConfig.Align:=alClient;
+  frm.Color:=clWhite;
+
+  frm.ShowModal();
+end;
+
+procedure T_Main.imgConfigMouseEnter(Sender: TObject);
+begin
+    try
+    imgConfig.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-configuracoes-ativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgConfigMouseLeave(Sender: TObject);
+begin
+    try
+    imgConfig.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-configuracoes-inativo.png');
+    except
+    end;
+end;
+
+procedure T_Main.imgGerarClick(Sender: TObject);
+var numero, serie, cMunCarrega : string;
+begin
+
+    if(application.MessageBox('Deseja criar um novo MDF-e?','Confirmação',MB_YESNO+MB_ICONQUESTION)=IDNO)then
+    exit;
+
+
+  _frmGerarMdfe:=T_frmGerarMdfe.Create(self);
+
+    	_frmGerarMdfe.cboTipoEmit.ItemIndex:=1;
+
+	//txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
+	_dmMDFe.qrPadrao.Close;
+	_dmMDFe.qrPadrao.SQL.Clear;
+	_dmMDFe.qrPadrao.SQL.Add('select IFNULL(MAX(nMDF), 0)+1 AS prox from mdfeide where serie="1" and codigofilial='+QuotedStr(txtFilialEmitente.Text));
+	_dmMDFe.qrPadrao.Open;
+
+	sleep(5);
+
+
+	if not _dmMDFe.qrPadrao.IsEmpty then
+	begin
+        Novo := true;
+
+        numero := _dmMDFe.qrPadrao.FieldByName('prox').AsString;
+        serie := '1';
+
+        _dmMDFe.qrPadrao.Close;
+        _dmMDFe.qrPadrao.SQL.Clear;
+        _dmMDFe.qrPadrao.SQL.Add('SELECT cidade, estado, (SELECT tab_municipios.id FROM tab_municipios,estados WHERE tab_municipios.iduf = estados.id AND estados.uf = filiais.estado AND nome=filiais.cidade) AS cMunCarrega FROM filiais WHERE codigofilial='+QuotedStr(txtFilialEmitente.Text));
+        _dmMDFe.qrPadrao.Open;
+
+        sleep(5);
+
+
+        _frmGerarMdfe.cboMunicipioCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('cidade').AsString;
+        _frmGerarMdfe.cboUFCarregamento.Text:= _dmMDFe.qrPadrao.FieldByName('estado').AsString;
+        cMunCarrega := _dmMDFe.qrPadrao.FieldByName('cMunCarrega').AsString;
+
+        if(cMunCarrega='')then
+           cMunCarrega:='0';
+
+
+
+        _dmMDFe.qrPadrao.Close;
+        _dmMDFe.qrPadrao.SQL.Clear;
+        _dmMDFe.qrPadrao.SQL.Add('INSERT INTO mdfeide (modelo, serie, nMDF, ufini, cmuncarrega, xmuncarrega, tpamb, tpemit, tpemis, codigofilial, cstat) values (');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '58' )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr(_frmGerarMdfe.cboUFCarregamento.Text)+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( cMunCarrega ) +',');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( _frmGerarMdfe.cboMunicipioCarregamento.Text ) +', ');
+
+        if(rgTipoAmb.ItemIndex=0)then
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '1' ) +', ')
+        else if(rgTipoAmb.ItemIndex=1)then
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '2' ) +', ');
+
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '2' ) +', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( inttostr((rgModo.ItemIndex+1)) ) +',');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+',');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '0' )+')');
+        _dmMDFe.qrPadrao.ExecSQL;
+        sleep(5);
+
+
+
+        _dmMDFe.qrPadrao.Close;
+        _dmMDFe.qrPadrao.SQL.Clear;
+        _dmMDFe.qrPadrao.SQL.Add('INSERT INTO mdferodo (serie, nMDF, codigofilial) values (');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+')');
+        _dmMDFe.qrPadrao.ExecSQL;
+        sleep(5);
+
+        _dmMDFe.qrPadrao.Close;
+        _dmMDFe.qrPadrao.SQL.Clear;
+        _dmMDFe.qrPadrao.SQL.Add('INSERT INTO mdfexml (serie, nMDF, codigofilial) values (');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+')');
+        _dmMDFe.qrPadrao.ExecSQL;
+        sleep(5);
+
+
+	   	_frmGerarMdfe.txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
+
+	  	_dmMDFe.cdsmdfeIDE.Refresh;
+
+        _dmMDFe.cdsmdfeIDE.Locate('serie;nmdf', VarArrayOf([serie, numero]), []);
+
+        //descida a informação para cá, pois o refresh no  _dmMDFe.cdsmdfeIDE estava limpando os dados
+        _frmGerarMdfe.txtnumeroMDF.Text := numero;
+        _frmGerarMdfe.txtserieMDF.Text := serie;
+        _frmGerarMdfe.txtmodeloMDF.Text := '58';
+
+		//Zerando textos dos campos-------------------------------------------------------------
+        _dmMDFe.cdsmdfeInfDoc.close;
+        _dmMDFe.sdsmdfeInfDoc.CommandText:='SELECT * FROM mdfeinfdoc where serie ='+quotedstr(serie)+' and nmdf = '+quotedstr(numero)+' and codigofilial ='+quotedstr(txtFilialEmitente.Text);
+        _dmMDFe.sdsmdfeInfDoc.ExecSQL();
+        _dmMDFe.cdsmdfeInfDoc.Open;
+        _dmMDFe.cdsmdfeInfDoc.refresh;
+
+
+       _frmGerarMdfe.cboUFCarregamento.Text:='';
+       _frmGerarMdfe.cboMunicipioCarregamento.Text:='';
+       _frmGerarMdfe.cboUFDescarregamento.Text:='';
+       _frmGerarMdfe.cboMunicipioDescarregamento.Text:='';
+       _frmGerarMdfe.txtUFPlaca.Text:='';
+       _frmGerarMdfe.txtPlaca.Text:='';
+       _frmGerarMdfe.txtRenavam.Text:='00000000';
+       _frmGerarMdfe.txtRNTC.Text:='00000000';
+       _frmGerarMdfe.txtTara.Text:='';
+       _frmGerarMdfe.txtCapacidadeKG.Text:='';
+       _frmGerarMdfe.txtCapacidadeM3.Text:='';
+       _frmGerarMdfe.cboTipoVeiculo.Text:='1 - TRUCK';
+       _frmGerarMdfe.cboTipoCarroceria.Text:='1 - ABERTA';
+       _frmGerarMdfe.cboTipoUnidadeTracao.Text:='1 - RODOVIÁRIO TRAÇÃO';
+       _frmGerarMdfe.txtciot.Text:='';
+       _frmGerarMdfe.txtCondutor.Text:='';
+       _frmGerarMdfe.txtCPFCondutor.Text:='';
+       _frmGerarMdfe.txtInfComplementar.Text:='';
+       _frmGerarMdfe.txtvCarga.Text:='0.00';
+       _frmGerarMdfe.txtcUnid.Text:='01 - KG';
+       _frmGerarMdfe.txtqCarga.Text:='0.0000';
+       // _frmGerarMdfe.btnRemoverNFe.Enabled:=true;
+
+        _frmGerarMdfe.cboUfTrajeto.Text:='';
+        _frmGerarMdfe.listboxuf.Items.clear();
+     //  _frmGerarMdfe.btnSalvar.Enabled:=true;
+
+
+	end;
+
+      _frmGerarMdfe.ShowModal();
+      _frmGerarMdfe.Release;
+
+end;
+
+procedure T_Main.imgGerarMouseEnter(Sender: TObject);
+begin
+
+imgGerar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-gerar-mdfe-ativo.png');
+
+end;
+
+procedure T_Main.imgGerarMouseLeave(Sender: TObject);
+begin
+imgGerar.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-gerar-mdfe-inativo.png');
+end;
+
+procedure T_Main.imgnotClick(Sender: TObject);
+begin
+
+   _dmMDFe.conexao.Connected:=false;
+    _dmMDFe.cdsmdfeIDE.Close;
+    _dmMDFe.sdsmdfeIDE.CommandText:='SELECT * FROM mdfeide WHERE   DATEDIFF(CURRENT_DATE,dataautorizacao)> diasprevisaoencerrar and cstat="100" and codigofilial='+quotedstr( glb_filial );
+    _dmMDFe.cdsmdfeIDE.Open;
+    _dmMDFe.cdsmdfeIDE.refresh;
+
+        _frmManifestosEncerrar :=T_frmManifestosEncerrar.Create(self);
+        _frmManifestosEncerrar.ShowModal;
+
+
+
+    if(_dmMDFe.cdsmdfeIDE.RecordCount=0)then
+    begin
+        try
+             imgnot.Picture.LoadFromFile('C:\iqsistemas\SICEMDF-e\img\btn-notificacao-inativo.png');
+        except
+
+        end;
+  	  end;
+
+
+
+        _frmManifestosEncerrar.Release;
+
+
+end;
+
 procedure T_Main.LerConfiguracaoNFE;
 Var IniFile  : String ;
 Ini     : TIniFile ;
@@ -3026,6 +4458,8 @@ begin
 
 	Ini := TIniFile.Create( IniFile );
 	try
+
+    {
 		edtSenha.Text                                    := CriptografarSX(Ini.ReadString( 'Certificado','Senha'   ,''));
     txtNumSerie.Text                                 := Ini.ReadString( 'Certificado','NumSerie','');
 
@@ -3039,20 +4473,47 @@ begin
 		ACBrMDFe1.Configuracoes.WebServices.ProxyUser := Ini.ReadString( 'Proxy','User'   ,'');
 		ACBrMDFe1.Configuracoes.WebServices.ProxyPass := Ini.ReadString( 'Proxy','Pass'   ,'');
 
+    }
+
+    edtSenha.Text                                     := _dmMDFe.cdsconffinancCertificadoSenha.AsString;
+    txtNumSerie.Text                                  := _dmMDFe.cdsconffinancCertificadoNumSerie.AsString;
+
+		ACBrMDFe1.Configuracoes.Certificados.ArquivoPFX   := Ini.ReadString( 'Certificado','Caminho' ,'');
+		ACBrMDFe1.Configuracoes.Certificados.Senha        := edtSenha.Text;
+		ACBrMDFe1.Configuracoes.WebServices.Visualizar    := Ini.ReadBool( 'WebService','Visualizar',False);
+		ACBrMDFe1.SSL.SSLType                             := TSSLType(Ini.ReadInteger( 'WebService','SSLType' , 0));
+
+		ACBrMDFe1.Configuracoes.WebServices.ProxyHost := Ini.ReadString( 'Proxy','Host'   ,'');
+		ACBrMDFe1.Configuracoes.WebServices.ProxyPort := Ini.ReadString( 'Proxy','Porta'  ,'');
+		ACBrMDFe1.Configuracoes.WebServices.ProxyUser := Ini.ReadString( 'Proxy','User'   ,'');
+		ACBrMDFe1.Configuracoes.WebServices.ProxyPass := Ini.ReadString( 'Proxy','Pass'   ,'');
+
+
+
 		ACBrMDFe1.SSL.DescarregarCertificado;
 
-    sbtnGetCert.Enabled:=false;
+    //sbtnGetCert.Enabled:=false;
     edtSenha.Enabled:=false;
 
 
 		with ACBrMDFe1.Configuracoes.Geral do
 		begin
+    {
 			SSLLib                := TSSLLib(Ini.ReadInteger( 'Certificado','SSLLib' ,0));
 			SSLCryptLib           := TSSLCryptLib(Ini.ReadInteger( 'Certificado','CryptLib' , 0));
 			SSLHttpLib            := TSSLHttpLib(Ini.ReadInteger( 'Certificado','HttpLib' , 0));
 			SSLXmlSignLib         := TSSLXmlSignLib(Ini.ReadInteger( 'Certificado','XmlSignLib' , 0));
 			FormaEmissao          := StrToTpEmis(OK,IntToStr(Ini.ReadInteger( 'Geral','FormaEmissao',0)+1));;
 			Salvar                := Ini.ReadBool( 'Geral','Salvar', True) ; //Salvar arquivos
+     }
+
+      SSLLib                := TSSLLib(_dmMDFe.cdsconffinancCertificadoSSLLib.Asinteger);
+      SSLCryptLib           := TSSLCryptLib(_dmMDFe.cdsconffinancCertificadoCryptLib.Asinteger);
+      SSLHttpLib            := TSSLHttpLib(_dmMDFe.cdsconffinancCertificadoHttpLib.Asinteger);
+      SSLXmlSignLib         := TSSLXmlSignLib(_dmMDFe.cdsconffinancCertificadoXmlSignLib.Asinteger);
+      FormaEmissao          := StrToTpEmis(OK,inttostr(_dmMDFe.cdsconffinancModoEmissaoModo.Asinteger+1));
+      Salvar                :=true;
+
 		end;
 
     if Ini.ReadInteger( 'Certificado','XmlSignLib' , 0)<>4 then
@@ -3070,6 +4531,151 @@ begin
   ACBrMDFe1.Configuracoes.Arquivos.PathEvento:='C:\iqsistemas\SICEMDF-e\eventos';
   ACBrMDFe1.Configuracoes.Arquivos.PathSalvar:='C:\iqsistemas\SICEMDF-e\Docs\';
 
+end;
+
+procedure T_Main.btnSalvarConfClick(Sender: TObject);
+Var IniFile  : String ;
+Ini     : TIniFile ;
+Ok : Boolean;
+StreamMemo : TMemoryStream;
+ambiente:integer;
+begin
+
+	if(application.MessageBox('Salvar configurações?','Confirmação',MB_ICONQUESTION+MB_YESNO)=IDNO) then
+	exit;
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('SELECT count(1) as total FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial));
+          _dmMdfe.qrPadrao.Open();
+
+     case rgTipoAmb.ItemIndex of
+     0: ambiente:=1;
+     1: ambiente:=2;
+
+     end;
+
+
+    if(_dmMdfe.qrPadrao.FieldByName('total').AsInteger=0)then
+    begin
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('INSERT INTO configfinanc (codigofilial) VALUES ('+quotedstr(glb_filial)+')');
+          _dmMdfe.qrPadrao.execsql();
+
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+          +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(ambiente))+','
+        //  +'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+
+    end
+    else
+    begin
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+             +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(ambiente))+','
+          //+'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+    end;
+
+
+     _dmMdfe.conexao.Connected:=false;
+     _dmMDFe.cdsconffinanc.Close;
+     _dmMDFe.sdsConffinanc.CommandText:='SELECT * FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial);
+     _dmMDFe.sdsConffinanc.ExecSQL();
+     _dmMDFe.cdsConffinanc.open();
+     _dmMDFe.cdsConffinanc.refresh;
+
+
+
+  CarregarConfiguracoes;
+end;
+
+
+procedure T_Main.btnSalvarConfMouseEnter(Sender: TObject);
+begin
+ btnSalvarConf.Color:=clgray;
+end;
+
+procedure T_Main.btnSalvarConfMouseLeave(Sender: TObject);
+begin
+ btnSalvarConf.Color:=clMaroon;
+end;
+
+procedure T_Main.btnVerClick(Sender: TObject);
+var msg:string;
+begin
+
+ACBrMDFe1.WebServices.StatusServico.Executar;
+MemoStatus.Lines.clear;
+if(TpAmbToStr(ACBrMDFe1.WebServices.StatusServico.tpAmb)='1')then
+MemoStatus.Lines.Add('Ambiente:'+TpAmbToStr(ACBrMDFe1.WebServices.StatusServico.tpAmb)+' - Produção')
+else if(TpAmbToStr(ACBrMDFe1.WebServices.StatusServico.tpAmb)='2')then
+MemoStatus.Lines.Add('Ambiente:'+TpAmbToStr(ACBrMDFe1.WebServices.StatusServico.tpAmb)+' - Homologação');
+
+
+MemoStatus.Lines.Add('Código status:'+inttostr(ACBrMDFe1.WebServices.StatusServico.cStat));
+MemoStatus.Lines.Add('Situação WS: '+ACBrMDFe1.WebServices.StatusServico.xMotivo);
+MemoStatus.Lines.Add('Data hora: '+datetostr(ACBrMDFe1.WebServices.StatusServico.dhRecbto));
+
+
+
+
+
+application.MessageBox(pchar(MemoStatus.Text),'Informação',MB_ICONINFORMATION+mb_ok);
+
+
+end;
+
+procedure T_Main.btnVerMouseEnter(Sender: TObject);
+begin
+btnVer.Color:=clGray;
+end;
+
+procedure T_Main.btnVerMouseLeave(Sender: TObject);
+begin
+btnVer.Color:=clMaroon;
 end;
 
 procedure T_Main.RelatriodeMDFe1Click(Sender: TObject);
@@ -3114,14 +4720,101 @@ Var IniFile  : String ;
 Ini     : TIniFile ;
 Ok : Boolean;
 StreamMemo : TMemoryStream;
+
 begin
 
 	if(application.MessageBox('Salvar configurações?','Confirmação',MB_ICONQUESTION+MB_YESNO)=IDNO) then
 	exit;
 
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('SELECT count(1) as total FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial));
+          _dmMdfe.qrPadrao.Open();
+
+
+
+    if(_dmMdfe.qrPadrao.FieldByName('total').AsInteger=0)then
+    begin
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('INSERT INTO configfinanc (codigofilial) VALUES ('+quotedstr(glb_filial)+')');
+          _dmMdfe.qrPadrao.execsql();
+
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+          +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+
+    end
+    else
+    begin
+
+
+          _dmMdfe.conexao.Connected:=false;
+          _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
+             +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
+          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
+          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
+          +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
+          +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
+          +'WebServiceUF='+quotedstr(cbUF.text)+','
+          +'WebServiceAmbiente='+quotedstr(inttostr(rgTipoAmb.ItemIndex))+','
+          +'WebServiceSSLType='+quotedstr(inttostr(cbSSLType.ItemIndex))+','
+          +'ModoEmissaoModo='+quotedstr('0')+','
+          +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
+          +' WHERE codigofilial='+quotedstr(Glb_filial));
+          _dmMdfe.qrPadrao.ExecSQL();
+
+
+
+    end;
+
+
+     _dmMdfe.conexao.Connected:=false;
+     _dmMDFe.cdsconffinanc.Close;
+     _dmMDFe.sdsConffinanc.CommandText:='SELECT * FROM configfinanc WHERE codigofilial='+quotedstr(glb_filial);
+     _dmMDFe.sdsConffinanc.ExecSQL();
+     _dmMDFe.cdsConffinanc.open();
+     _dmMDFe.cdsConffinanc.refresh;
+
+
+
+  //  arquivopfx:= ExtractFilePath(Application.ExeName)+'\arquivopfx.pfx';
+  //  _dmMDFe.cdsconffinancCertificadoArquivo.SaveToFile(arquivopfx);
+
+
+
+
+
+   {
 	Ini := TIniFile.Create( 'C:\iqsistemas\SICEMDF-e\sicenfe.ini' );
 	try
-
+       {
           if(glb_offline='S')then
           begin
 
@@ -3141,33 +4834,47 @@ begin
 
             //Ini.WriteString('Certificado','NumSerie' ,edtNumSerie.Text) ;
 
-          end;
+          end;      }
 
 
-		Ini.WriteString('Geral','IntervaloReq',inttostr(IntervaloReq.Value)) ;
+	//	Ini.WriteString('Geral','IntervaloReq',inttostr(IntervaloReq.Value)) ;
 
-		Ini.WriteString('WebService','UF',cbUF.text) ;
-		Ini.WriteString('WebService','Ambiente',inttostr(rgTipoAmb.ItemIndex)) ;
+	//	Ini.WriteString('WebService','UF',cbUF.text) ;
+//		Ini.WriteString('WebService','Ambiente',inttostr(rgTipoAmb.ItemIndex)) ;
 
-		if(glb_offline='S')then
+	{	if(glb_offline='S')then
 		begin
 			Ini.WriteString('Emitente','FILIAL', txtFilialEmitente.Text);
 			Ini.WriteString('Emitente','CNPJ', CriptografarSX(txtEmitCNPJ.Text));
 			Ini.WriteString('Emitente','IE', CriptografarSX(txtemitie.Text));
 		end;
-
-		Ini.WriteString('ModoEmissao','Modo'   ,'0');
-
+   }
+	//	Ini.WriteString('ModoEmissao','Modo'   ,'0');
+   {
 		StreamMemo := TMemoryStream.Create;
 		Ini.WriteBinaryStream('Email','Mensagem',StreamMemo) ;
 		StreamMemo.Free;
 
 		finally
 		Ini.Free ;
-	end;
+	end;   }
 
   CarregarConfiguracoes;
 
+end;
+
+procedure T_Main.sbtnCaminhoCert2Click(Sender: TObject);
+begin
+	OpenDialog1.Title := 'Selecione o Certificado';
+	OpenDialog1.DefaultExt := '*.pfx';
+	OpenDialog1.Filter := 'Arquivos PFX (*.pfx)|*.pfx|Todos os Arquivos (*.*)|*.*';
+	OpenDialog1.InitialDir := ExtractFileDir(application.ExeName);
+	if OpenDialog1.Execute then
+	begin
+		edtCaminho.Text := OpenDialog1.FileName;
+    edtSenha.Text := '';
+    edtNumSerie.Text := '';
+	end;
 end;
 
 procedure T_Main.sbtnCaminhoCertClick(Sender: TObject);
@@ -3192,7 +4899,7 @@ end;
 
 procedure T_Main.SpeedButton1Click(Sender: TObject);
 begin
-
+ {
 	if(txtChacesso.Visible=true)then
 	begin
 		txtChacesso.Visible:=false;
@@ -3202,7 +4909,7 @@ begin
 	begin
 		txtChacesso.Visible:=true;
 		lblchv.Visible:=true;
-	end;
+	end;}
 end;
 
 procedure T_Main.txtChacessoKeyPress(Sender: TObject; var Key: Char);
@@ -3216,7 +4923,7 @@ var
 limit,qtd : integer;
 qtdDig:string;
 begin
-	limit := 12;
+ {	limit := 12;
 	qtd:=length(txtciot.Text);
 
 	while qtd < limit  do
@@ -3226,7 +4933,7 @@ begin
 	end;
 
 	txtciot.Text:= qtddig + txtciot.Text;
-
+     }
 end;
 
 procedure T_Main.txtciotKeyPress(Sender: TObject; var Key: Char);
@@ -3255,13 +4962,13 @@ end;
 
 procedure T_Main.txtCPFCondutorExit(Sender: TObject);
 begin
-
+  {
 	if trim(txtCPFCondutor.Text) = '' then
 	begin
 		showmessage('CPF não pode ser vazio');
 		txtCPFCondutor.SetFocus;
 	end;
-
+    }
 
 
 end;
@@ -3295,7 +5002,7 @@ var
 limit,qtd : integer;
 qtdDig:string;
 begin
-	limit := 9;
+{	limit := 9;
 	qtd:=length(txtRenavam.Text);
 
 	while qtd < limit  do
@@ -3304,7 +5011,7 @@ begin
 		qtd := qtd + 1;
 	end;
 
-	txtRenavam.Text:= qtddig + txtRenavam.Text;
+	txtRenavam.Text:= qtddig + txtRenavam.Text;   }
 end;
 
 procedure T_Main.txtRNTCExit(Sender: TObject);
@@ -3312,7 +5019,7 @@ var
 limit,qtd : integer;
 qtdDig:string;
 begin
-	limit := 8;
+ {	limit := 8;
 	qtd:=length(txtRNTC.Text);
 
 	while qtd < limit  do
@@ -3321,7 +5028,7 @@ begin
 		qtd := qtd + 1;
 	end;
 
-	txtRNTC.Text:= qtddig + txtRNTC.Text;
+	txtRNTC.Text:= qtddig + txtRNTC.Text;  }
 
 end;
 
@@ -3330,7 +5037,7 @@ var
 limit,qtd : integer;
 qtdDig:string;
 begin
-
+ {
 	limit := 3;
 	qtd:=length(txtSerieNFe.Text);
 
@@ -3342,7 +5049,7 @@ begin
 
 	txtSerieNFe.Text:= qtddig + txtSerieNFe.Text;
 
-
+     }
 
 end;
 

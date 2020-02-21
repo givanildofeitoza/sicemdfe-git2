@@ -2,8 +2,8 @@ object _frmLogin: T_frmLogin
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 326
-  ClientWidth = 430
+  ClientHeight = 373
+  ClientWidth = 472
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +21,8 @@ object _frmLogin: T_frmLogin
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 430
-    Height = 326
+    Width = 472
+    Height = 373
     Align = alClient
     Picture.Data = {
       0A544A504547496D616765D3820000FFD8FFE000104A46494600010101012C01
@@ -1074,11 +1074,12 @@ object _frmLogin: T_frmLogin
       93A011B3139DE87BA8F4AB8626ACA49389CF8AC93014A8CAA42B36D2D169FE47
       FFD9}
     Stretch = True
-    ExplicitTop = -1
+    ExplicitWidth = 571
+    ExplicitHeight = 318
   end
   object Label3: TLabel
     Left = 76
-    Top = 178
+    Top = 207
     Width = 47
     Height = 16
     Caption = 'usu'#225'rio:'
@@ -1091,7 +1092,7 @@ object _frmLogin: T_frmLogin
   end
   object Label4: TLabel
     Left = 76
-    Top = 220
+    Top = 249
     Width = 39
     Height = 16
     Caption = 'senha:'
@@ -1278,9 +1279,22 @@ object _frmLogin: T_frmLogin
       07250D181B474352F7436E64D0E198AF919EFD2E972B166BAE64977E6C9C6D1A
       C1AA40277D1759FD2F96F3F3D6BB0F650B0000000049454E44AE426082}
   end
+  object lblver: TLabel
+    Left = 16
+    Top = 349
+    Width = 44
+    Height = 11
+    Caption = 'Vers'#227'o..:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGray
+    Font.Height = -9
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object txtsenha: TEdit
     Left = 76
-    Top = 240
+    Top = 269
     Width = 265
     Height = 24
     BorderStyle = bsNone
@@ -1291,12 +1305,12 @@ object _frmLogin: T_frmLogin
     Font.Style = [fsBold]
     ParentFont = False
     PasswordChar = '*'
-    TabOrder = 3
+    TabOrder = 1
     OnKeyPress = txtsenhaKeyPress
   end
   object txtusuario: TEdit
     Left = 77
-    Top = 196
+    Top = 225
     Width = 265
     Height = 24
     BorderStyle = bsNone
@@ -1307,7 +1321,7 @@ object _frmLogin: T_frmLogin
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 0
     OnKeyPress = txtusuarioKeyPress
   end
   object cbogrupo: TComboBox
@@ -1321,7 +1335,7 @@ object _frmLogin: T_frmLogin
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 2
     OnKeyPress = cbogrupoKeyPress
   end
   object cbofilial: TComboBox
@@ -1335,13 +1349,13 @@ object _frmLogin: T_frmLogin
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 3
     OnEnter = cbofilialEnter
     OnKeyPress = cbofilialKeyPress
   end
   object Panel1: TPanel
-    Left = 78
-    Top = 270
+    Left = 76
+    Top = 302
     Width = 265
     Height = 26
     Caption = 'Entrar'
@@ -1362,7 +1376,24 @@ object _frmLogin: T_frmLogin
       Align = alClient
       Flat = True
       OnClick = btnloginClick
-      ExplicitWidth = 240
+      ExplicitLeft = 0
+      ExplicitTop = -10
+      ExplicitWidth = 233
+      ExplicitHeight = 35
     end
+  end
+  object chkfilial: TCheckBox
+    Left = 78
+    Top = 183
+    Width = 171
+    Height = 17
+    Caption = 'Manter conectado '#224' filial'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -9
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
   end
 end

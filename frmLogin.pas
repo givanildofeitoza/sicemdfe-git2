@@ -22,6 +22,8 @@ type
     Panel1: TPanel;
     btnlogin: TSpeedButton;
     Image2: TImage;
+    chkfilial: TCheckBox;
+    lblver: TLabel;
     procedure FormShow(Sender: TObject);
     procedure cbofilialEnter(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -184,8 +186,51 @@ begin
 end;
 
 procedure T_frmLogin.FormShow(Sender: TObject);
+var
+arquivo:textfile;
+grupo,filial,texto:string;
 begin
 LoginOK := false;
+
+     
+
+     lblver.Caption:='Versão..: '+U_main.glb_versao;
+
+    if(FileExists('C:\iqsistemas\SICEMDF-e\filial.txt'))then
+    begin
+      chkfilial.Checked:=true;
+
+      AssignFile(arquivo,'C:\iqsistemas\SICEMDF-e\filial.txt');
+      reset(arquivo);
+
+      while (not eof(arquivo)) do
+      begin
+        Readln(arquivo,texto);
+        grupo:=copy(texto,1,1);
+        filial:=copy(texto,3,5);
+      end;
+      closefile(arquivo);
+
+      _dmMdfe.ClientDataSetdad.open;
+      _dmMdfe.ClientDataSetdad.First;
+      while not _dmMdfe.ClientDataSetdad.Eof do
+      begin
+
+      if(copy(_dmMdfe.ClientDataSetdadgrupo.AsString,1,1) = grupo)then
+      cbogrupo.Text:=grupo+'-'+_dmMdfe.ClientDataSetdaddescricao.AsString;
+
+
+      if(_dmMdfe.ClientDataSetdadCodigoFilial.AsString = filial)then
+      cbofilial.Text:=filial+'-'+_dmMdfe.ClientDataSetdaddescricao.AsString;
+
+
+      _dmMdfe.ClientDataSetdad.Next;
+      end;
+
+
+    end;
+
+
 
 _splash:= T_splash.Create(self);
 _splash.Show();
@@ -233,6 +278,8 @@ begin
 end;
 
 procedure T_frmLogin.btnloginClick(Sender: TObject);
+var
+arquivo:textfile;
 begin
 
 
@@ -259,7 +306,24 @@ begin
      // _Main.txtFilialEmitente.text:= copy(cbofilial.Text,1,5);
      LoginOK :=true;
 
-     _main.glb_loginFeito:='S';
+      _main.glb_loginFeito:='S';
+
+      if(chkfilial.Checked=true)then
+      begin
+       //salva a filial e  o grupo
+       assignfile(arquivo,'C:\iqsistemas\SICEMDF-e\filial.txt');
+       Rewrite(arquivo);
+       writeLn(arquivo,copy(cbogrupo.Text,1,1)+'-'+glb_filial);
+       CloseFile(arquivo);
+      end
+      else
+      begin
+
+        if(FileExists('C:\iqsistemas\SICEMDF-e\filial.txt'))then
+        DeleteFile('C:\iqsistemas\SICEMDF-e\filial.txt');
+
+      end;
+
 
     if( VerificaLicencaUso('SICE.net')=false)then
     begin
@@ -269,7 +333,7 @@ begin
             _frmLiberacao:=T_frmLiberacao.Create(Self);
             _frmLiberacao.ShowModal();
             _frmLiberacao.Release;
-            LoginOK :=false;
+             LoginOK :=false;
             Application.Terminate;
 
            end
