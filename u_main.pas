@@ -169,6 +169,8 @@ T_Main = class(TForm)
     Ferramentas1: TMenuItem;
     lbloperacao: TLabel;
     btnVer: TPanel;
+    cbotipocert: TComboBox;
+    Label1: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure cboUFCarregamentoEnter(Sender: TObject);
     procedure cboUFDescarregamentoEnter(Sender: TObject);
@@ -694,7 +696,7 @@ begin
 
 	if( copy(cbofilialfiltro.Text,1,5) ='')then
     begin
-        cbofilialfiltro.Text:=txtFilialEmitente.Text;
+        cbofilialfiltro.Text:=glb_filial;
 	end;
 
 
@@ -725,17 +727,21 @@ begin
    cbHttpLib.ItemIndex:=3;
    cbSSLType.ItemIndex:=5;
    cbXmlSignLib.ItemIndex:=4;
+   cbotipocert.Text:='A1';
 
    Showmessage('Configuração válida somente para certificado A1.');
 end;
 
 procedure T_Main.Button5Click(Sender: TObject);
 begin
-cbSSLLib.ItemIndex:=5;
+cbSSLLib.ItemIndex:=4;
 cbCryptLib.ItemIndex:=3;
 cbHttpLib.ItemIndex:=2;
-cbXmlSignLib.ItemIndex:=2;
+cbXmlSignLib.ItemIndex:=4;
 cbSSLType.ItemIndex:=5;
+
+cbotipocert.Text:='A3';
+
 end;
 
 procedure T_Main.btnAltxmlClick(Sender: TObject);
@@ -767,11 +773,11 @@ begin
 
     _dmMDFe.conexao.Connected:=false;
     _dmMDFe.qrPadrao.SQL.clear;
-    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set bkxml=xml where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set bkxml=xml where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString));
     _dmMDFe.qrPadrao.ExecSQL();
 
     _dmMDFe.qrPadrao.SQL.clear;
-    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set xml='+quotedstr(txtxml.text)+', alteracao='+quotedstr(alteracaousu)+' where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(txtFilialEmitente.Text));
+    _dmMDFe.qrPadrao.SQL.Add(' UPDATE mdfexml set xml='+quotedstr(txtxml.text)+', alteracao='+quotedstr(alteracaousu)+' where serie ='+quotedstr(DBGrid1.Fields[2].asstring)+'  AND  nMDF='+quotedstr(DBGrid1.Fields[1].asstring)+' AND codigofilial='+quotedstr(_dmMDFe.cdsmdfeIDEcodigofilial.AsString));
     _dmMDFe.qrPadrao.ExecSQL();
 
 
@@ -879,6 +885,14 @@ var
   AddRow: Boolean;
 
 begin
+
+  try
+    if cbSSLLib.ItemIndex <> -1 then
+      ACBrmdFe1.Configuracoes.Geral.SSLLib := TSSLLib(cbSSLLib.ItemIndex);
+  finally
+    AtualizaSSLLibsCombo;
+  end;
+
 
   if cbSSLLib.ItemIndex <> 1 then
   begin
@@ -1466,7 +1480,7 @@ begin
 	//txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
 	_dmMDFe.qrPadrao.Close;
 	_dmMDFe.qrPadrao.SQL.Clear;
-	_dmMDFe.qrPadrao.SQL.Add('select IFNULL(MAX(nMDF), 0)+1 AS prox from mdfeide where serie="1" and codigofilial='+QuotedStr(txtFilialEmitente.Text));
+	_dmMDFe.qrPadrao.SQL.Add('select IFNULL(MAX(nMDF), 0)+1 AS prox from mdfeide where serie="1" and codigofilial='+QuotedStr(glb_filial));
 	_dmMDFe.qrPadrao.Open;
 
 	sleep(5);
@@ -2321,7 +2335,7 @@ begin
 
 	MemoStatus.Lines.Add('Assinando...');
 	ACBrMDFe1.Manifestos.Assinar;
-	MemoStatus.Lines.Add('Assinando.');
+	MemoStatus.Lines.Add('Assinado.');
 
 	try
 		MemoStatus.Lines.Add('Validando....');
@@ -2689,7 +2703,7 @@ begin
 
 	if( copy(cbofilialfiltro.Text,1,5) ='')then
     begin
-        cbofilialfiltro.Text:=txtFilialEmitente.Text;
+        cbofilialfiltro.Text:=glb_filial;
 	end;
 
 
@@ -2789,6 +2803,8 @@ begin
 
      arquivoCertificado:= 'C:\iqsistemas\SICEMDF-e\CertificadoDigital.pfx';
 
+
+
     if not( _dmMdfe.cdsconffinancCertificadoArquivo.IsNull)then
     begin
 
@@ -2796,9 +2812,18 @@ begin
           DeleteFile(arquivoCertificado);
 
          _dmMdfe.cdsconffinancCertificadoArquivo.SaveToFile(arquivoCertificado);
-        	ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  := 'C:\iqsistemas\SICEMDF-e\CertificadoDigital.pfx';
-         	ACBrmdFe1.Configuracoes.Certificados.Senha       := _dmMdfe.cdsconffinancCertificadoSenha.AsString;
+        	ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  := arquivoCertificado;
+          ACBrmdFe1.Configuracoes.Certificados.Senha       := _dmMdfe.cdsconffinancCertificadoSenha.AsString;
+
+    end
+    else
+    begin
+          ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX  := '';
+          ACBrmdFe1.Configuracoes.Certificados.NumeroSerie:= _dmMdfe.cdsconffinancCertificadoNumSerie.asstring;
+          ACBrmdFe1.Configuracoes.Certificados.Senha       := _dmMdfe.cdsconffinancCertificadoSenha.AsString;
+
     end;
+
 
   ACBrmdFe1.SSL.DescarregarCertificado;
 
@@ -2810,20 +2835,19 @@ begin
 	ACBrmdFe1.SSL.SSLType                                    := TSSLType(  _dmMdfe.cdsconffinancWebServiceSSLType.AsInteger );
 
 
-
-
             with ACBrMDFe1.Configuracoes.Geral do
             begin
 
               SSLLib                := TSSLLib(_dmMDFe.cdsconffinancCertificadoSSLLib.Asinteger);
               SSLCryptLib           := TSSLCryptLib(_dmMDFe.cdsconffinancCertificadoCryptLib.Asinteger);
               SSLHttpLib            := TSSLHttpLib(_dmMDFe.cdsconffinancCertificadoHttpLib.Asinteger);
-              SSLXmlSignLib         := TSSLXmlSignLib(_dmMDFe.cdsconffinancCertificadoXmlSignLib.Asinteger);
+ {erro aqui}     //       SSLXmlSignLib         := TSSLXmlSignLib(_dmMDFe.cdsconffinancCertificadoXmlSignLib.Asinteger);
               FormaEmissao          := StrToTpEmis(OK,inttostr(_dmMDFe.cdsconffinancModoEmissaoModo.Asinteger+1));
               Salvar                :=true;
 
 
             end;
+
 
 
    AtualizaSSLLibsCombo;
@@ -2839,9 +2863,11 @@ begin
    else if(_dmMdfe.cdsconffinancWebServiceAmbiente.Asinteger=2)then
    rgTipoAmb.ItemIndex:= 1;
 
-
-
-
+   if(ACBrmdFe1.Configuracoes.Certificados.ArquivoPFX ='')then
+   cbotipocert.Text:='A3'
+   else
+   cbotipocert.Text:='A1';
+ 
 
   {
 
@@ -3773,8 +3799,11 @@ glb_versao:=GetBuildInfo;
 
 
 
-
-  CarregarConfiguracoes;
+  try
+   CarregarConfiguracoes;
+     except on  e:exception do
+     clipboard.astext:=e.Message;
+  end;
 
 end;
 
@@ -4279,7 +4308,7 @@ begin
 	//txtDataEmissao.date:= strtodate(formatdatetime('dd/mm/YYYY', now));
 	_dmMDFe.qrPadrao.Close;
 	_dmMDFe.qrPadrao.SQL.Clear;
-	_dmMDFe.qrPadrao.SQL.Add('select IFNULL(MAX(nMDF), 0)+1 AS prox from mdfeide where serie="1" and codigofilial='+QuotedStr(txtFilialEmitente.Text));
+	_dmMDFe.qrPadrao.SQL.Add('select IFNULL(MAX(nMDF), 0)+1 AS prox from mdfeide where serie="1" and codigofilial='+QuotedStr(glb_filial));
 	_dmMDFe.qrPadrao.Open;
 
 	sleep(5);
@@ -4326,7 +4355,7 @@ begin
 
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '2' ) +', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( inttostr((rgModo.ItemIndex+1)) ) +',');
-        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+',');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( glb_filial )+',');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( '0' )+')');
         _dmMDFe.qrPadrao.ExecSQL;
         sleep(5);
@@ -4338,7 +4367,7 @@ begin
         _dmMDFe.qrPadrao.SQL.Add('INSERT INTO mdferodo (serie, nMDF, codigofilial) values (');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
-        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+')');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( glb_filial )+')');
         _dmMDFe.qrPadrao.ExecSQL;
         sleep(5);
 
@@ -4347,7 +4376,7 @@ begin
         _dmMDFe.qrPadrao.SQL.Add('INSERT INTO mdfexml (serie, nMDF, codigofilial) values (');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( serie )+', ');
         _dmMDFe.qrPadrao.SQL.Add(QuotedStr( numero )+', ');
-        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( txtFilialEmitente.Text )+')');
+        _dmMDFe.qrPadrao.SQL.Add(QuotedStr( glb_filial )+')');
         _dmMDFe.qrPadrao.ExecSQL;
         sleep(5);
 
@@ -4540,6 +4569,9 @@ Ok : Boolean;
 StreamMemo : TMemoryStream;
 ambiente:integer;
 begin
+try
+begin
+
 
 	if(application.MessageBox('Salvar configurações?','Confirmação',MB_ICONQUESTION+MB_YESNO)=IDNO) then
 	exit;
@@ -4557,24 +4589,30 @@ begin
      end;
 
 
+
     if(_dmMdfe.qrPadrao.FieldByName('total').AsInteger=0)then
     begin
 
-          _dmMdfe.conexao.Connected:=false;
+
+
+
           _dmMdfe.qrPadrao.sql.Clear;
           _dmMdfe.qrPadrao.sql.Add('INSERT INTO configfinanc (codigofilial) VALUES ('+quotedstr(glb_filial)+')');
           _dmMdfe.qrPadrao.execsql();
 
-
-
           _dmMdfe.conexao.Connected:=false;
           _dmMdfe.qrPadrao.sql.Clear;
-          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
-          +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
-          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
-          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
-          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
-          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET ');
+         // +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
+         //  if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.sql.Add( 'CertificadoArquivo=:arquivo,');
+
+          _dmMdfe.qrPadrao.sql.Add('CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+',');
+          if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.sql.Add('CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+',');
+
+          _dmMdfe.qrPadrao.sql.Add('CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
           +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
           +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
           +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
@@ -4585,6 +4623,12 @@ begin
           +'ModoEmissaoModo='+quotedstr('0')+','
           +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
           +' WHERE codigofilial='+quotedstr(Glb_filial));
+
+           if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(OpenDialog1.FileName, ftBlob)
+          else
+          _dmMdfe.qrPadrao.ParamByName('arquivo').AsBlob := nil;
+
           _dmMdfe.qrPadrao.ExecSQL();
 
 
@@ -4595,14 +4639,20 @@ begin
     begin
 
 
-          _dmMdfe.conexao.Connected:=false;
-          _dmMdfe.qrPadrao.sql.Clear;
-          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET '
-             +'CertificadoArquivo=LOAD_FILE('+quotedstr(StringReplace(edtCaminho.Text,'\','\\',[rfReplaceAll]))+'),'
-          +'CertificadoSenha='+quotedstr(edtSenha.Text)+','
-          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+','
-          +'CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+','
-          +'CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
+
+       _dmMdfe.conexao.Connected:=false;
+       _dmMdfe.qrPadrao.sql.Clear;
+          _dmMdfe.qrPadrao.sql.Add('UPDATE configfinanc SET ');
+
+         // if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.sql.Add( 'CertificadoArquivo=:arquivo,');
+
+          _dmMdfe.qrPadrao.sql.Add('CertificadoSenha='+quotedstr(edtSenha.Text)+','
+          +'CertificadoNumSerie='+quotedstr(txtNumSerie.Text)+',');
+          if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.sql.Add('CertificadoDataVencimento='+quotedstr(formatdatetime('yyyy-mm-dd',ACBrmdFe1.SSL.CertDataVenc))+',');
+
+          _dmMdfe.qrPadrao.sql.Add('CertificadoSSLLib='+quotedstr(inttostr(cbSSLLib.ItemIndex))+','
           +'CertificadoCryptLib='+quotedstr(inttostr(cbCryptLib.ItemIndex))+','
           +'CertificadoHttpLib='+quotedstr(inttostr(cbHttpLib.ItemIndex))+','
           +'CertificadoXmlSignLib='+quotedstr(inttostr(cbXmlSignLib.ItemIndex))+','
@@ -4613,11 +4663,24 @@ begin
           +'ModoEmissaoModo='+quotedstr('0')+','
           +'PropEnvioIntervalo='+quotedstr(inttostr(IntervaloReq.Value))
           +' WHERE codigofilial='+quotedstr(Glb_filial));
-          _dmMdfe.qrPadrao.ExecSQL();
+
+           if(cbotipocert.Text='A1')then
+          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(OpenDialog1.FileName, ftBlob)
+           else
+          _dmMdfe.qrPadrao.ParamByName('arquivo').AsBlob := nil;
+         _dmMdfe.qrPadrao.ExecSQL();
 
 
 
     end;
+
+
+
+end
+except on e:Exception do
+showmessage(e.Message);
+
+end;
 
 
      _dmMdfe.conexao.Connected:=false;
@@ -4627,9 +4690,8 @@ begin
      _dmMDFe.cdsConffinanc.open();
      _dmMDFe.cdsConffinanc.refresh;
 
-
-
   CarregarConfiguracoes;
+
 end;
 
 

@@ -241,7 +241,7 @@ object _Main: T_Main
               Value = 22.627928950885080000
             end
             item
-              Value = 5.339847988788608000
+              Value = 5.339847988788606000
             end
             item
               Value = 14.564169317472980000
@@ -925,8 +925,8 @@ object _Main: T_Main
             end>
         end
         object pnlacoes: TPanel
-          Left = 428
-          Top = 53
+          Left = 22
+          Top = 86
           Width = 365
           Height = 426
           TabOrder = 2
@@ -1475,8 +1475,8 @@ object _Main: T_Main
         end
       end
       object pnlConfig: TPanel
-        Left = -601
-        Top = 339
+        Left = 104
+        Top = 41
         Width = 800
         Height = 629
         Align = alCustom
@@ -1642,6 +1642,13 @@ object _Main: T_Main
             Caption = 'SSLType'
             Color = clBtnFace
             ParentColor = False
+          end
+          object Label1: TLabel
+            Left = 511
+            Top = 23
+            Width = 75
+            Height = 13
+            Caption = 'Tipo Certificado'
           end
           object Edit4: TEdit
             Left = 648
@@ -1840,6 +1847,17 @@ object _Main: T_Main
             OnClick = btnVerClick
             OnMouseEnter = btnVerMouseEnter
             OnMouseLeave = btnVerMouseLeave
+          end
+          object cbotipocert: TComboBox
+            Left = 592
+            Top = 27
+            Width = 57
+            Height = 21
+            TabOrder = 11
+            Text = 'A1'
+            Items.Strings = (
+              'A1'
+              'A3')
           end
         end
         object GroupBox14: TGroupBox
@@ -2053,8 +2071,8 @@ object _Main: T_Main
         end
       end
       object pnlFiltro: TPanel
-        Left = -744
-        Top = 93
+        Left = -712
+        Top = -76
         Width = 782
         Height = 619
         TabOrder = 4
@@ -4241,7 +4259,7 @@ object _Main: T_Main
     Left = 126
     Top = 751
     Bitmap = {
-      494C010104000800200010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
+      494C010104000800280010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
