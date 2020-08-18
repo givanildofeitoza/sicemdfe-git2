@@ -37,7 +37,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
     Top = 47
     Width = 982
     Height = 546
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGray
     Font.Height = -13
