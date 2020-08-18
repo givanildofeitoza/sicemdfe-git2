@@ -37,7 +37,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
     Top = 47
     Width = 982
     Height = 546
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGray
     Font.Height = -13
@@ -2520,7 +2520,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
     OnMouseLeave = btnCancelarMouseLeave
   end
   object DataSetProvider1: TDataSetProvider
-    DataSet = qrpadrao
+    DataSet = sdsnotapropria
     Left = 784
     Top = 600
   end
@@ -2549,6 +2549,17 @@ object _frmGerarMdfe: T_frmGerarMdfe
       FieldName = 'CbdCodigoFilial'
       Size = 5
     end
+    object ClientDataSet1cbduf_dest: TWideStringField
+      FieldName = 'cbduf_dest'
+      Size = 2
+    end
+    object ClientDataSet1cbdxmun_dest: TWideStringField
+      FieldName = 'cbdxmun_dest'
+      Size = 60
+    end
+    object ClientDataSet1cbdcmun_dest: TIntegerField
+      FieldName = 'cbdcmun_dest'
+    end
   end
   object qrpadrao: TSQLQuery
     MaxBlobSize = -1
@@ -2567,5 +2578,16 @@ object _frmGerarMdfe: T_frmGerarMdfe
     DataSet = ClientDataSet1
     Left = 944
     Top = 600
+  end
+  object sdsnotapropria: TSQLDataSet
+    CommandText = 
+      'SELECT cbdntfserie,CbdNtfNumero,CbdxNome_dest,CbdNFEChaAcesso,Cb' +
+      'dCodigoFilial,cbduf_dest,cbdxmun_dest,cbdcmun_dest FROM cbd001 '#13 +
+      #10'WHERE cbdcodigofilial ='#39'00001'#39#13#10'limit 0;'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = _dmMDFe.conexao
+    Left = 664
+    Top = 592
   end
 end

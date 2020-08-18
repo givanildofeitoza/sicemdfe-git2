@@ -76,11 +76,6 @@ type
     Label18: TLabel;
     DataSetProvider1: TDataSetProvider;
     ClientDataSet1: TClientDataSet;
-    ClientDataSet1cbdntfserie: TWideStringField;
-    ClientDataSet1CbdNtfNumero: TIntegerField;
-    ClientDataSet1CbdxNome_dest: TWideStringField;
-    ClientDataSet1CbdNFEChaAcesso: TWideStringField;
-    ClientDataSet1CbdCodigoFilial: TWideStringField;
     qrpadrao: TSQLQuery;
     DataSource1: TDataSource;
     txtvCarga: TCurrencyEdit;
@@ -137,6 +132,15 @@ type
     Image3: TImage;
     btnSalvarConf: TPanel;
     btnCancelar: TPanel;
+    sdsnotapropria: TSQLDataSet;
+    ClientDataSet1cbdntfserie: TWideStringField;
+    ClientDataSet1CbdNtfNumero: TIntegerField;
+    ClientDataSet1CbdxNome_dest: TWideStringField;
+    ClientDataSet1CbdNFEChaAcesso: TWideStringField;
+    ClientDataSet1CbdCodigoFilial: TWideStringField;
+    ClientDataSet1cbduf_dest: TWideStringField;
+    ClientDataSet1cbdxmun_dest: TWideStringField;
+    ClientDataSet1cbdcmun_dest: TIntegerField;
     procedure cboUfTrajetoEnter(Sender: TObject);
     procedure btnaddtrajetoClick(Sender: TObject);
     procedure btnextrajetoClick(Sender: TObject);
@@ -605,7 +609,7 @@ end;
 
 procedure T_frmGerarMdfe.cboUfCarrAvulsoExit(Sender: TObject);
 begin
-	if(copy(cboUFcarregamento.Text,1,2) <>  copy(cboUfcarrAvulso.Text,1,2))then
+	if(copy(cboUFcarregamento.Text,1,2) <>  copy(cboUfcarrAvulso.Text,1,2)) and (Length(trim(cboUfcarrAvulso.Text))>0)then
 	begin
 		application.MessageBox('UF selecionado difere do UF carregamento informado no cabeçalho!','Alerta',MB_ICONEXCLAMATION+mb_ok);
 		cboUfcarrAvulso.Text:=copy(cboUFcarregamento.Text,1,2);
@@ -1041,8 +1045,10 @@ begin
 	_dmMDFe.sdsQuery.ExecSQL;
 
 	//atualiza o dataset
+  _dmMDFe.cdsmdfeInfDoc.Close;
 	_dmMDFe.sdsmdfeInfDoc.CommandText:='SELECT * FROM mdfeinfdoc WHERE serie='+quotedstr(txtserieMDF.Text)+' AND nMDF='+quotedstr(txtnumeroMDF.Text)+' AND codigofilial='+QuotedStr(glb_filial);
 	_dmMDFe.sdsmdfeInfDoc.execsql();
+ 	_dmMDFe.cdsmdfeInfDoc.Open;
 	_dmMDFe.cdsmdfeInfDoc.Refresh;
 
 
@@ -1085,23 +1091,37 @@ if(txtnumero.Text='') or(txtserie.Text='')then
 exit;
 
   //_dmMDFe.conexao.Connected:=false;
-     qrPadrao.Close;
+    { qrPadrao.Close;
       ClientDataSet1.Close;
       qrPadrao.SQL.Clear;
       qrPadrao.SQL.add('SELECT cbdntfserie,CbdNtfNumero,CbdxNome_dest,CbdNFEChaAcesso,CbdCodigoFilial,cbduf_dest,cbdxmun_dest,cbdcmun_dest FROM cbd001 WHERE ');
       qrPadrao.SQL.add(' cbdntfserie = abs('+QuotedStr( txtSerie.Text )+')');
       qrPadrao.SQL.add(' AND cbdntfnumero='+QuotedStr( txtNumero.Text ));
       qrPadrao.SQL.add(' AND cbdmod="55" and cbdcodigofilial='+QuotedStr( copy(cbofilial.Text,1,5) ));
-      qrPadrao.open;
-      ClientDataSet1.open;
-      ClientDataSet1.refresh;
+      qrPadrao.open;   }
+
+    _dmMDFe.conexao.Connected:=false;
+    ClientDataSet1.Close;
+    sdsnotapropria.CommandText:= 'SELECT cbdntfserie,CbdNtfNumero,CbdxNome_dest,CbdNFEChaAcesso,CbdCodigoFilial,cbduf_dest,cbdxmun_dest,cbdcmun_dest FROM cbd001 WHERE '+
+     ' cbdntfserie = abs('+QuotedStr( txtSerie.Text )+')'+
+     ' AND cbdntfnumero='+QuotedStr( txtNumero.Text )+
+     ' AND cbdmod="55" and cbdcodigofilial='+QuotedStr( copy(cbofilial.Text,1,5) );
+    sdsnotapropria.ExecSQL();
+    ClientDataSet1.open;
+    ClientDataSet1.refresh;
 
 
-  ufDest:=  qrPadrao.FieldByName('cbduf_dest').AsString;
-	//   ufDest:= copy(cboUFDescarregamento.Text,1,2);
-	munDest :=  qrPadrao.FieldByName('cbdxmun_dest').AsString;
-	// munDest :=  copy(cboMunicipioDescarregamento.Text,1,2);
-	codMundest := qrPadrao.FieldByName('cbdcmun_dest').AsString;
+  //ufDest:=  qrPadrao.FieldByName('cbduf_dest').AsString;
+  ufDest:=  ClientDataSet1cbduf_dest.AsString;
+
+
+
+ //	munDest :=  qrPadrao.FieldByName('cbdxmun_dest').AsString;
+  munDest :=  ClientDataSet1cbdxmun_dest.AsString;
+
+
+// 	codMundest := qrPadrao.FieldByName('cbdcmun_dest').AsString;
+  	codMundest := ClientDataSet1cbdcmun_dest.AsString;
 
   	txtNumero.Text:= '';
     txtSerie.Text:=  '';
