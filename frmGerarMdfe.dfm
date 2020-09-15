@@ -2283,7 +2283,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Top = 223
         Width = 17
         Height = 17
-        TabOrder = 10
+        TabOrder = 9
         OnClick = chkcontingenciaClick
       end
       object GridNFE: TDBGrid
@@ -2299,7 +2299,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Font.Style = []
         ParentFont = False
         ReadOnly = True
-        TabOrder = 11
+        TabOrder = 10
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clGray
         TitleFont.Height = -13
@@ -2373,19 +2373,6 @@ object _frmGerarMdfe: T_frmGerarMdfe
         ParentFont = False
         TabOrder = 8
       end
-      object cbofilial: TComboBox
-        Left = 673
-        Top = 63
-        Width = 210
-        Height = 22
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 9
-      end
       object gridNotas: TDBGrid
         Left = 546
         Top = 91
@@ -2399,7 +2386,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 11
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowFrame
         TitleFont.Height = -13
@@ -2441,7 +2428,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 12
       end
       object txtcUnid: TComboBox
         Left = 756
@@ -2456,7 +2443,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Font.Style = []
         ItemIndex = 0
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 13
         Text = '01 - KG'
         Items.Strings = (
           '01 - KG'
@@ -2477,6 +2464,13 @@ object _frmGerarMdfe: T_frmGerarMdfe
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        TabOrder = 14
+      end
+      object cbofilial: TEdit
+        Left = 673
+        Top = 61
+        Width = 208
+        Height = 24
         TabOrder = 15
       end
     end
@@ -2572,7 +2566,7 @@ object _frmGerarMdfe: T_frmGerarMdfe
       'limit 1;')
     SQLConnection = _dmMDFe.conexao
     Left = 896
-    Top = 600
+    Top = 576
   end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1

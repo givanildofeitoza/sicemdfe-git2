@@ -67,7 +67,6 @@ type
     Label4: TLabel;
     Label15: TLabel;
     txtnumero: TEdit;
-    cbofilial: TComboBox;
     Label16: TLabel;
     imgBtnPesq: TImage;
     gridNotas: TDBGrid;
@@ -141,6 +140,7 @@ type
     ClientDataSet1cbduf_dest: TWideStringField;
     ClientDataSet1cbdxmun_dest: TWideStringField;
     ClientDataSet1cbdcmun_dest: TIntegerField;
+    cbofilial: TEdit;
     procedure cboUfTrajetoEnter(Sender: TObject);
     procedure btnaddtrajetoClick(Sender: TObject);
     procedure btnextrajetoClick(Sender: TObject);
@@ -1032,7 +1032,7 @@ begin
 	_dmMDFe.sdsQuery.SQL.Add(QuotedStr(txtserieMDF.Text)+', ');
 	_dmMDFe.sdsQuery.SQL.Add(QuotedStr(txtnumeroMDF.Text)+', ');
 	_dmMDFe.sdsQuery.SQL.Add('IFNULL(MAX(controlenfe)+1, 1)'+', ');
-	_dmMDFe.sdsQuery.SQL.Add(QuotedStr( qrPadrao.FieldByName('CbdNFEChaAcesso').AsString )+', ');
+	_dmMDFe.sdsQuery.SQL.Add(QuotedStr( ClientDataSet1CbdNFEChaAcesso.AsString )+', ');
 
 	_dmMDFe.sdsQuery.SQL.Add(QuotedStr( Copy(cboTipoUnidadeTracao.Text, 1, 1) )+', ');
 	_dmMDFe.sdsQuery.SQL.Add(QuotedStr( txtPlaca.Text )+', ');
@@ -1102,7 +1102,8 @@ exit;
 
     _dmMDFe.conexao.Connected:=false;
     ClientDataSet1.Close;
-    sdsnotapropria.CommandText:= 'SELECT cbdntfserie,CbdNtfNumero,CbdxNome_dest,CbdNFEChaAcesso,CbdCodigoFilial,cbduf_dest,cbdxmun_dest,cbdcmun_dest FROM cbd001 WHERE '+
+    sdsnotapropria.CommandText:= 'SELECT cbdntfserie,CbdNtfNumero,CbdxNome_dest,'+
+    '(SELECT CbdNFEChaAcesso FROM nfe012 WHERE cbdntfnumero='+QuotedStr(txtNumero.Text)+' AND cbdntfserie='+QuotedStr(txtSerie.Text)+' AND cbdcodigofilial='+QuotedStr(copy(cbofilial.Text,1,5))+') as CbdNFEChaAcesso,CbdCodigoFilial,cbduf_dest,cbdxmun_dest,cbdcmun_dest FROM cbd001 WHERE '+
      ' cbdntfserie = abs('+QuotedStr( txtSerie.Text )+')'+
      ' AND cbdntfnumero='+QuotedStr( txtNumero.Text )+
      ' AND cbdmod="55" and cbdcodigofilial='+QuotedStr( copy(cbofilial.Text,1,5) );
