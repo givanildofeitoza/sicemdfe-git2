@@ -12,7 +12,9 @@ uses
   frmListarNotas in 'frmListarNotas.pas' {_frmListarNotas},
   frmManifestosEncerrar in 'frmManifestosEncerrar.pas' {_frmManifestosEncerrar},
   frmLiberacao in 'frmLiberacao.pas' {_frmLiberacao},
-  frSelecionarCertificado in 'frSelecionarCertificado.pas' {_frSelecionarCertificado};
+  frSelecionarCertificado in 'frSelecionarCertificado.pas' {_frSelecionarCertificado},
+  frmNotasAvulsas in 'frmNotasAvulsas.pas' {_frmNotasAvulsas},
+  frmGerarMdfe in 'frmGerarMdfe.pas' {_frmGerarMdfe};
 
 {$R *.res}
 
@@ -22,5 +24,7 @@ begin
   Application.CreateForm(T_dmMDFe, _dmMDFe);
   Application.CreateForm(T_Main, _Main);
   Application.CreateForm(T_frSelecionarCertificado, _frSelecionarCertificado);
+  Application.CreateForm(T_frmNotasAvulsas, _frmNotasAvulsas);
+  Application.CreateForm(T_frmGerarMdfe, _frmGerarMdfe);
   Application.Run;
 end.

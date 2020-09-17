@@ -17,6 +17,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -34,11 +35,18 @@ dmMDFe,u_main;
 
 procedure T_frmManifestosEncerrar.BitBtn1Click(Sender: TObject);
 begin
-_Main.btnEncerrar.Click;
+//_Main.btnEnc.Click;
 end;
 
 procedure T_frmManifestosEncerrar.BitBtn2Click(Sender: TObject);
 begin
+modalresult:=-1;
+end;
+
+procedure T_frmManifestosEncerrar.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if(Key=VK_ESCAPE)then
 modalresult:=-1;
 end;
 

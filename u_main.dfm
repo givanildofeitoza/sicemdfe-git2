@@ -241,7 +241,7 @@ object _Main: T_Main
               Value = 22.627928950885080000
             end
             item
-              Value = 5.339847988788606000
+              Value = 5.339847988788598000
             end
             item
               Value = 14.564169317472980000
@@ -1475,7 +1475,7 @@ object _Main: T_Main
         end
       end
       object pnlConfig: TPanel
-        Left = 104
+        Left = 117
         Top = 41
         Width = 800
         Height = 629
@@ -4216,42 +4216,6 @@ object _Main: T_Main
     Left = 28
     Top = 573
   end
-  object ACBrMDFe1: TACBrMDFe
-    Configuracoes.Geral.SSLLib = libNone
-    Configuracoes.Geral.SSLCryptLib = cryNone
-    Configuracoes.Geral.SSLHttpLib = httpNone
-    Configuracoes.Geral.SSLXmlSignLib = xsNone
-    Configuracoes.Geral.FormatoAlerta = 'TAG:%TAGNIVEL% ID:%ID%/%TAG%(%DESCRICAO%) - %MSG%.'
-    Configuracoes.Arquivos.OrdenacaoPath = <>
-    Configuracoes.WebServices.UF = 'SP'
-    Configuracoes.WebServices.AguardarConsultaRet = 0
-    Configuracoes.WebServices.QuebradeLinha = '|'
-    Configuracoes.RespTec.IdCSRT = 0
-    DAMDFE = ACBrMDFeDAMDFeRL1
-    Left = 20
-    Top = 637
-  end
-  object ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL
-    Sistema = 'Projeto ACBr - www.projetoacbr.com.br'
-    MargemInferior = 8.000000000000000000
-    MargemSuperior = 8.000000000000000000
-    MargemEsquerda = 6.000000000000000000
-    MargemDireita = 5.100000000000000000
-    CasasDecimais.Formato = tdetInteger
-    CasasDecimais.qCom = 2
-    CasasDecimais.vUnCom = 2
-    CasasDecimais.MaskqCom = ',0.00'
-    CasasDecimais.MaskvUnCom = ',0.00'
-    ACBrMDFe = ACBrMDFe1
-    ImprimeHoraSaida = False
-    TipoDAMDFe = tiSemGeracao
-    TamanhoPapel = tpA4
-    Cancelada = False
-    Encerrado = False
-    PrintDialog = True
-    Left = 108
-    Top = 629
-  end
   object imgListMenu: TImageList
     ColorDepth = cd32Bit
     BkColor = clWhite
@@ -4259,7 +4223,7 @@ object _Main: T_Main
     Left = 126
     Top = 751
     Bitmap = {
-      494C010104000800280010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
+      494C010104000800480010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4529,5 +4493,46 @@ object _Main: T_Main
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL
+    Sistema = 'Projeto ACBr - www.projetoacbr.com.br'
+    MargemInferior = 8.000000000000000000
+    MargemSuperior = 8.000000000000000000
+    MargemEsquerda = 6.000000000000000000
+    MargemDireita = 5.100000000000000000
+    ExpandeLogoMarcaConfig.Altura = 0
+    ExpandeLogoMarcaConfig.Esquerda = 0
+    ExpandeLogoMarcaConfig.Topo = 0
+    ExpandeLogoMarcaConfig.Largura = 0
+    ExpandeLogoMarcaConfig.Dimensionar = False
+    ExpandeLogoMarcaConfig.Esticar = True
+    CasasDecimais.Formato = tdetInteger
+    CasasDecimais.qCom = 2
+    CasasDecimais.vUnCom = 2
+    CasasDecimais.MaskqCom = ',0.00'
+    CasasDecimais.MaskvUnCom = ',0.00'
+    ImprimeHoraSaida = False
+    TipoDAMDFe = tiSemGeracao
+    TamanhoPapel = tpA4
+    Cancelada = False
+    Encerrado = False
+    ImprimeDadosExtras = [deValorTotal, deRelacaoDFe]
+    PrintDialog = True
+    Left = 746
+    Top = 416
+  end
+  object ACBrMDFe1: TACBrMDFe
+    Configuracoes.Geral.SSLLib = libNone
+    Configuracoes.Geral.SSLCryptLib = cryNone
+    Configuracoes.Geral.SSLHttpLib = httpNone
+    Configuracoes.Geral.SSLXmlSignLib = xsNone
+    Configuracoes.Geral.FormatoAlerta = 'TAG:%TAGNIVEL% ID:%ID%/%TAG%(%DESCRICAO%) - %MSG%.'
+    Configuracoes.Arquivos.OrdenacaoPath = <>
+    Configuracoes.WebServices.UF = 'SP'
+    Configuracoes.WebServices.AguardarConsultaRet = 0
+    Configuracoes.WebServices.QuebradeLinha = '|'
+    Configuracoes.RespTec.IdCSRT = 0
+    Left = 602
+    Top = 416
   end
 end

@@ -4,13 +4,14 @@ interface
 
 uses
 Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ACBrMDFeDAMDFeClass,
-ACBrBase, ACBrDFe, ACBrMDFe, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ComCtrls,
-Vcl.Grids, Vcl.DBGrids, RxToolEdit, RxCurrEdit, pcnConversaoNFe, pcnConversao, ACBrNFeDANFEClass, ACBrUtil,
+Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+ACBrBase,  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ComCtrls,
+Vcl.Grids, Vcl.DBGrids, RxToolEdit, RxCurrEdit, pcnConversaoNFe, pcnConversao,  ACBrUtil,
 Vcl.ExtCtrls, RxSlider, IniFiles, ShellAPI, OleCtrls, SHDocVw,
-ACBrMail, Data.DB, ACBrMDFeDAMDFeRLClass, Vcl.Imaging.jpeg,
+Data.DB,  Vcl.Imaging.jpeg,
 Vcl.Imaging.pngimage, ACBrDFeReport, Vcl.Menus, RxCtrls, RpCon, RpConDS,
-RpBase, RpSystem, RpDefine, RpRave, Vcl.ImgList;
+RpBase, RpSystem, RpDefine, RpRave, Vcl.ImgList, ACBrMDFeDAMDFeClass,
+ACBrMDFe, ACBrMDFeDAMDFeRLClass, ACBrDFe;
 
 type
 T_Main = class(TForm)
@@ -23,8 +24,8 @@ T_Main = class(TForm)
     RvProject1: TRvProject;
     RvSystem1: TRvSystem;
     RvDataSetConnection1: TRvDataSetConnection;
-    ACBrMDFe1: TACBrMDFe;
-    ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL;
+   // ACBrMDFe1: TACBrMDFe;
+  // ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL;
     Panel4: TPanel;
     Panel5: TPanel;
     Image1: TImage;
@@ -171,6 +172,8 @@ T_Main = class(TForm)
     btnVer: TPanel;
     cbotipocert: TComboBox;
     Label1: TLabel;
+    ACBrMDFeDAMDFeRL1: TACBrMDFeDAMDFeRL;
+    ACBrMDFe1: TACBrMDFe;
     procedure btnSalvarClick(Sender: TObject);
     procedure cboUFCarregamentoEnter(Sender: TObject);
     procedure cboUFDescarregamentoEnter(Sender: TObject);

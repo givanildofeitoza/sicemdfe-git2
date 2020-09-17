@@ -57,7 +57,7 @@
         <DCC_K>false</DCC_K>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>ACBr_BoletoFR;FireDACSqliteDriver;RtmRxDB190;DBXSqliteDriver;FireDACPgDriver;fiscal;fmx;TWebCam;ACBr_Diversos;IndySystem;TeeDB;ACBr_NFeDanfeFR;frx19;DbxDevartMySqlDriver190;vclib;inetdbbde;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;ACBr_NFeDanfeESCPOS;ACBr_synapse;Rave110VCL;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;ACBr_MDFeDamdfeFR;vclimg;dbxcds;ACBr_Comum;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;ACBr_Serial;vclribbon;dsnap;IndyIPServer;ACBr_MDFe;fmxase;vcl;IndyCore;ACBr_DFeComum;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;ACBr_Boleto;FireDACDBXDriver;inetdbxpress;ACBr_NFSe;frxe19;FireDACDb2Driver;adortl;ACBr_TCP;frxDB19;FireDACASADriver;fs19;bindcompfmx;vcldbx;FireDACODBCDriver;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;ACBr_NFe;Tee;DelSenhaDXE5;DBXOdbcDriver;vclFireDAC;CPortLibDXE;xmlrtl;svnui;ibxpress;ACBr_NFCeECFVirtual;IndyProtocols;DBXMySQLDriver;RtmRxCtl190;FireDACCommonDriver;bindengine;vclactnband;soaprtl;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;ACBr_OpenSSL;FireDACADSDriver;vcltouch;RLibWinDXE5;VclSmp;FireDACMSSQLDriver;FireDAC;VCLRESTComponents;Intraweb;DBXInformixDriver;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;vclx;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;DelPrintDXE5;bdertl;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>ACBr_BoletoFR;FireDACSqliteDriver;RtmRxDB190;DBXSqliteDriver;FireDACPgDriver;fiscal;fmx;TWebCam;IndySystem;TeeDB;ACBr_NFeDanfeFR;frx19;DbxDevartMySqlDriver190;vclib;inetdbbde;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;ACBr_NFeDanfeESCPOS;ACBr_synapse;Rave110VCL;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;ACBr_MDFeDamdfeFR;vclimg;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;ACBr_DFeComum;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;ACBr_Boleto;FireDACDBXDriver;inetdbxpress;ACBr_NFSe;frxe19;FireDACDb2Driver;adortl;frxDB19;FireDACASADriver;fs19;bindcompfmx;vcldbx;FireDACODBCDriver;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;Tee;DelSenhaDXE5;DBXOdbcDriver;vclFireDAC;CPortLibDXE;xmlrtl;svnui;ibxpress;ACBr_NFCeECFVirtual;IndyProtocols;DBXMySQLDriver;RtmRxCtl190;FireDACCommonDriver;bindengine;vclactnband;soaprtl;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;FireDACADSDriver;vcltouch;RLibWinDXE5;VclSmp;FireDACMSSQLDriver;FireDAC;VCLRESTComponents;Intraweb;DBXInformixDriver;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;vclx;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;DelPrintDXE5;bdertl;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dbexpress;IndyIPClient;ACBr_Integrador;ACBr_NFeDanfeRL;ACBr_MDFeDamdfeRL;ACBr_CTeDacteRL;ACBr_NFe;ACBr_MDFe;$(DCC_UsePackage)</DCC_UsePackage>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -76,8 +76,10 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_MajorVer>2</VerInfo_MajorVer>
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=4.1.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <Icon_MainIcon>SICEMDFe_Icon.ico</Icon_MainIcon>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -90,9 +92,9 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_MinorVer>4</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=3.4.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=3.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_MajorVer>3</VerInfo_MajorVer>
+        <VerInfo_MinorVer>3</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=4.3.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=3.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <Icon_MainIcon>SICEMDFe_Icon1.ico</Icon_MainIcon>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -137,6 +139,14 @@
         </DCCReference>
         <DCCReference Include="frSelecionarCertificado.pas">
             <Form>_frSelecionarCertificado</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmNotasAvulsas.pas">
+            <Form>_frmNotasAvulsas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="frmGerarMdfe.pas">
+            <Form>_frmGerarMdfe</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -210,6 +220,11 @@
                     <Source Name="MainSource">SICEMDFe.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\iqsistemas\componentes\xe5\trunk\Lib\Delphi\LibD19\Win32\DCLACBr_OpenSSL.bpl">ACBr - (DesignTime) Bind para OpenSSL 1.1.1 - (http://www.projetoacbr.com.br/)</Excluded_Packages>
+                    <Excluded_Packages Name="C:\iqsistemas\componentes\xe5\trunk\Lib\Delphi\LibD19\Win32\DCLACBr_Diversos.bpl">ACBr - (DesignTime) Calculadora, Extenso, Validador, Troco, CMC7, Fala, BarCode, EnterTab, GIF, QrCode, InStore, CargaBal - (http://www.projetoacbr.com.br/)</Excluded_Packages>
+                    <Excluded_Packages Name="C:\iqsistemas\componentes\xe5\trunk\Lib\Delphi\LibD19\Win32\DCLACBr_Serial.bpl">ACBr - (DesignTime) ECF, Balanças, Cheques, Displays, Etiquetas, Gavetas, Terminais, SMS, RFD, Leitores - (http://www.projetoacbr.com.br/)</Excluded_Packages>
+                    <Excluded_Packages Name="C:\iqsistemas\componentes\xe5\trunk\Lib\Delphi\LibD19\Win32\DCLACBr_CTe.bpl">ACBr - (DesignTime) Conhecimento de Transporte Eletrônico - (http://www.projetoacbr.com.br/)</Excluded_Packages>
+                    <Excluded_Packages Name="C:\iqsistemas\componentes\xe5\trunk\Lib\Delphi\LibD19\Win32\DCLACBr_TCP.bpl">ACBr - (DesignTime) Socket, CEP, TCP, IBGE, CNIEE, Suframa, Download, FTP, HTTP, NFPws, IBPTax, CNPJ, CPF, Cotação, E-mail, Feriado - (http://www.projectoacbr.com.br/)</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k190.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp190.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
