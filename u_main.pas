@@ -4634,7 +4634,7 @@ begin
           +' WHERE codigofilial='+quotedstr(Glb_filial));
 
            if(cbotipocert.Text='A1')then
-          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(OpenDialog1.FileName, ftBlob)
+          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(edtCaminho.Text, ftBlob)
           else
           _dmMdfe.qrPadrao.ParamByName('arquivo').AsBlob := nil;
 
@@ -4674,7 +4674,7 @@ begin
           +' WHERE codigofilial='+quotedstr(Glb_filial));
 
            if(cbotipocert.Text='A1')then
-          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(OpenDialog1.FileName, ftBlob)
+          _dmMdfe.qrPadrao.ParamByName('arquivo').LoadFromFile(edtCaminho.Text, ftBlob)
            else
           _dmMdfe.qrPadrao.ParamByName('arquivo').AsBlob := nil;
          _dmMdfe.qrPadrao.ExecSQL();
