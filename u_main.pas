@@ -2808,6 +2808,7 @@ begin
 
 
 
+
     if not( _dmMdfe.cdsconffinancCertificadoArquivo.IsNull)then
     begin
 
@@ -3914,7 +3915,7 @@ begin
 		Ide.verProc := '1.0';
 		//UF origem
 		Ide.UFIni   := _dmMDFe.cdsmdfeIDEUFIni.AsString;
-	
+
 
 		//Estados do percurso
    _dmMDFe.cdstrajeto.first;
@@ -4030,6 +4031,7 @@ begin
 		begin
 			xNome := _dmMDFe.cdsmdfeRodoveicTracao_condutor_xNome.AsString;
 			CPF   := _dmMDFe.cdsmdfeRodoveicTracao_condutor_CPF.AsString;
+
 		end;
 
 
@@ -4149,6 +4151,10 @@ begin
 		if _dmMDFe.cdsmdfeIDEcUnid.AsString='02' then tot.cUnid  :=  uTON;
 
 		tot.qCarga := _dmMDFe.cdsmdfeIDEqCarga.AsCurrency;
+
+    //informações adicionais
+     infAdic.infAdFisco:='';
+     infAdic.infCpl:= _dmMDFe.cdsmdfeIDEinfCpl.AsString;
 
 		// ACBrMDFe1.Manifestos.Assinar;
 

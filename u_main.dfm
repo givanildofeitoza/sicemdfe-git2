@@ -241,7 +241,7 @@ object _Main: T_Main
               Value = 22.627928950885080000
             end
             item
-              Value = 5.339847988788598000
+              Value = 5.339847988788597000
             end
             item
               Value = 14.564169317472980000
@@ -925,8 +925,8 @@ object _Main: T_Main
             end>
         end
         object pnlacoes: TPanel
-          Left = 22
-          Top = 86
+          Left = 86
+          Top = 449
           Width = 365
           Height = 426
           TabOrder = 2
@@ -1475,8 +1475,8 @@ object _Main: T_Main
         end
       end
       object pnlConfig: TPanel
-        Left = 117
-        Top = 41
+        Left = 270
+        Top = 38
         Width = 800
         Height = 629
         Align = alCustom
@@ -4223,7 +4223,7 @@ object _Main: T_Main
     Left = 126
     Top = 751
     Bitmap = {
-      494C010104000800480010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
+      494C0101040008004C0010001000FFFFFF002110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4511,6 +4511,7 @@ object _Main: T_Main
     CasasDecimais.vUnCom = 2
     CasasDecimais.MaskqCom = ',0.00'
     CasasDecimais.MaskvUnCom = ',0.00'
+    ACBrMDFe = ACBrMDFe1
     ImprimeHoraSaida = False
     TipoDAMDFe = tiSemGeracao
     TamanhoPapel = tpA4
@@ -4532,6 +4533,7 @@ object _Main: T_Main
     Configuracoes.WebServices.AguardarConsultaRet = 0
     Configuracoes.WebServices.QuebradeLinha = '|'
     Configuracoes.RespTec.IdCSRT = 0
+    DAMDFE = ACBrMDFeDAMDFeRL1
     Left = 602
     Top = 416
   end
