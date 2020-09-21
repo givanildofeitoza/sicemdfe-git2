@@ -3964,7 +3964,7 @@ begin
 		Emit.xFant := _dmMDFe.qrPadrao.FieldByName('xFant').AsString;
 
 		Emit.EnderEmit.xLgr    := _dmMDFe.qrPadrao.FieldByName('xLgr').AsString;
-		Emit.EnderEmit.nro     := _dmMDFe.qrPadrao.FieldByName('nro').AsString;
+		Emit.EnderEmit.nro     :=  PadLeft( _dmMDFe.qrPadrao.FieldByName('nro').AsString,3,'0');
 		Emit.EnderEmit.xCpl    := _dmMDFe.qrPadrao.FieldByName('xCpl').AsString;
 		Emit.EnderEmit.xBairro := _dmMDFe.qrPadrao.FieldByName('xBairro').AsString;
 		Emit.EnderEmit.cMun    := _dmMDFe.qrPadrao.FieldByName('cMun').AsInteger;
